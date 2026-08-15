@@ -1,0 +1,52 @@
+import { motion } from "framer-motion";
+import PhotoPlaceholder from "./PhotoPlaceholder";
+import Button from "./Button";
+import type { Proposal } from "../data/proposals";
+
+export default function ProposalCard({ proposal }: { proposal: Proposal }) {
+  const imageFirst = proposal.imageSide === "left";
+
+  return (
+    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <motion.div
+        initial={{ opacity: 0, x: imageFirst ? -30 : 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className={imageFirst ? "lg:order-1" : "lg:order-2"}
+      >
+        <PhotoPlaceholder
+          label={proposal.photo}
+          tone={imageFirst ? "green" : "lime"}
+          className="aspect-[4/3] w-full rounded-2xl"
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        className={imageFirst ? "lg:order-2" : "lg:order-1"}
+      >
+        <div className="flex items-center gap-3">
+          <span className="font-display text-lg font-bold text-brand-green-dark">
+            {proposal.number}
+          </span>
+          <span className="eyebrow text-brand-gray-900/50">{proposal.category}</span>
+        </div>
+        <h3 className="mt-4 font-display text-2xl font-bold leading-tight text-brand-gray-900 sm:text-3xl lg:text-4xl">
+          {proposal.title}
+        </h3>
+        <p className="mt-5 text-base leading-relaxed text-brand-gray-900/70 sm:text-lg">
+          {proposal.description}
+        </p>
+        <div className="mt-8">
+          <Button href="#" variant="secondary">
+            Conocer propuesta
+          </Button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}

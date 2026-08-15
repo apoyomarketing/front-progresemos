@@ -1,64 +1,77 @@
-# Progresemos — Landing page institucional
+# PROGRESEMOS — Landing page institucional
 
-Landing page para el partido político **Progresemos**, construida con React + Vite + Tailwind CSS.
+Landing page oficial para el partido político peruano PROGRESEMOS, construida con
+React + Vite + TypeScript + Tailwind CSS v4 + Framer Motion.
 
-## Stack
-
-- React 19 + React Router (páginas: inicio, propuestas, candidato, noticias)
-- Vite
-- Tailwind CSS (tokens de color y tipografía en `tailwind.config.js`)
-- lucide-react (iconografía)
-- framer-motion (animaciones de aparición al hacer scroll)
-
-## Cómo correrlo
+## Empezar
 
 ```bash
 npm install
-npm run dev       # servidor de desarrollo
-npm run build     # build de producción en /dist
-npm run preview   # previsualizar el build
+npm run dev       # entorno de desarrollo
+npm run build     # build de producción (carpeta dist/)
+npm run preview   # previsualizar el build de producción
 ```
 
 ## Estructura
 
-```text
+```
 src/
-├── components/     # componentes reutilizables (uno por sección)
-├── data/           # contenido editable, separado del diseño
-├── pages/          # ensamblan componentes en rutas (/, /propuestas, /candidato, /noticias)
-├── assets/         # logo, foto del candidato, galería (colocar aquí)
-├── App.jsx
-├── main.jsx
-└── index.css       # tokens globales, texturas de fondo, utilidades
+├── components/   # componentes de sección y componentes reutilizables
+├── data/         # contenido editable, separado de los componentes
+├── App.tsx       # composición de la página
+├── main.tsx
+└── index.css     # tokens de diseño (colores, tipografía) vía Tailwind v4 @theme
 ```
 
-## Contenido pendiente de completar
+## Carrusel del Hero
 
-Todo el contenido de ejemplo está marcado explícitamente en el código
-(comentarios "placeholder" / "reemplazar") y debe completarse con
-información real y verificada antes de publicar el sitio:
+El fondo del Hero es un carrusel de imágenes que cambia automáticamente cada
+5 segundos (como en el sitio de referencia de Alianza Para el Progreso), con
+flechas y puntos de navegación que aparecen solos en cuanto hay más de una
+imagen.
 
-- `src/data/candidate.js` — biografía, trayectoria y foto del candidato
-  (`candidate.photo`). No inventar títulos, cargos ni logros.
-- `src/data/proposals.js` — propuestas reales por categoría.
-- `src/data/agenda.js` — actividades y fechas confirmadas.
-- `src/data/news.js` — noticias reales.
-- `src/data/documents.js` — enlaces a documentos institucionales reales.
-- `src/data/social.js` — URLs de las cuentas oficiales verificadas.
-- `src/components/Contact.jsx` — datos de contacto reales (`CONTACT_INFO`)
-  y conexión del formulario a un backend/servicio de envío real.
-- `src/components/Gallery.jsx` — reemplazar los bloques de color por
-  fotografías reales en `src/assets/gallery/`.
+Para agregar más fotos, edita `src/data/heroSlides.ts`:
 
-## Paleta
+```ts
+import miNuevaFoto from "../assets/hero-slides/mi-foto.jpg";
 
-| Token              | Valor     |
-|--------------------|-----------|
-| verde-principal    | `#159447` |
-| verde-oscuro       | `#087A38` |
-| verde-profundo     | `#075B2B` |
-| verde-brillante    | `#65C91A` |
-| verde-lima         | `#A7D92B` |
-| gris-claro         | `#F4F7F4` |
-| gris-texto         | `#374151` |
-| negro-suave        | `#111827` |
+export const heroSlides: HeroSlide[] = [
+  { image: slide1, alt: "..." },
+  { image: miNuevaFoto, alt: "Descripción de la foto" },
+];
+```
+
+Recomendaciones para las fotos del carrusel:
+- Formato apaisado (horizontal), idealmente cerca de 16:9 o más ancho.
+- Evita imágenes con texto propio (nombres, fechas) ya incluido, porque
+  compite visualmente con el título del Hero que se superpone encima.
+- Guárdalas como `.jpg` optimizado (calidad ~80-85) para no afectar el
+  tiempo de carga.
+
+## Contenido pendiente de reemplazo
+
+Este proyecto usa **placeholders de fotografía** (bloques en degradé verde con
+etiqueta identificatoria) en lugar de fotografías reales, ya que no se
+proporcionaron imágenes. Cada uno está marcado con el componente
+`PhotoPlaceholder` y es fácil de reemplazar por un `<img>` real.
+
+También incluye:
+- Perfiles de liderazgo ficticios (`src/data/leadership.ts`) — reemplazar con
+  información real antes de publicar.
+- Cifras de impacto demostrativas (`src/data/stats.ts`) — marcadas explícitamente
+  como no oficiales.
+- Noticias y documentos de ejemplo (`src/data/news.ts`, `src/data/documents.ts`).
+
+## Paleta de marca
+
+| Uso | Color |
+|---|---|
+| Verde principal | `#299527` |
+| Verde institucional | `#4CAD30` |
+| Verde lima | `#7ABB2F` |
+| Verde oscuro | `#176B24` |
+| Amarillo de acento | `#F5E20B` |
+
+## Tipografía
+
+Plus Jakarta Sans (títulos) + Inter (texto e interfaz).
