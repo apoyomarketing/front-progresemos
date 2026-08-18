@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import PhotoPlaceholder from "./PhotoPlaceholder";
+import cercaniaComunidad from "../assets/campana-cercania-comunidad.jpg";
 
 export default function About() {
   return (
@@ -35,10 +35,10 @@ export default function About() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="relative lg:col-span-7"
         >
-          <PhotoPlaceholder
-            label="Ciudadanos y desarrollo local"
-            tone="green"
-            className="aspect-[4/3] w-full rounded-2xl lg:aspect-[16/11] lg:translate-x-6"
+          <img
+            src={cercaniaComunidad}
+            alt="Lucio Istaña saludando a vecinos en una comunidad de la provincia de Puno"
+            className="aspect-[4/3] w-full rounded-2xl object-cover lg:aspect-[16/11] lg:translate-x-6"
           />
           <div className="absolute -bottom-6 -left-4 hidden h-28 w-28 rounded-2xl bg-brand-yellow sm:block lg:-left-8" />
         </motion.div>

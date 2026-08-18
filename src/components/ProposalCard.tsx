@@ -2,9 +2,19 @@ import { motion } from "framer-motion";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 import Button from "./Button";
 import type { Proposal } from "../data/proposals";
+import caminataAquino from "../assets/campana-caminata-aquino.jpg";
+import mitinNoche2 from "../assets/campana-mitin-noche-2.jpg";
+import mitinDiaEscenario from "../assets/campana-mitin-dia-escenario.jpg";
+
+const realPhotos: Record<string, string> = {
+  "01": caminataAquino,
+  "02": mitinNoche2,
+  "03": mitinDiaEscenario,
+};
 
 export default function ProposalCard({ proposal }: { proposal: Proposal }) {
   const imageFirst = proposal.imageSide === "left";
+  const realImage = realPhotos[proposal.number];
 
   return (
     <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -15,11 +25,19 @@ export default function ProposalCard({ proposal }: { proposal: Proposal }) {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className={imageFirst ? "lg:order-1" : "lg:order-2"}
       >
-        <PhotoPlaceholder
-          label={proposal.photo}
-          tone={imageFirst ? "green" : "lime"}
-          className="aspect-[4/3] w-full rounded-2xl"
-        />
+        {realImage ? (
+          <img
+            src={realImage}
+            alt={proposal.photo}
+            className="aspect-[4/3] w-full rounded-2xl object-cover"
+          />
+        ) : (
+          <PhotoPlaceholder
+            label={proposal.photo}
+            tone={imageFirst ? "green" : "lime"}
+            className="aspect-[4/3] w-full rounded-2xl"
+          />
+        )}
       </motion.div>
 
       <motion.div

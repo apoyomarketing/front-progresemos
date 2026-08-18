@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import PhotoPlaceholder from "./PhotoPlaceholder";
 import ContourMotif from "./ContourMotif";
 import Button from "./Button";
+import capachicaNoche from "../assets/capachica-plaza-noche.jpg";
 
 const highlights = ["Altiplano", "Cultura viva", "Producción agrícola", "Turismo", "Juventud puneña"];
 
@@ -15,7 +15,11 @@ export default function PunoSection() {
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         className="absolute inset-0"
       >
-        <PhotoPlaceholder label="Paisaje panorámico del altiplano — Puno" tone="dark" className="h-full w-full" />
+        <img
+          src={capachicaNoche}
+          alt="Plaza de Capachica de noche, provincia de Puno"
+          className="h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-gray-900 via-brand-gray-900/70 to-transparent" />
       </motion.div>
 

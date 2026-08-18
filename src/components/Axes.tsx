@@ -13,6 +13,11 @@ import SectionHeader from "./SectionHeader";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 import { axes } from "../data/axes";
 import type { Axis } from "../data/axes";
+import multitudCapachica from "../assets/campana-multitud-capachica.jpg";
+
+const realPhotos: Partial<Record<Axis["number"], string>> = {
+  "01": multitudCapachica,
+};
 
 const iconMap: Record<Axis["icon"], typeof GraduationCap> = {
   "graduation-cap": GraduationCap,
@@ -70,11 +75,19 @@ function AxisCard({ axis, index }: { axis: Axis; index: number }) {
       </div>
 
       {isLarge && axis.photo && (
-        <PhotoPlaceholder
-          label={axis.photo}
-          tone="lime"
-          className="relative mt-8 aspect-[16/10] w-full rounded-xl"
-        />
+        realPhotos[axis.number] ? (
+          <img
+            src={realPhotos[axis.number]}
+            alt={axis.photo}
+            className="relative mt-8 aspect-[16/10] w-full rounded-xl object-cover"
+          />
+        ) : (
+          <PhotoPlaceholder
+            label={axis.photo}
+            tone="lime"
+            className="relative mt-8 aspect-[16/10] w-full rounded-xl"
+          />
+        )
       )}
     </motion.article>
   );

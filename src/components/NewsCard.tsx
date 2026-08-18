@@ -3,10 +3,14 @@ import PhotoPlaceholder from "./PhotoPlaceholder";
 import type { NewsItem } from "../data/news";
 import reunionFlyer from "../assets/flyer-reunion-coordinacion.png";
 import presentacionFlyer from "../assets/flyer-presentacion-candidatos.png";
+import mitinDiaBanderas from "../assets/campana-mitin-dia-banderas.jpg";
+import mitinNoche1 from "../assets/campana-mitin-noche-1.jpg";
 
 const images: Record<string, string> = {
   reunion: reunionFlyer,
   presentacion: presentacionFlyer,
+  innovacion: mitinDiaBanderas,
+  voluntariado: mitinNoche1,
 };
 
 export default function NewsCard({ item, index }: { item: NewsItem; index: number }) {

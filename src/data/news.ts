@@ -34,6 +34,7 @@ export const news: NewsItem[] = [
     title: "Nuevo eje de innovación busca cerrar la brecha digital",
     excerpt: "El plan contempla conectividad y formación tecnológica en zonas rurales del altiplano.",
     photo: "Taller de innovación",
+    image: "innovacion",
   },
   {
     category: "Participación",
@@ -41,5 +42,6 @@ export const news: NewsItem[] = [
     title: "Se abre convocatoria para voluntariado juvenil 2026",
     excerpt: "Jóvenes de la provincia podrán sumarse a las brigadas de trabajo territorial.",
     photo: "Voluntariado juvenil",
+    image: "voluntariado",
   },
 ];
