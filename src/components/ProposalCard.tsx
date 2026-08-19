@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 import type { Proposal } from "../data/proposals";
-import caminataAquino from "../assets/campana-caminata-aquino.jpg";
+import caminataAquino from "../assets/nosotros.png";
 import mitinNoche2 from "../assets/campana-mitin-noche-2.jpg";
 import mitinDiaEscenario from "../assets/campana-mitin-dia-escenario.jpg";
 
