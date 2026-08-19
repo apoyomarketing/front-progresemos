@@ -9,6 +9,7 @@ import Documents from "./components/Documents";
 import Participation from "./components/Participation";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+import ComunicadosModal from "./components/ComunicadosModal";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <FAQ />
       </main>
       <Footer />
+      <ComunicadosModal />
     </div>
   );
 }

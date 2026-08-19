@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Pencil, Trash2, Plus, Video, ImageOff, X } from "lucide-react";
 import { ApiError } from "../api/client";
 import type { ContentFields } from "../api/content";
+import { isVideoSrc } from "../lib/media";
 import ConfirmDialog from "./ConfirmDialog";
 
 export type FieldType = "text" | "email" | "password" | "date" | "textarea" | "image" | "media";
@@ -28,15 +29,6 @@ interface CollectionManagerProps<T extends { id: number }> {
 
 function emptyDraft<T>(fields: FieldConfig<T>[]): Record<string, string> {
   return Object.fromEntries(fields.map((f) => [f.key, ""]));
-}
-
-// "image" (propuestas.foto) siempre es una foto. "media" (noticias/comunicados.multimedia)
-// acepta foto o video indistintamente, así que hay que distinguir cuál es cuál para
-// previsualizar correctamente.
-function isVideoSrc(src: string): boolean {
-  if (src.startsWith("data:video")) return true;
-  if (src.startsWith("data:image")) return false;
-  return /\.(mp4|webm|ogv|ogg|mov|m4v)(\?.*)?$/i.test(src);
 }
 
 export default function CollectionManager<T extends { id: number }>({
