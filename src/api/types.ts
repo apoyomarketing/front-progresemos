@@ -43,6 +43,17 @@ export interface CambiarPasswordPayload {
   password_nuevo: string;
 }
 
+export interface UpdateUsuarioPayload {
+  nombre?: string;
+  email?: string;
+  rol?: number | null;
+  estado?: boolean;
+}
+
+export interface AdminResetPasswordPayload {
+  password_nuevo: string;
+}
+
 export interface DrfDetailError {
   detail: string;
 }

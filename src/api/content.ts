@@ -5,13 +5,15 @@ export interface ApiPropuesta {
   titulo: string;
   foto: string;
   descripcion: string;
+  orden: number;
 }
 
+// A diferencia de propuestas.foto (validado como imagen), noticias.multimedia
+// es un solo campo de archivo que acepta foto o video indistintamente.
 export interface ApiNoticia {
   id: number;
   titulo: string;
-  foto: string;
-  video: string;
+  multimedia: string;
   descripcion: string;
   fecha: string;
   lugar: string;
@@ -20,8 +22,9 @@ export interface ApiNoticia {
 export interface ApiComunicado {
   id: number;
   titulo: string;
-  foto: string;
-  video: string;
+  multimedia: string;
+  descripcion: string;
+  fecha: string;
 }
 
 export type ContentFields = Record<string, string | File | undefined>;

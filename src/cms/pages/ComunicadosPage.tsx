@@ -6,9 +6,10 @@ import CollectionManager from "../CollectionManager";
 import type { FieldConfig } from "../CollectionManager";
 
 const comunicadoFields: FieldConfig<ApiComunicado>[] = [
-  { key: "titulo", label: "Título", type: "text" },
-  { key: "foto", label: "Foto", type: "image" },
-  { key: "video", label: "URL de video (opcional)", type: "text" },
+  { key: "titulo", label: "Título", type: "text", required: true },
+  { key: "descripcion", label: "Descripción", type: "textarea", required: true },
+  { key: "multimedia", label: "Foto o video", type: "media" },
+  { key: "fecha", label: "Fecha", type: "date" },
 ];
 
 export default function ComunicadosPage() {
