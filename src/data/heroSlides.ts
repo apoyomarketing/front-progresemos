@@ -1,6 +1,7 @@
 import slide1 from "../assets/hero-slides/slide-1-agro.jpg";
 import slide2 from "../assets/hero-slides/slide-2-campana.jpg";
-import slide3 from "../assets/hero-slides/slide-3-fondo.jpg";
+import mitinDiaEscenario from "../assets/campana-mitin-dia-escenario.jpg";
+import caminataAquino from "../assets/campana-caminata-aquino.jpg";
 
 export interface HeroSlide {
   image: string;
@@ -20,7 +21,11 @@ export const heroSlides: HeroSlide[] = [
     alt: "Lucio Istaña en campaña con vecinos de la provincia de Puno",
   },
   {
-    image: slide3,
-    alt: "Paisaje de la provincia de Puno, escenario de la propuesta de PROGRESEMOS",
+    image: mitinDiaEscenario,
+    alt: "Lucio Istaña saludando a la multitud en un mitin de campaña en Capachica",
+  },
+  {
+    image: caminataAquino,
+    alt: "Lucio Istaña en caminata de campaña junto a dirigentes y vecinos de la provincia de Puno",
   },
 ];

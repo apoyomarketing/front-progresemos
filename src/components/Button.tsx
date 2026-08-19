@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 interface ButtonProps {
   children: ReactNode;
   href?: string;
+  target?: string;
+  rel?: string;
   variant?: "primary" | "secondary" | "ghost" | "light";
   icon?: boolean;
   className?: string;
@@ -22,6 +24,8 @@ const variants: Record<string, string> = {
 export default function Button({
   children,
   href,
+  target,
+  rel,
   variant = "primary",
   icon = true,
   className = "",
@@ -44,7 +48,7 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} target={target} rel={rel} className={classes}>
         {content}
       </a>
     );

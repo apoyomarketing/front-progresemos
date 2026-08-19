@@ -1,6 +1,9 @@
 import SectionHeader from "./SectionHeader";
 import ProposalCard from "./ProposalCard";
+import Button from "./Button";
 import { proposals } from "../data/proposals";
+
+const featuredProposals = proposals.slice(0, 3);
 
 export default function Proposals() {
   return (
@@ -13,9 +16,15 @@ export default function Proposals() {
         />
 
         <div className="mt-20 flex flex-col gap-24 sm:gap-32">
-          {proposals.map((proposal) => (
+          {featuredProposals.map((proposal) => (
             <ProposalCard proposal={proposal} key={proposal.number} />
           ))}
+        </div>
+
+        <div className="mt-20 flex justify-center">
+          <Button href="/propuestas.html" target="_blank" rel="noopener noreferrer" variant="secondary">
+            Ver más propuestas
+          </Button>
         </div>
       </div>
     </section>

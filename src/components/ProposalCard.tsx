@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import PhotoPlaceholder from "./PhotoPlaceholder";
-import Button from "./Button";
 import type { Proposal } from "../data/proposals";
 import caminataAquino from "../assets/campana-caminata-aquino.jpg";
 import mitinNoche2 from "../assets/campana-mitin-noche-2.jpg";
@@ -59,11 +58,6 @@ export default function ProposalCard({ proposal }: { proposal: Proposal }) {
         <p className="mt-5 text-base leading-relaxed text-brand-gray-900/70 sm:text-lg">
           {proposal.description}
         </p>
-        <div className="mt-8">
-          <Button href="#" variant="secondary">
-            Conocer propuesta
-          </Button>
-        </div>
       </motion.div>
     </div>
   );

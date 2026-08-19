@@ -1,18 +1,32 @@
+import { Lock } from "lucide-react";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YoutubeIcon, XIcon } from "./SocialIcons";
 import logo from "../assets/progresemos-logo.png";
+
+const LOGIN_URL = "/login.html";
 
 const columns = [
   {
     title: "Progresemos",
-    links: ["Sobre nosotros", "Nuestra visión", "Nuestros ejes"],
+    links: [
+      { label: "Sobre nosotros", href: "#nosotros" },
+      { label: "Nuestra visión", href: "#nosotros" },
+    ],
   },
   {
     title: "Participa",
-    links: ["Afiliación", "Voluntariado", "Contacto"],
+    links: [
+      { label: "Afiliación", href: "#participa" },
+      { label: "Voluntariado", href: "#participa" },
+      { label: "Contacto", href: "#participa" },
+    ],
   },
   {
     title: "Información",
-    links: ["Noticias", "Documentos", "Transparencia"],
+    links: [
+      { label: "Noticias", href: "#noticias" },
+      { label: "Documentos", href: "#transparencia" },
+      { label: "Transparencia", href: "#transparencia" },
+    ],
   },
 ];
 
@@ -72,9 +86,9 @@ export default function Footer() {
               </h4>
               <ul className="mt-4 flex flex-col gap-3">
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-white/70 transition-colors hover:text-white">
-                      {link}
+                  <li key={link.label}>
+                    <a href={link.href} className="text-sm text-white/70 transition-colors hover:text-white">
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -85,10 +99,20 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Progresemos. Todos los derechos reservados.</p>
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap items-center gap-6">
             <a href="#" className="hover:text-white/80">Política de privacidad</a>
             <a href="#" className="hover:text-white/80">Términos</a>
             <a href="#" className="hover:text-white/80">Accesibilidad</a>
+            <a
+              href={LOGIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Iniciar sesión"
+              title="Iniciar sesión"
+              className="text-white/30 transition-colors hover:text-white/70"
+            >
+              <Lock size={14} strokeWidth={2} />
+            </a>
           </div>
         </div>
       </div>

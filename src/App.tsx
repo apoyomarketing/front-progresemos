@@ -1,8 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import ImpactStats from "./components/ImpactStats";
-import Axes from "./components/Axes";
 import Proposals from "./components/Proposals";
 import PunoSection from "./components/PunoSection";
 import Leadership from "./components/Leadership";
@@ -19,8 +17,6 @@ export default function App() {
       <main>
         <Hero />
         <About />
-        <ImpactStats />
-        <Axes />
         <Proposals />
         <PunoSection />
         <Leadership />
