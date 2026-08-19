@@ -22,7 +22,7 @@ export default function Proposals() {
         </div>
 
         <div className="mt-20 flex justify-center">
-          <Button href="/propuestas.html" target="_blank" rel="noopener noreferrer" variant="secondary">
+          <Button to="/propuestas" variant="secondary">
             Ver más propuestas
           </Button>
         </div>

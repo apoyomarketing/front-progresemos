@@ -1,12 +1,16 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { Lock, Eye, EyeOff } from "lucide-react";
 import logo from "./assets/progresemos-logo.png";
-import { useAuthSession } from "./api/useAuthSession";
+import loginImage from "./assets/login/login.png";
+import { useAuth } from "./api/AuthProvider";
 import { ApiError } from "./api/client";
-import Admin from "./cms/Admin";
+import { useDocumentHead } from "./hooks/useDocumentHead";
 
 export default function Login() {
-  const { session, sessionMessage, login, logout, withAuth, clearSessionMessage } = useAuthSession();
+  useDocumentHead({ title: "Acceso — PROGRESEMOS Puno 2026", robots: "noindex, nofollow" });
+
+  const { sessionMessage, login, clearSessionMessage } = useAuth();
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -27,38 +31,49 @@ export default function Login() {
     }
   }
 
-  if (session) {
-    return <Admin usuario={session.usuario} withAuth={withAuth} onLogout={logout} />;
-  }
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-brand-gray-900 px-4 font-body">
-      <div className="w-full max-w-sm">
-        <div className="mb-8 flex flex-col items-center gap-3 text-center">
-          <img src={logo} alt="Logotipo de PROGRESEMOS" className="h-12 w-12 rounded-lg object-cover" />
-          <span className="leading-none">
-            <span className="block font-display text-lg font-bold tracking-tight text-white">
-              PROGRESEMOS
-            </span>
-            <span className="block text-[11px] font-semibold tracking-[0.14em] text-white/50">
-              PUNO 2026
-            </span>
-          </span>
-        </div>
+    <div className="grid min-h-screen bg-brand-gray-900 font-body lg:grid-cols-2">
+      <div className="relative hidden lg:block">
+        <img
+          src={loginImage}
+          alt="Lucio Istaña, candidato a la Alcaldía, y Julio Choque, candidato a Regidor — PROGRESEMOS Puno 2026"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-brand-green via-brand-lime to-brand-yellow" />
+      </div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
-          <div className="mb-6 flex items-center gap-2 text-white/70">
-            <Lock size={16} strokeWidth={2} />
-            <h1 className="font-display text-base font-bold text-white">Acceso interno</h1>
+      <div className="flex items-center justify-center px-6 py-16 sm:px-10">
+        <div className="w-full max-w-sm">
+          <Link to="/" className="mb-10 flex items-center gap-3">
+            <img src={logo} alt="Logotipo de PROGRESEMOS" className="h-11 w-11 rounded-lg object-cover" />
+            <span className="leading-none">
+              <span className="block font-display text-lg font-bold tracking-tight text-white">
+                PROGRESEMOS
+              </span>
+              <span className="block text-[11px] font-semibold tracking-[0.14em] text-white/50">
+                PUNO 2026
+              </span>
+            </span>
+          </Link>
+
+          <div className="mb-2 flex items-center gap-2 text-brand-lime">
+            <Lock size={14} strokeWidth={2} />
+            <span className="text-xs font-semibold uppercase tracking-[0.14em]">Acceso interno</span>
           </div>
+          <h1 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            Bienvenido de nuevo
+          </h1>
+          <p className="mt-2 text-sm leading-relaxed text-white/50">
+            Ingresa con tu cuenta del equipo para gestionar el contenido del sitio.
+          </p>
 
           {sessionMessage && (
-            <p className="mb-4 rounded-lg border border-brand-yellow/30 bg-brand-yellow/10 px-3 py-2 text-sm text-brand-yellow">
+            <p className="mt-6 rounded-lg border border-brand-yellow/30 bg-brand-yellow/10 px-3 py-2 text-sm text-brand-yellow">
               {sessionMessage}
             </p>
           )}
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
             <div>
               <label htmlFor="login-correo" className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-white/40">
                 Correo
@@ -66,6 +81,8 @@ export default function Login() {
               <input
                 id="login-correo"
                 type="email"
+                required
+                autoFocus
                 autoComplete="email"
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
@@ -82,6 +99,7 @@ export default function Login() {
                 <input
                   id="login-password"
                   type={showPassword ? "text" : "password"}
+                  required
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -109,11 +127,11 @@ export default function Login() {
               {submitting ? "Ingresando…" : "Ingresar"}
             </button>
           </form>
-        </div>
 
-        <p className="mt-6 text-center text-xs text-white/30">
-          Acceso restringido al equipo de PROGRESEMOS Puno 2026.
-        </p>
+          <p className="mt-8 text-center text-xs text-white/30">
+            Acceso restringido al equipo de PROGRESEMOS Puno 2026.
+          </p>
+        </div>
       </div>
     </div>
   );

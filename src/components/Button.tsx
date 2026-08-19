@@ -1,9 +1,14 @@
 import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ButtonProps {
   children: ReactNode;
   href?: string;
+  // Ruta interna de la SPA: si viene, navega con react-router (sin recargar
+  // la página) en vez de usar una ancla normal. `href` sigue sirviendo para
+  // anclas "#seccion" y enlaces externos.
+  to?: string;
   target?: string;
   rel?: string;
   variant?: "primary" | "secondary" | "ghost" | "light";
@@ -24,6 +29,7 @@ const variants: Record<string, string> = {
 export default function Button({
   children,
   href,
+  to,
   target,
   rel,
   variant = "primary",
@@ -45,6 +51,14 @@ export default function Button({
       )}
     </>
   );
+
+  if (to) {
+    return (
+      <Link to={to} className={classes} onClick={onClick}>
+        {content}
+      </Link>
+    );
+  }
 
   if (href) {
     return (

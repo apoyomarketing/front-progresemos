@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import { Lock } from "lucide-react";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YoutubeIcon, XIcon } from "./SocialIcons";
 import logo from "../assets/progresemos-logo.png";
 
-const LOGIN_URL = "/login.html";
+const LOGIN_URL = "/login";
 
 const columns = [
   {
@@ -103,16 +104,14 @@ export default function Footer() {
             <a href="#" className="hover:text-white/80">Política de privacidad</a>
             <a href="#" className="hover:text-white/80">Términos</a>
             <a href="#" className="hover:text-white/80">Accesibilidad</a>
-            <a
-              href={LOGIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={LOGIN_URL}
               aria-label="Iniciar sesión"
               title="Iniciar sesión"
               className="text-white/30 transition-colors hover:text-white/70"
             >
               <Lock size={14} strokeWidth={2} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

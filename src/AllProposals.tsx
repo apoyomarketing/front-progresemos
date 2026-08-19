@@ -1,14 +1,22 @@
+import { Link } from "react-router-dom";
 import Footer from "./components/Footer";
 import ProposalCard from "./components/ProposalCard";
 import { proposals } from "./data/proposals";
 import logo from "./assets/progresemos-logo.png";
+import { useDocumentHead } from "./hooks/useDocumentHead";
 
 export default function AllProposals() {
+  useDocumentHead({
+    title: "Todas nuestras propuestas — PROGRESEMOS Puno 2026",
+    description:
+      "Conoce todas las propuestas de PROGRESEMOS para la Provincia de Puno: educación, salud, agricultura y más ejes de desarrollo.",
+  });
+
   return (
     <div className="min-h-screen bg-white font-body">
       <header className="border-b border-brand-gray-900/10">
         <div className="container-editorial flex h-18 items-center justify-between py-4">
-          <a href="/" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5">
             <img src={logo} alt="Logotipo de PROGRESEMOS" className="h-9 w-9 rounded-md object-cover" />
             <span className="leading-none">
               <span className="block font-display text-lg font-bold tracking-tight text-brand-gray-900">
@@ -18,10 +26,10 @@ export default function AllProposals() {
                 PUNO 2026
               </span>
             </span>
-          </a>
-          <a href="/" className="text-sm font-semibold text-brand-green-dark hover:text-brand-green">
+          </Link>
+          <Link to="/" className="text-sm font-semibold text-brand-green-dark hover:text-brand-green">
             ← Volver al inicio
-          </a>
+          </Link>
         </div>
       </header>
 

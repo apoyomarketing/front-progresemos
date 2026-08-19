@@ -1,4 +1,5 @@
-import cercaniaComunidad from "../assets/campana-cercania-comunidad.jpg";
+import cercaniaComunidad from "../assets/nosotros.png";
+import progresemosLogo from "../assets/progresemos-logo.png";
 
 export default function About() {
   return (
@@ -15,9 +16,10 @@ export default function About() {
             participación ciudadana e institucionalidad al servicio de cada distrito.
           </p>
           <p className="mt-5 text-lg leading-relaxed text-brand-gray-900/70">
-            Creemos en una Puno segura, moderna y productiva, donde cada distrito
-            del altiplano —de Chucuito a Platería y Acora— tenga las mismas
-            oportunidades de crecer y prosperar.
+            Aspiramos a construir una provincia competitiva, inclusiva y sostenible,
+            reconocida por la calidad de vida de su población, el dinamismo de su
+            economía, la protección de su riqueza natural y cultural —especialmente
+            el Lago Titicaca— y la eficiencia de sus instituciones públicas.
           </p>
         </div>
 
@@ -27,8 +29,22 @@ export default function About() {
             alt="Lucio Istaña saludando a vecinos en una comunidad de la provincia de Puno"
             className="aspect-[4/3] w-full rounded-2xl object-cover lg:aspect-[16/11] lg:translate-x-6"
           />
-          <div className="absolute -bottom-6 -left-4 hidden h-28 w-28 rounded-2xl bg-brand-yellow sm:block lg:-left-8" />
+          <img
+            src={progresemosLogo}
+            alt="Logo de PROGRESEMOS"
+            className="absolute -bottom-6 -left-4 hidden h-28 w-28 rounded-2xl object-cover shadow-lg sm:block lg:-left-8"
+          />
         </div>
+      </div>
+
+      <div className="container-editorial mt-20">
+        <blockquote className="rounded-2xl border border-brand-green/20 bg-brand-green/5 px-8 py-10 sm:px-12">
+          <p className="font-display text-xl font-semibold leading-snug text-brand-gray-900 sm:text-2xl">
+            Al 2030, ser una provincia líder en turismo y desarrollo productivo, con
+            una economía competitiva, sostenible e inclusiva que mejore la calidad
+            de vida de su población.
+          </p>
+        </blockquote>
       </div>
     </section>
   );

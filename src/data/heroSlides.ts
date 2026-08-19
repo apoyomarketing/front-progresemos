@@ -1,7 +1,7 @@
 import slide1 from "../assets/hero-slides/slide-1-agro.jpg";
-import slide2 from "../assets/hero-slides/slide-2-campana.jpg";
-import mitinDiaEscenario from "../assets/campana-mitin-dia-escenario.jpg";
-import caminataAquino from "../assets/campana-caminata-aquino.jpg";
+import slide2 from "../assets/hero-slides/slide-2-julio.png";
+import slide3 from "../assets/hero-slides/slide-3-pasacalle-istana.png";
+import slide4 from "../assets/hero-slides/slide-4-campana.jpg";
 
 export interface HeroSlide {
   image: string;
@@ -18,14 +18,14 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     image: slide2,
+    alt: "Julio Choque en campaña por PROGRESEMOS",
+  },
+  {
+    image: slide3,
+    alt: "Pasacalle de campaña de Lucio Istaña por PROGRESEMOS",
+  },
+  {
+    image: slide4,
     alt: "Lucio Istaña en campaña con vecinos de la provincia de Puno",
-  },
-  {
-    image: mitinDiaEscenario,
-    alt: "Lucio Istaña saludando a la multitud en un mitin de campaña en Capachica",
-  },
-  {
-    image: caminataAquino,
-    alt: "Lucio Istaña en caminata de campaña junto a dirigentes y vecinos de la provincia de Puno",
   },
 ];

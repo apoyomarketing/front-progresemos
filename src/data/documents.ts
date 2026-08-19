@@ -1,38 +1,42 @@
 export interface DocumentEntry {
-  icon: "file-text" | "folder-open" | "megaphone" | "clipboard-list" | "scale" | "building-2";
+  icon: "hand-coins" | "wheat" | "heart-pulse" | "graduation-cap" | "briefcase" | "building-2";
   title: string;
   description: string;
 }
 
 export const documents: DocumentEntry[] = [
   {
-    icon: "file-text",
-    title: "Plan de gobierno",
-    description: "Consulta la propuesta integral de gobierno presentada ante el organismo electoral.",
+    icon: "hand-coins",
+    title: "Fin a la pobreza",
+    description: "Poner fin a la pobreza en todas sus formas y en todo el mundo.",
   },
   {
-    icon: "folder-open",
-    title: "Documentos institucionales",
-    description: "Estatuto, actas y documentos de constitución del partido.",
+    icon: "wheat",
+    title: "Hambre cero",
+    description:
+      "Poner fin al hambre, lograr la seguridad alimentaria y la mejora de la nutrición, y promover la agricultura sostenible.",
   },
   {
-    icon: "megaphone",
-    title: "Comunicados",
-    description: "Pronunciamientos oficiales de la organización.",
+    icon: "heart-pulse",
+    title: "Salud y bienestar",
+    description: "Garantizar una vida sana y promover el bienestar de todos a todas las edades.",
   },
   {
-    icon: "clipboard-list",
-    title: "Convocatorias",
-    description: "Procesos abiertos de afiliación, voluntariado y elecciones internas.",
+    icon: "graduation-cap",
+    title: "Educación de calidad",
+    description:
+      "Garantizar una educación inclusiva y equitativa de calidad y promover oportunidades de aprendizaje permanente para todos.",
   },
   {
-    icon: "scale",
-    title: "Normativas",
-    description: "Marco legal y normativo que rige la vida institucional del partido.",
+    icon: "briefcase",
+    title: "Trabajo decente y crecimiento económico",
+    description:
+      "Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos.",
   },
   {
     icon: "building-2",
-    title: "Información institucional",
-    description: "Estructura orgánica, órganos de dirección y representación regional.",
+    title: "  Ciudades y comunidades sostenibles",
+    description:
+      "Lograr que las ciudades y los asentamientos humanos sean inclusivos, seguros, resilientes y sostenibles.",
   },
 ];

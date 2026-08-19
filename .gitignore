@@ -11,15 +11,24 @@ node_modules
 dist
 dist-ssr
 *.local
+*.tsbuildinfo
 
-# Editor directories and files
+# Variables de entorno — .env.example es la plantilla y sí debe versionarse
+.env*
+!.env.example
+
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-.env
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini

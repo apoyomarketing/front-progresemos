@@ -4,12 +4,25 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { HeroSlide } from "../data/heroSlides";
 
 const SLIDE_DURATION = 5000;
+const DEFAULT_OVERLAY = "bg-gradient-to-t from-brand-gray-900/85 via-brand-gray-900/40 to-brand-gray-900/20";
 
-export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
+export default function HeroCarousel({
+  slides,
+  overlayClassName = DEFAULT_OVERLAY,
+  onIndexChange,
+}: {
+  slides: HeroSlide[];
+  overlayClassName?: string;
+  onIndexChange?: (index: number) => void;
+}) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const hasMultiple = slides.length > 1;
+
+  useEffect(() => {
+    onIndexChange?.(index);
+  }, [index, onIndexChange]);
 
   const goTo = useCallback(
     (i: number) => {
@@ -55,7 +68,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
         />
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-gray-900/85 via-brand-gray-900/40 to-brand-gray-900/20" />
+      <div className={`absolute inset-0 ${overlayClassName}`} />
 
       {hasMultiple && (
         <>

@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "../data/nav";
 import logo from "../assets/progresemos-logo.png";
+import JoinModal from "./JoinModal";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [joinOpen, setJoinOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -73,12 +75,13 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden lg:block">
-          <a
-            href="#participa"
+          <button
+            type="button"
+            onClick={() => setJoinOpen(true)}
             className="rounded-full bg-brand-green px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-green-dark"
           >
             ÚNETE
-          </a>
+          </button>
         </div>
 
         <div className="flex items-center gap-3 lg:hidden">
@@ -129,6 +132,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <JoinModal open={joinOpen} onClose={() => setJoinOpen(false)} />
     </header>
   );
 }
