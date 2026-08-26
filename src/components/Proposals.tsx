@@ -10,7 +10,7 @@ export default function Proposals() {
     <section id="propuestas" className="bg-white py-24 sm:py-32">
       <div className="container-editorial">
         <SectionHeader
-          eyebrow="Propuestas"
+          eyebrow="02 — Propuestas"
           title="Propuestas para transformar el Perú"
           description="Iniciativas concretas construidas desde el diálogo con la ciudadanía y las regiones."
         />

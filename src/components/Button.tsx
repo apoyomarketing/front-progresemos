@@ -19,11 +19,11 @@ interface ButtonProps {
 
 const variants: Record<string, string> = {
   primary:
-    "bg-brand-green text-white hover:bg-brand-green-dark focus-visible:outline-white",
+    "bg-brand-green text-white shadow-[0_10px_24px_-8px_rgba(41,149,39,0.55)] hover:-translate-y-0.5 hover:bg-brand-green-dark hover:shadow-[0_14px_28px_-8px_rgba(23,107,36,0.6)] focus-visible:outline-white",
   secondary:
     "bg-transparent text-brand-gray-900 border border-brand-gray-900/20 hover:border-brand-green hover:text-brand-green",
   ghost: "bg-transparent text-white border border-white/40 hover:bg-white/10",
-  light: "bg-white text-brand-green-dark hover:bg-brand-gray-50",
+  light: "bg-white text-brand-green-dark shadow-[0_10px_24px_-8px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 hover:bg-brand-gray-50",
 };
 
 export default function Button({

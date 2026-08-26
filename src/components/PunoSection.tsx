@@ -28,7 +28,7 @@ export default function PunoSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl"
         >
-          <span className="eyebrow mb-6 block text-brand-lime">Identidad provincial</span>
+          <span className="eyebrow mb-6 block text-brand-lime">03 — Identidad provincial</span>
           <h2 className="font-display text-3xl font-bold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-5xl">
             Desde Puno, hacia un futuro con más oportunidades
           </h2>

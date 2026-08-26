@@ -296,113 +296,200 @@ export default function UsersPanel({ currentUsuario, withAuth }: UsersPanelProps
             </p>
           )}
           {!loading && !loadError && usuarios.length > 0 && (
-            <div className="overflow-x-auto rounded-xl border border-brand-gray-900/10">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="border-b border-brand-gray-900/10 bg-brand-gray-50">
-                    <th className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Nombre
-                    </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Correo
-                    </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Estado
-                    </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Staff
-                    </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Rol
-                    </th>
-                    <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Acciones
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {usuarios.map((u) => {
-                    const isSelf = u.id === currentUsuario.id;
-                    return (
-                      <tr key={u.id} className="border-b border-brand-gray-900/10 last:border-b-0 hover:bg-brand-gray-50/60">
-                        <td className="max-w-[12rem] truncate px-4 py-3 font-semibold text-brand-gray-900">
-                          {u.nombre}
-                          {isSelf && <span className="ml-1.5 text-xs font-normal text-brand-gray-900/40">(tú)</span>}
-                        </td>
-                        <td className="max-w-[16rem] truncate px-4 py-3 text-brand-gray-900/70">{u.email}</td>
-                        <td className="px-4 py-3">
-                          <EstadoBadge activo={u.estado} />
-                        </td>
-                        <td className="px-4 py-3">
-                          {u.is_staff ? (
-                            <span className="rounded-full bg-brand-gray-900/5 px-2.5 py-0.5 text-xs font-medium text-brand-gray-900/50">
-                              Staff
-                            </span>
-                          ) : (
-                            <span className="text-brand-gray-900/30">—</span>
-                          )}
-                        </td>
-                        <td className="px-4 py-3">
-                          <span
-                            className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                              u.rol?.nombre === "Administrador"
-                                ? "bg-brand-yellow/20 text-brand-gray-900/70"
-                                : "bg-brand-gray-900/5 text-brand-gray-900/50"
-                            }`}
-                          >
-                            {u.rol?.nombre ?? "Sin rol"}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <div className="flex justify-end gap-2">
-                            <button
-                              type="button"
-                              onClick={() => openEdit(u)}
-                              aria-label="Editar"
-                              className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
+            <>
+              {/* Tabla — tablet y desktop */}
+              <div className="hidden overflow-x-auto rounded-2xl border border-brand-gray-900/10 bg-white shadow-sm md:block">
+                <table className="w-full text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-brand-gray-900/10 bg-brand-gray-50">
+                      <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+                        Nombre
+                      </th>
+                      <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+                        Correo
+                      </th>
+                      <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+                        Estado
+                      </th>
+                      <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+                        Staff
+                      </th>
+                      <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+                        Rol
+                      </th>
+                      <th className="px-5 py-3.5 text-right text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+                        Acciones
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {usuarios.map((u) => {
+                      const isSelf = u.id === currentUsuario.id;
+                      return (
+                        <tr
+                          key={u.id}
+                          className="border-b border-brand-gray-900/10 last:border-b-0 even:bg-brand-gray-50/40 hover:bg-brand-gray-50"
+                        >
+                          <td className="max-w-[16rem] truncate px-5 py-3.5 font-semibold text-brand-gray-900 lg:max-w-xs">
+                            {u.nombre}
+                            {isSelf && <span className="ml-1.5 text-xs font-normal text-brand-gray-900/40">(tú)</span>}
+                          </td>
+                          <td className="max-w-[18rem] truncate px-5 py-3.5 text-brand-gray-900/70 lg:max-w-sm">
+                            {u.email}
+                          </td>
+                          <td className="px-5 py-3.5">
+                            <EstadoBadge activo={u.estado} />
+                          </td>
+                          <td className="px-5 py-3.5">
+                            {u.is_staff ? (
+                              <span className="rounded-full bg-brand-gray-900/5 px-2.5 py-0.5 text-xs font-medium text-brand-gray-900/50">
+                                Staff
+                              </span>
+                            ) : (
+                              <span className="text-brand-gray-900/30">—</span>
+                            )}
+                          </td>
+                          <td className="px-5 py-3.5">
+                            <span
+                              className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                                u.rol?.nombre === "Administrador"
+                                  ? "bg-brand-yellow/20 text-brand-gray-900/70"
+                                  : "bg-brand-gray-900/5 text-brand-gray-900/50"
+                              }`}
                             >
-                              <Pencil size={15} />
-                            </button>
-                            {!isSelf && (
+                              {u.rol?.nombre ?? "Sin rol"}
+                            </span>
+                          </td>
+                          <td className="px-5 py-3.5">
+                            <div className="flex justify-end gap-2">
                               <button
                                 type="button"
-                                onClick={() => openReset(u)}
-                                aria-label="Resetear contraseña"
+                                onClick={() => openEdit(u)}
+                                aria-label="Editar"
                                 className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
                               >
-                                <KeyRound size={15} />
+                                <Pencil size={15} />
                               </button>
+                              {!isSelf && (
+                                <button
+                                  type="button"
+                                  onClick={() => openReset(u)}
+                                  aria-label="Resetear contraseña"
+                                  className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
+                                >
+                                  <KeyRound size={15} />
+                                </button>
+                              )}
+                              {!isSelf &&
+                                (u.estado ? (
+                                  <button
+                                    type="button"
+                                    onClick={() => setPendingDelete(u)}
+                                    disabled={deletingId === u.id}
+                                    aria-label="Eliminar"
+                                    className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
+                                  >
+                                    <Trash2 size={15} />
+                                  </button>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={() => handleReactivate(u)}
+                                    disabled={reactivatingId === u.id}
+                                    aria-label="Reactivar"
+                                    className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark disabled:opacity-60"
+                                  >
+                                    <RotateCcw size={15} />
+                                  </button>
+                                ))}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Tarjetas apiladas — mobile */}
+              <div className="flex flex-col gap-3 md:hidden">
+                {usuarios.map((u) => {
+                  const isSelf = u.id === currentUsuario.id;
+                  return (
+                    <div key={u.id} className="rounded-2xl border border-brand-gray-900/10 bg-white p-4 shadow-sm">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="truncate font-display text-base font-bold text-brand-gray-900">
+                            {u.nombre}
+                            {isSelf && (
+                              <span className="ml-1.5 text-xs font-normal text-brand-gray-900/40">(tú)</span>
                             )}
-                            {!isSelf &&
-                              (u.estado ? (
-                                <button
-                                  type="button"
-                                  onClick={() => setPendingDelete(u)}
-                                  disabled={deletingId === u.id}
-                                  aria-label="Eliminar"
-                                  className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
-                                >
-                                  <Trash2 size={15} />
-                                </button>
-                              ) : (
-                                <button
-                                  type="button"
-                                  onClick={() => handleReactivate(u)}
-                                  disabled={reactivatingId === u.id}
-                                  aria-label="Reactivar"
-                                  className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark disabled:opacity-60"
-                                >
-                                  <RotateCcw size={15} />
-                                </button>
-                              ))}
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                          </p>
+                          <p className="mt-0.5 truncate text-sm text-brand-gray-900/60">{u.email}</p>
+                        </div>
+                        <EstadoBadge activo={u.estado} />
+                      </div>
+
+                      <div className="mt-3 flex flex-wrap items-center gap-2">
+                        {u.is_staff && (
+                          <span className="rounded-full bg-brand-gray-900/5 px-2.5 py-0.5 text-xs font-medium text-brand-gray-900/50">
+                            Staff
+                          </span>
+                        )}
+                        <span
+                          className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                            u.rol?.nombre === "Administrador"
+                              ? "bg-brand-yellow/20 text-brand-gray-900/70"
+                              : "bg-brand-gray-900/5 text-brand-gray-900/50"
+                          }`}
+                        >
+                          {u.rol?.nombre ?? "Sin rol"}
+                        </span>
+                      </div>
+
+                      <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-brand-gray-900/10 pt-3">
+                        <button
+                          type="button"
+                          onClick={() => openEdit(u)}
+                          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-brand-gray-900/60 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
+                        >
+                          <Pencil size={14} /> Editar
+                        </button>
+                        {!isSelf && (
+                          <button
+                            type="button"
+                            onClick={() => openReset(u)}
+                            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-brand-gray-900/60 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
+                          >
+                            <KeyRound size={14} /> Contraseña
+                          </button>
+                        )}
+                        {!isSelf &&
+                          (u.estado ? (
+                            <button
+                              type="button"
+                              onClick={() => setPendingDelete(u)}
+                              disabled={deletingId === u.id}
+                              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-brand-gray-900/60 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
+                            >
+                              <Trash2 size={14} /> Eliminar
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => handleReactivate(u)}
+                              disabled={reactivatingId === u.id}
+                              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-brand-gray-900/60 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark disabled:opacity-60"
+                            >
+                              <RotateCcw size={14} /> Reactivar
+                            </button>
+                          ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
           )}
         </div>
       </div>

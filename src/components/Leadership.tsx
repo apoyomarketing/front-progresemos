@@ -7,7 +7,7 @@ export default function Leadership() {
     <section id="candidatos" className="bg-brand-gray-50 py-24 sm:py-32">
       <div className="container-editorial">
         <SectionHeader
-          eyebrow="Candidatos"
+          eyebrow="04 — Candidatos"
           title="Personas que hacen posible el cambio"
           description="La fórmula de PROGRESEMOS para la Provincia de Puno, elecciones municipales 2026."
         />

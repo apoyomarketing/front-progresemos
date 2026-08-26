@@ -38,8 +38,15 @@ export default function About() {
       </div>
 
       <div className="container-editorial mt-20">
-        <blockquote className="rounded-2xl border border-brand-green/20 bg-brand-green/5 px-8 py-10 sm:px-12">
-          <p className="font-display text-xl font-semibold leading-snug text-brand-gray-900 sm:text-2xl">
+        <blockquote className="relative overflow-hidden rounded-2xl border border-brand-green/20 bg-brand-green/5 px-8 py-10 sm:px-12">
+          <span
+            className="pointer-events-none absolute -left-2 -top-6 font-display text-8xl font-black leading-none text-brand-green/10 sm:text-9xl"
+            aria-hidden="true"
+          >
+            &ldquo;
+          </span>
+          <span className="eyebrow relative mb-4 block text-brand-green-dark/60">Visión al 2030</span>
+          <p className="relative font-display text-xl font-semibold leading-snug text-brand-gray-900 sm:text-2xl">
             Al 2030, ser una provincia líder en turismo y desarrollo productivo, con
             una economía competitiva, sostenible e inclusiva que mejore la calidad
             de vida de su población.

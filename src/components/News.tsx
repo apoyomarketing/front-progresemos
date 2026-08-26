@@ -9,7 +9,7 @@ export default function News() {
   return (
     <section id="noticias" className="bg-white py-24 sm:py-32">
       <div className="container-editorial">
-        <SectionHeader eyebrow="Prensa" title="Últimas noticias" />
+        <SectionHeader eyebrow="05 — Prensa" title="Últimas noticias" />
 
         <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">

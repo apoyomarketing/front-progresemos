@@ -5,6 +5,7 @@ import Button from "./Button";
 export default function Participation() {
   return (
     <section id="participa" className="relative overflow-hidden py-28 sm:py-36">
+      <div className="absolute inset-x-0 top-0 z-10 h-1 w-full bg-gradient-to-r from-brand-green via-brand-lime to-brand-yellow" />
       <div className="absolute inset-0">
         <PhotoPlaceholder label="Ciudadanos movilizados" tone="green" className="h-full w-full" />
         <div className="absolute inset-0 bg-brand-green-dark/80" />
@@ -18,6 +19,7 @@ export default function Participation() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-2xl"
         >
+          <span className="eyebrow mb-5 block text-brand-lime">Súmate al movimiento</span>
           <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
             El cambio comienza contigo
           </h2>

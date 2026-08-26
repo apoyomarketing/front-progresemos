@@ -55,6 +55,9 @@ export default function CollectionManager<T extends { id: number }>({
 
   const mediaField = fields.find((f) => f.type === "image" || f.type === "media");
   const columnFields = fields.filter((f) => f !== mediaField);
+  // En la tarjeta mobile el título ya se muestra como encabezado, así que no
+  // hace falta repetirlo como línea "Título: ...".
+  const detailFields = columnFields.filter((f) => f.key !== titleKey);
   const isFormOpen = creating || editingId !== null;
   const formTitleId = useId();
   const formBodyRef = useRef<HTMLDivElement>(null);
@@ -214,78 +217,150 @@ export default function CollectionManager<T extends { id: number }>({
           {emptyLabel}
         </p>
       ) : (
-        <div className="mt-6 overflow-x-auto rounded-xl border border-brand-gray-900/10">
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr className="border-b border-brand-gray-900/10 bg-brand-gray-50">
-                {mediaField && <th className="w-16 px-4 py-3" />}
-                {columnFields.map((f) => (
-                  <th
-                    key={f.key}
-                    className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50"
-                  >
-                    {f.label}
+        <>
+          {/* Tabla — tablet y desktop */}
+          <div className="mt-6 hidden overflow-x-auto rounded-2xl border border-brand-gray-900/10 bg-white shadow-sm md:block">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-brand-gray-900/10 bg-brand-gray-50">
+                  {mediaField && <th className="w-20 px-5 py-3.5" />}
+                  {columnFields.map((f) => (
+                    <th
+                      key={f.key}
+                      className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50"
+                    >
+                      {f.label}
+                    </th>
+                  ))}
+                  <th className="px-5 py-3.5 text-right text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+                    Acciones
                   </th>
-                ))}
-                <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                  Acciones
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item) => {
-                const mediaValue = mediaField ? String(item[mediaField.key] ?? "") : "";
-                return (
-                  <tr key={item.id} className="border-b border-brand-gray-900/10 last:border-b-0 hover:bg-brand-gray-50/60">
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item) => {
+                  const mediaValue = mediaField ? String(item[mediaField.key] ?? "") : "";
+                  return (
+                    <tr
+                      key={item.id}
+                      className="border-b border-brand-gray-900/10 last:border-b-0 even:bg-brand-gray-50/40 hover:bg-brand-gray-50"
+                    >
+                      {mediaField && (
+                        <td className="px-5 py-3.5">
+                          {mediaValue ? (
+                            isVideoSrc(mediaValue) ? (
+                              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-gray-900/5 text-brand-gray-900/40">
+                                <Video size={17} />
+                              </span>
+                            ) : (
+                              <img src={mediaValue} alt="" className="h-11 w-11 rounded-lg object-cover" />
+                            )
+                          ) : (
+                            <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-gray-900/5 text-brand-gray-900/30">
+                              <ImageOff size={17} />
+                            </span>
+                          )}
+                        </td>
+                      )}
+                      {columnFields.map((f) => (
+                        <td
+                          key={f.key}
+                          className="max-w-[20rem] truncate px-5 py-3.5 text-brand-gray-900/80 lg:max-w-sm"
+                        >
+                          {String(item[f.key] ?? "") || "—"}
+                        </td>
+                      ))}
+                      <td className="px-5 py-3.5">
+                        <div className="flex justify-end gap-2">
+                          <button
+                            type="button"
+                            onClick={() => startEdit(item)}
+                            aria-label="Editar"
+                            className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
+                          >
+                            <Pencil size={15} />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setPendingDelete(item)}
+                            disabled={deletingId === item.id}
+                            aria-label="Eliminar"
+                            className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Tarjetas apiladas — mobile */}
+          <div className="mt-6 flex flex-col gap-3 md:hidden">
+            {items.map((item) => {
+              const mediaValue = mediaField ? String(item[mediaField.key] ?? "") : "";
+              return (
+                <div key={item.id} className="rounded-2xl border border-brand-gray-900/10 bg-white p-4 shadow-sm">
+                  <div className="flex gap-3">
                     {mediaField && (
-                      <td className="px-4 py-3">
+                      <div className="shrink-0">
                         {mediaValue ? (
                           isVideoSrc(mediaValue) ? (
-                            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gray-900/5 text-brand-gray-900/40">
-                              <Video size={16} />
+                            <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-gray-900/5 text-brand-gray-900/40">
+                              <Video size={20} />
                             </span>
                           ) : (
-                            <img src={mediaValue} alt="" className="h-10 w-10 rounded-lg object-cover" />
+                            <img src={mediaValue} alt="" className="h-14 w-14 rounded-xl object-cover" />
                           )
                         ) : (
-                          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gray-900/5 text-brand-gray-900/30">
-                            <ImageOff size={16} />
+                          <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-gray-900/5 text-brand-gray-900/30">
+                            <ImageOff size={20} />
                           </span>
                         )}
-                      </td>
-                    )}
-                    {columnFields.map((f) => (
-                      <td key={f.key} className="max-w-[16rem] truncate px-4 py-3 text-brand-gray-900/80">
-                        {String(item[f.key] ?? "") || "—"}
-                      </td>
-                    ))}
-                    <td className="px-4 py-3">
-                      <div className="flex justify-end gap-2">
-                        <button
-                          type="button"
-                          onClick={() => startEdit(item)}
-                          aria-label="Editar"
-                          className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
-                        >
-                          <Pencil size={15} />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setPendingDelete(item)}
-                          disabled={deletingId === item.id}
-                          aria-label="Eliminar"
-                          className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
-                        >
-                          <Trash2 size={15} />
-                        </button>
                       </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-display text-base font-bold text-brand-gray-900">
+                        {String(item[titleKey] ?? "") || "—"}
+                      </p>
+                      <div className="mt-1.5 flex flex-col gap-1">
+                        {detailFields.map((f) => (
+                          <p key={f.key} className="text-sm text-brand-gray-900/60">
+                            <span className="font-semibold text-brand-gray-900/40">{f.label}: </span>
+                            <span className={f.type === "textarea" ? "line-clamp-2" : "truncate"}>
+                              {String(item[f.key] ?? "") || "—"}
+                            </span>
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-end gap-2 border-t border-brand-gray-900/10 pt-3">
+                    <button
+                      type="button"
+                      onClick={() => startEdit(item)}
+                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-brand-gray-900/60 transition-colors hover:bg-brand-gray-50 hover:text-brand-green-dark"
+                    >
+                      <Pencil size={14} /> Editar
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPendingDelete(item)}
+                      disabled={deletingId === item.id}
+                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-brand-gray-900/60 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
+                    >
+                      <Trash2 size={14} /> Eliminar
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
       )}
 
       {createPortal(
