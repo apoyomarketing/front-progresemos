@@ -8,6 +8,7 @@ import type { FieldConfig } from "../CollectionManager";
 const proposalFields: FieldConfig<ApiPropuesta>[] = [
   { key: "titulo", label: "Título", type: "text", required: true },
   { key: "foto", label: "Foto", type: "image", required: true },
+  { key: "categoria", label: "Categoría", type: "text" },
   { key: "descripcion", label: "Descripción", type: "textarea" },
 ];
 

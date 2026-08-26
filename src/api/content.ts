@@ -5,6 +5,7 @@ export interface ApiPropuesta {
   titulo: string;
   foto: string;
   descripcion: string;
+  categoria: string;
   orden: number;
 }
 
@@ -15,6 +16,7 @@ export interface ApiNoticia {
   titulo: string;
   multimedia: string;
   descripcion: string;
+  categoria: string;
   fecha: string;
   lugar: string;
 }

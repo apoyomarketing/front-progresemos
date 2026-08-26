@@ -3,8 +3,17 @@ import progresemosLogo from "../assets/progresemos-logo.png";
 
 export default function About() {
   return (
-    <section id="nosotros" className="bg-white py-24 sm:py-32">
-      <div className="container-editorial grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-8">
+    <section id="nosotros" className="relative overflow-hidden bg-white py-24 sm:py-32">
+      <div
+        className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand-lime/20 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -left-32 top-40 h-80 w-80 rounded-full bg-brand-yellow/10 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="container-editorial relative grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <span className="eyebrow mb-6 block text-brand-green">01 — Nuestra visión</span>
           <h2 className="font-display text-3xl font-bold leading-[1.08] tracking-tight text-brand-gray-900 sm:text-4xl lg:text-5xl">

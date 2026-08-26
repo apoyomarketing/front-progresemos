@@ -14,7 +14,7 @@ export default function Documents() {
 
       <div className="container-editorial relative">
         <SectionHeader
-          eyebrow="06 — Agenda 2030"
+          eyebrow="08 — Agenda 2030"
           title="Nuestro compromiso con los Objetivos de Desarrollo Sostenible"
           description="Alineamos nuestro plan de gobierno con la Agenda 2030 de las Naciones Unidas para construir una Puno más justa, sostenible y con oportunidades para todos."
         />

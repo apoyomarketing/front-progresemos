@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProposalCard from "./components/ProposalCard";
-import { proposals } from "./data/proposals";
-import logo from "./assets/progresemos-logo.png";
+import { propuestasApi } from "./api/content";
+import { usePublicCollection } from "./hooks/usePublicCollection";
 import { useDocumentHead } from "./hooks/useDocumentHead";
 
 export default function AllProposals() {
@@ -12,28 +12,13 @@ export default function AllProposals() {
       "Conoce todas las propuestas de PROGRESEMOS para la Provincia de Puno: educación, salud, agricultura y más ejes de desarrollo.",
   });
 
+  const { items: proposals, loading, failed } = usePublicCollection(propuestasApi.list);
+
   return (
     <div className="min-h-screen bg-white font-body">
-      <header className="border-b border-brand-gray-900/10">
-        <div className="container-editorial flex h-18 items-center justify-between py-4">
-          <Link to="/" className="flex items-center gap-2.5">
-            <img src={logo} alt="Logotipo de PROGRESEMOS" className="h-9 w-9 rounded-md object-cover" />
-            <span className="leading-none">
-              <span className="block font-display text-lg font-bold tracking-tight text-brand-gray-900">
-                PROGRESEMOS
-              </span>
-              <span className="block text-[11px] font-semibold tracking-[0.14em] text-brand-green-dark/70">
-                PUNO 2026
-              </span>
-            </span>
-          </Link>
-          <Link to="/" className="text-sm font-semibold text-brand-green-dark hover:text-brand-green">
-            ← Volver al inicio
-          </Link>
-        </div>
-      </header>
+      <Navbar solid />
 
-      <main className="py-24 sm:py-32">
+      <main className="pb-24 pt-32 sm:pb-32 sm:pt-40">
         <div className="container-editorial">
           <span className="eyebrow mb-6 block text-brand-green">Propuestas</span>
           <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-brand-gray-900 sm:text-5xl lg:text-6xl">
@@ -45,9 +30,19 @@ export default function AllProposals() {
           </p>
 
           <div className="mt-20 flex flex-col gap-24 sm:gap-32">
-            {proposals.map((proposal) => (
-              <ProposalCard proposal={proposal} key={proposal.number} />
-            ))}
+            {loading && (
+              <p className="text-sm text-brand-gray-900/50" aria-hidden="true">
+                Cargando propuestas…
+              </p>
+            )}
+            {!loading && failed && (
+              <p className="text-sm text-brand-gray-900/50">
+                No pudimos cargar las propuestas. Intenta de nuevo más tarde.
+              </p>
+            )}
+            {!loading &&
+              !failed &&
+              proposals.map((proposal, i) => <ProposalCard proposal={proposal} index={i} key={proposal.id} />)}
           </div>
         </div>
       </main>

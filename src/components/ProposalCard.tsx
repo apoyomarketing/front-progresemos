@@ -1,19 +1,10 @@
 import { motion } from "framer-motion";
 import PhotoPlaceholder from "./PhotoPlaceholder";
-import type { Proposal } from "../data/proposals";
-import caminataAquino from "../assets/nosotros.png";
-import mitinNoche2 from "../assets/campana-mitin-noche-2.jpg";
-import mitinDiaEscenario from "../assets/campana-mitin-dia-escenario.jpg";
+import type { ApiPropuesta } from "../api/content";
 
-const realPhotos: Record<string, string> = {
-  "01": caminataAquino,
-  "02": mitinNoche2,
-  "03": mitinDiaEscenario,
-};
-
-export default function ProposalCard({ proposal }: { proposal: Proposal }) {
-  const imageFirst = proposal.imageSide === "left";
-  const realImage = realPhotos[proposal.number];
+export default function ProposalCard({ proposal, index }: { proposal: ApiPropuesta; index: number }) {
+  const imageFirst = index % 2 === 0;
+  const number = String(index + 1).padStart(2, "0");
 
   return (
     <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -24,15 +15,15 @@ export default function ProposalCard({ proposal }: { proposal: Proposal }) {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className={imageFirst ? "lg:order-1" : "lg:order-2"}
       >
-        {realImage ? (
+        {proposal.foto ? (
           <img
-            src={realImage}
-            alt={proposal.photo}
+            src={proposal.foto}
+            alt={proposal.titulo}
             className="aspect-[4/3] w-full rounded-2xl object-cover"
           />
         ) : (
           <PhotoPlaceholder
-            label={proposal.photo}
+            label={proposal.titulo}
             tone={imageFirst ? "green" : "lime"}
             className="aspect-[4/3] w-full rounded-2xl"
           />
@@ -47,16 +38,20 @@ export default function ProposalCard({ proposal }: { proposal: Proposal }) {
         className={imageFirst ? "lg:order-2" : "lg:order-1"}
       >
         <div className="flex items-center gap-3">
-          <span className="font-display text-lg font-bold text-brand-green-dark">
-            {proposal.number}
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green font-display text-sm font-bold text-white">
+            {number}
           </span>
-          <span className="eyebrow text-brand-gray-900/50">{proposal.category}</span>
+          {proposal.categoria && (
+            <span className="rounded-full bg-brand-yellow/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/70">
+              {proposal.categoria}
+            </span>
+          )}
         </div>
         <h3 className="mt-4 font-display text-2xl font-bold leading-tight text-brand-gray-900 sm:text-3xl lg:text-4xl">
-          {proposal.title}
+          {proposal.titulo}
         </h3>
         <p className="mt-5 text-base leading-relaxed text-brand-gray-900/70 sm:text-lg">
-          {proposal.description}
+          {proposal.descripcion}
         </p>
       </motion.div>
     </div>

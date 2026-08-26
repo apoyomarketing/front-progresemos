@@ -16,7 +16,7 @@ const columns = [
   {
     title: "Participa",
     links: [
-      { label: "Afiliación", href: "#participa" },
+      { label: "Afiliación", href: "/afiliacion" },
       { label: "Voluntariado", href: "#participa" },
       { label: "Contacto", href: "#participa" },
     ],

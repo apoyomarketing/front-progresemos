@@ -8,6 +8,7 @@ import type { FieldConfig } from "../CollectionManager";
 const newsFields: FieldConfig<ApiNoticia>[] = [
   { key: "titulo", label: "Título", type: "text", required: true },
   { key: "multimedia", label: "Foto o video", type: "media" },
+  { key: "categoria", label: "Categoría", type: "text" },
   { key: "descripcion", label: "Descripción", type: "textarea" },
   { key: "fecha", label: "Fecha", type: "date" },
   { key: "lugar", label: "Lugar", type: "text" },

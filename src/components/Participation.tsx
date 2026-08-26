@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 import Button from "./Button";
+import JoinModal from "./JoinModal";
 
 export default function Participation() {
+  const [joinOpen, setJoinOpen] = useState(false);
+
   return (
     <section id="participa" className="relative overflow-hidden py-28 sm:py-36">
       <div className="absolute inset-x-0 top-0 z-10 h-1 w-full bg-gradient-to-r from-brand-green via-brand-lime to-brand-yellow" />
@@ -28,15 +32,17 @@ export default function Participation() {
           </p>
 
           <div className="mt-11 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="#" variant="light">
+            <Button onClick={() => setJoinOpen(true)} variant="light">
               Quiero participar
             </Button>
-            <Button href="#" variant="ghost">
+            <Button to="/afiliacion" variant="ghost">
               Conoce cómo afiliarte
             </Button>
           </div>
         </motion.div>
       </div>
+
+      <JoinModal open={joinOpen} onClose={() => setJoinOpen(false)} />
     </section>
   );
 }

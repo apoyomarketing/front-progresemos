@@ -9,6 +9,9 @@ import ScrollToTop from "./ScrollToTop";
 // El landing ("/") se importa eager porque es la ruta crítica de SEO/primer pintado.
 // Todo lo demás se carga solo cuando el usuario navega a esa ruta.
 const AllProposals = lazy(() => import("../AllProposals"));
+const Affiliation = lazy(() => import("../Affiliation"));
+const GamesPage = lazy(() => import("../GamesPage"));
+const GalleryPage = lazy(() => import("../GalleryPage"));
 const Login = lazy(() => import("../Login"));
 const Admin = lazy(() => import("../cms/Admin"));
 const PropuestasPage = lazy(() => import("../cms/pages/PropuestasPage"));
@@ -41,6 +44,9 @@ export default function AppRoutes() {
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/propuestas" element={<AllProposals />} />
+          <Route path="/afiliacion" element={<Affiliation />} />
+          <Route path="/juegos" element={<GamesPage />} />
+          <Route path="/galeria" element={<GalleryPage />} />
 
           <Route element={<PublicRoutes />}>
             <Route path="/login" element={<Login />} />

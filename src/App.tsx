@@ -5,6 +5,8 @@ import Proposals from "./components/Proposals";
 import PunoSection from "./components/PunoSection";
 import Leadership from "./components/Leadership";
 import News from "./components/News";
+import Games from "./components/Games";
+import Gallery from "./components/Gallery";
 import Documents from "./components/Documents";
 import Participation from "./components/Participation";
 import FAQ from "./components/FAQ";
@@ -22,6 +24,8 @@ export default function App() {
         <PunoSection />
         <Leadership />
         <News />
+        <Games />
+        <Gallery />
         <Documents />
         <Participation />
         <FAQ />
