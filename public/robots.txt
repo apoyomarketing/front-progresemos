@@ -3,4 +3,4 @@ Allow: /
 Disallow: /login
 Disallow: /admin
 
-Sitemap: /sitemap.xml
+Sitemap: https://www.progresemosprovinciapuno.com/sitemap.xml
