@@ -4,7 +4,7 @@ import { faqs } from "../data/faq";
 
 export default function FAQ() {
   return (
-    <section className="bg-white py-24 sm:py-32">
+    <section id="preguntas" className="bg-white py-24 sm:py-32">
       <div className="container-editorial grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <SectionHeader eyebrow="09 — Ayuda" title="Preguntas frecuentes" />

@@ -11,7 +11,10 @@ export default function PunoSection() {
   const activeSlide = punoSlides[activeIndex];
 
   return (
-    <section className="relative flex min-h-[70vh] items-center overflow-hidden bg-brand-gray-900 py-24 sm:min-h-[85vh] sm:py-32 lg:min-h-screen">
+    <section
+      id="puno"
+      className="relative flex min-h-[70vh] items-center overflow-hidden bg-brand-gray-900 py-24 sm:min-h-[85vh] sm:py-32 lg:min-h-screen"
+    >
       <HeroCarousel
         slides={punoSlides}
         onIndexChange={setActiveIndex}

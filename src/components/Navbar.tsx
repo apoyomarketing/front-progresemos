@@ -67,12 +67,12 @@ export default function Navbar({ solid = false }: NavbarProps) {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-8 lg:flex">
+        <ul className="hidden items-center gap-x-4 gap-y-1 xl:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`whitespace-nowrap text-[13px] font-medium transition-colors ${
                   isSolid ? "text-brand-gray-900/80 hover:text-brand-green" : "text-white/90 hover:text-white"
                 }`}
               >
@@ -82,7 +82,7 @@ export default function Navbar({ solid = false }: NavbarProps) {
           ))}
         </ul>
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <button
             type="button"
             onClick={() => setJoinOpen(true)}
@@ -92,7 +92,7 @@ export default function Navbar({ solid = false }: NavbarProps) {
           </button>
         </div>
 
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-3 xl:hidden">
           <button
             type="button"
             onClick={() => setJoinOpen(true)}
@@ -123,7 +123,7 @@ export default function Navbar({ solid = false }: NavbarProps) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden bg-white lg:hidden"
+            className="overflow-hidden bg-white xl:hidden"
           >
             <ul className="container-editorial flex flex-col gap-1 pb-8 pt-2">
               {navLinks.map((link) => (

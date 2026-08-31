@@ -14,7 +14,11 @@ export default function PrivateRoutes() {
   }
 
   const currentPath = pathname.replace(/^\/admin\/?/, "");
-  const matchedRoute = adminRoutes.find((route) => route.path === currentPath);
+  // Prefix match: una subruta como "actividades/3/asistencia" hereda los
+  // permisos del tab "actividades" aunque no tenga su propia entrada en adminRoutes.
+  const matchedRoute = adminRoutes.find(
+    (route) => currentPath === route.path || currentPath.startsWith(`${route.path}/`),
+  );
   const isAllowed =
     !matchedRoute ||
     matchedRoute.roles.length === 0 ||

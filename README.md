@@ -56,8 +56,6 @@ proporcionaron imágenes. Cada uno está marcado con el componente
 `PhotoPlaceholder` y es fácil de reemplazar por un `<img>` real.
 
 También incluye:
-- Perfiles de liderazgo ficticios (`src/data/leadership.ts`) — reemplazar con
-  información real antes de publicar.
 - Cifras de impacto demostrativas (`src/data/stats.ts`) — marcadas explícitamente
   como no oficiales.
 - Noticias y documentos de ejemplo (`src/data/news.ts`, `src/data/documents.ts`).

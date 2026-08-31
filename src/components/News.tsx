@@ -1,5 +1,6 @@
 import SectionHeader from "./SectionHeader";
 import NewsCard from "./NewsCard";
+import Button from "./Button";
 import { noticiasApi } from "../api/content";
 import type { ApiNoticia } from "../api/content";
 import { usePublicCollection } from "../hooks/usePublicCollection";
@@ -65,6 +66,12 @@ export default function News() {
             </div>
           </div>
         )}
+
+        <div className="mt-20 flex justify-center">
+          <Button href="/noticias" target="_blank" rel="noopener noreferrer" variant="secondary">
+            Ver todas las noticias
+          </Button>
+        </div>
       </div>
     </section>
   );

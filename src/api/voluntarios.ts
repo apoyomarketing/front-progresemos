@@ -10,8 +10,11 @@ export interface PersonaReniec {
 
 export interface Preinscripcion {
   codigo: string;
+  dni: string;
   nombre_completo: string;
   estado: string;
+  foto: string | null;
+  fecha_afiliacion: string;
 }
 
 /** Paso 2 del modal: verifica el DNI contra RENIEC vía Decolecta. */
@@ -32,4 +35,62 @@ export function registrarVoluntario(datos: {
     method: "POST",
     body: datos,
   });
+}
+
+/** Paso de foto: sube la foto del carnet para una preinscripción ya creada. */
+export function subirFotoVoluntario(codigo: string, archivo: File): Promise<Preinscripcion> {
+  const formData = new FormData();
+  formData.append("foto", archivo);
+  return apiFetch<Preinscripcion>(`voluntarios/${codigo}/foto/`, {
+    method: "POST",
+    body: formData,
+  });
+}
+
+/** Regenerar carnet: trae el registro ya guardado de alguien que ya se afilió. */
+export function obtenerVoluntarioPorDni(dni: string): Promise<Preinscripcion> {
+  return apiFetch<Preinscripcion>(`voluntarios/${dni}/`);
+}
+
+// Vista de administración (Admin/Editor/Coordinador): incluye "id" (el PK interno
+// que piden los endpoints de asistencia como voluntario_id) y "rol_afiliado".
+export interface ApiVoluntario extends Preinscripcion {
+  id: number;
+  rol_afiliado: string;
+}
+
+export const ROLES_AFILIADO = [
+  { value: "afiliado", label: "Afiliado" },
+  { value: "simpatizante", label: "Simpatizante" },
+  { value: "organizador", label: "Organizador" },
+] as const;
+
+/** Panel CMS: busca afiliados por DNI y/o nombre (ambos parciales y opcionales). */
+export function buscarVoluntarios(
+  access: string,
+  filtros: { dni?: string; nombre?: string },
+): Promise<ApiVoluntario[]> {
+  const query = new URLSearchParams();
+  if (filtros.dni) query.set("dni", filtros.dni);
+  if (filtros.nombre) query.set("nombre", filtros.nombre);
+  const qs = query.toString();
+  return apiFetch<ApiVoluntario[]>(`voluntarios/buscar/${qs ? `?${qs}` : ""}`, { token: access });
+}
+
+/** Panel CMS: reasigna el rol de afiliado (afiliado/simpatizante/organizador). */
+export function actualizarRolVoluntario(
+  access: string,
+  codigo: string,
+  rolAfiliado: string,
+): Promise<ApiVoluntario> {
+  return apiFetch<ApiVoluntario>(`voluntarios/${codigo}/rol/`, {
+    method: "POST",
+    body: { rol_afiliado: rolAfiliado },
+    token: access,
+  });
+}
+
+/** Panel CMS: baja lógica del afiliado (estado pasa a "baja", no se borra la fila). */
+export function eliminarVoluntario(access: string, codigo: string): Promise<ApiVoluntario> {
+  return apiFetch<ApiVoluntario>(`voluntarios/${codigo}/eliminar/`, { method: "POST", token: access });
 }

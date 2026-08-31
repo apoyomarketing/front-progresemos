@@ -1,16 +1,26 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Check } from "lucide-react";
+import { X, Check, Upload, Download } from "lucide-react";
+import { toPng } from "html-to-image";
 import logo from "../assets/progresemos-logo.png";
-import { registrarVoluntario, validarDni, type PersonaReniec } from "../api/voluntarios";
+import { ApiError } from "../api/client";
+import {
+  registrarVoluntario,
+  validarDni,
+  subirFotoVoluntario,
+  obtenerVoluntarioPorDni,
+  type PersonaReniec,
+  type Preinscripcion,
+} from "../api/voluntarios";
+import CarnetAfiliado from "./CarnetAfiliado";
 
 interface JoinModalProps {
   open: boolean;
   onClose: () => void;
 }
 
-const PASOS = ["Inicio", "Datos", "Confirmar", "Listo"];
+const PASOS = ["Inicio", "Datos", "Confirmar", "Foto", "Carnet"];
 
 const soloDigitos = (valor: string, max: number) => valor.replace(/\D/g, "").slice(0, max);
 const esDni = (valor: string) => /^\d{8}$/.test(valor);
@@ -23,11 +33,15 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
   const [aceptaWhatsapp, setAceptaWhatsapp] = useState(false);
   const [confirmaDatos, setConfirmaDatos] = useState(false);
   const [persona, setPersona] = useState<PersonaReniec | null>(null);
-  const [codigo, setCodigo] = useState("");
+  const [registro, setRegistro] = useState<Preinscripcion | null>(null);
+  const [foto, setFoto] = useState<File | null>(null);
+  const [fotoPreviewUrl, setFotoPreviewUrl] = useState("");
+  const [subiendoFoto, setSubiendoFoto] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
 
   const dniRef = useRef<HTMLInputElement>(null);
+  const carnetRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
 
   useEffect(() => {
@@ -53,6 +67,13 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
     if (open && paso === 2) dniRef.current?.focus();
   }, [open, paso]);
 
+  // Libera el object URL de la preview de la foto al cambiarla o desmontar.
+  useEffect(() => {
+    return () => {
+      if (fotoPreviewUrl) URL.revokeObjectURL(fotoPreviewUrl);
+    };
+  }, [fotoPreviewUrl]);
+
   function handleClose() {
     onClose();
     // Se limpia después de la animación de salida, no de golpe, para no
@@ -64,7 +85,9 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
       setAceptaWhatsapp(false);
       setConfirmaDatos(false);
       setPersona(null);
-      setCodigo("");
+      setRegistro(null);
+      setFoto(null);
+      setFotoPreviewUrl("");
       setError("");
     }, 300);
   }
@@ -79,6 +102,18 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
       setConfirmaDatos(false);
       setPaso(3);
     } catch (err) {
+      if (err instanceof ApiError && err.status === 409) {
+        // Ya estaba preinscrito: en vez de bloquear, traemos su carnet ya
+        // guardado en la base para que pueda volver a descargarlo.
+        try {
+          setRegistro(await obtenerVoluntarioPorDni(dni));
+          setPaso(5);
+          return;
+        } catch (getErr) {
+          setError(getErr instanceof Error ? getErr.message : "No pudimos recuperar tu carnet.");
+          return;
+        }
+      }
       setError(err instanceof Error ? err.message : "No pudimos verificar tu DNI.");
     } finally {
       setCargando(false);
@@ -90,12 +125,53 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
     setCargando(true);
     try {
       const data = await registrarVoluntario({ dni, celular, acepta_whatsapp: aceptaWhatsapp });
-      setCodigo(data.codigo);
+      setRegistro(data);
       setPaso(4);
     } catch (err) {
       setError(err instanceof Error ? err.message : "No pudimos guardar tu registro.");
     } finally {
       setCargando(false);
+    }
+  }
+
+  function onFotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const archivo = e.target.files?.[0];
+    if (!archivo) return;
+    if (fotoPreviewUrl) URL.revokeObjectURL(fotoPreviewUrl);
+    setFoto(archivo);
+    setFotoPreviewUrl(URL.createObjectURL(archivo));
+  }
+
+  async function subirFoto() {
+    if (!registro || !foto) return;
+    setError("");
+    setSubiendoFoto(true);
+    try {
+      const data = await subirFotoVoluntario(registro.codigo, foto);
+      setRegistro(data);
+      setPaso(5);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "No pudimos subir tu foto.");
+    } finally {
+      setSubiendoFoto(false);
+    }
+  }
+
+  function omitirFoto() {
+    setError("");
+    setPaso(5);
+  }
+
+  async function descargarCarnet() {
+    if (!carnetRef.current || !registro) return;
+    try {
+      const dataUrl = await toPng(carnetRef.current, { cacheBust: true, pixelRatio: 2 });
+      const enlace = document.createElement("a");
+      enlace.href = dataUrl;
+      enlace.download = `carnet-progresemos-${registro.codigo}.png`;
+      enlace.click();
+    } catch {
+      setError("No pudimos generar la imagen del carnet. Inténtalo de nuevo.");
     }
   }
 
@@ -329,27 +405,97 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
               </div>
             )}
 
-            {/* ---------- PASO 4 ---------- */}
+            {/* ---------- PASO 4: FOTO ---------- */}
             {paso === 4 && (
+              <div className="flex flex-col gap-4">
+                <p className="text-sm leading-relaxed text-brand-gray-900/70">
+                  Agrega una foto para tu carnet de afiliado. Es opcional, puedes omitirlo por ahora.
+                </p>
+
+                <label
+                  htmlFor="join-foto"
+                  className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-brand-gray-900/15 bg-brand-gray-50 px-4 py-8 text-center transition-colors hover:border-brand-green/50"
+                >
+                  {fotoPreviewUrl ? (
+                    <img
+                      src={fotoPreviewUrl}
+                      alt="Vista previa"
+                      className="h-20 w-20 rounded-full object-cover"
+                    />
+                  ) : (
+                    <Upload size={22} className="text-brand-gray-900/40" />
+                  )}
+                  <span className="text-xs font-semibold text-brand-gray-900/60">
+                    {fotoPreviewUrl ? "Cambiar foto" : "Seleccionar foto"}
+                  </span>
+                  <input
+                    id="join-foto"
+                    type="file"
+                    accept="image/*"
+                    onChange={onFotoChange}
+                    className="hidden"
+                  />
+                </label>
+
+                {error && (
+                  <p className="rounded-lg bg-red-50 px-3 py-2.5 text-sm text-red-600">{error}</p>
+                )}
+
+                <div className="mt-1 flex gap-2">
+                  <button type="button" onClick={omitirFoto} className={btnFantasma}>
+                    Omitir por ahora
+                  </button>
+                  <button
+                    type="button"
+                    onClick={subirFoto}
+                    disabled={!foto || subiendoFoto}
+                    className={`flex-1 ${btnPrimario}`}
+                  >
+                    {subiendoFoto ? "Subiendo…" : "Subir foto"}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ---------- PASO 5: CARNET ---------- */}
+            {paso === 5 && registro && (
               <div className="flex flex-col items-center text-center">
-                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-green/10 text-brand-green">
-                  <Check size={28} strokeWidth={2.5} />
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-green/10 text-brand-green">
+                  <Check size={22} strokeWidth={2.5} />
                 </span>
-                <p className="mt-4 font-display text-lg font-bold text-brand-gray-900">
-                  Ya estás preinscrito
+                <p className="mt-3 font-display text-lg font-bold text-brand-gray-900">
+                  ¡Ya eres parte de PROGRESEMOS!
                 </p>
-                <p className="mt-1.5 text-sm text-brand-gray-900/60">
-                  Te escribiremos por WhatsApp al +51 {celular}.
+                <p className="mt-1 text-sm text-brand-gray-900/60">
+                  Descarga tu carnet de afiliado.
                 </p>
-                <p className="mt-4 w-full rounded-xl border border-dashed border-brand-gray-900/20 px-4 py-3">
-                  <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-gray-900/50">
-                    Tu código
-                  </span>
-                  <span className="mt-1 block font-display text-xl font-bold tracking-widest text-brand-green-dark">
-                    {codigo}
-                  </span>
-                </p>
-                <button type="button" onClick={handleClose} className={`mt-5 w-full ${btnPrimario}`}>
+
+                <div className="mt-5 w-full">
+                  <CarnetAfiliado
+                    ref={carnetRef}
+                    nombreCompleto={registro.nombre_completo}
+                    dni={registro.dni}
+                    codigo={registro.codigo}
+                    fotoUrl={registro.foto}
+                    fechaAfiliacion={registro.fecha_afiliacion}
+                  />
+                </div>
+
+                {error && (
+                  <p className="mt-4 w-full rounded-lg bg-red-50 px-3 py-2.5 text-sm text-red-600">
+                    {error}
+                  </p>
+                )}
+
+                <button
+                  type="button"
+                  onClick={descargarCarnet}
+                  className={`mt-5 flex w-full items-center justify-center gap-2 ${btnPrimario}`}
+                >
+                  <Download size={16} />
+                  Descargar PNG
+                </button>
+                <button type="button" onClick={handleClose} className={`mt-2 w-full ${btnFantasma}`}>
                   Cerrar
                 </button>
               </div>
