@@ -32,11 +32,11 @@ const columns = [
 ];
 
 const socials = [
-  { icon: FacebookIcon, label: "Facebook" },
-  { icon: InstagramIcon, label: "Instagram" },
-  { icon: TikTokIcon, label: "TikTok" },
-  { icon: YoutubeIcon, label: "YouTube" },
-  { icon: XIcon, label: "X" },
+  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/1DgsQp17jT/" },
+  { icon: InstagramIcon, label: "Instagram", href: "#" },
+  { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@lucioista?_r=1&_t=ZS-99ATcAqqz36" },
+  { icon: YoutubeIcon, label: "YouTube", href: "#" },
+  { icon: XIcon, label: "X", href: "#" },
 ];
 
 export default function Footer() {
@@ -66,10 +66,12 @@ export default function Footer() {
                 Redes sociales
               </h4>
               <div className="mt-4 flex gap-3">
-                {socials.map(({ icon: Icon, label }) => (
+                {socials.map(({ icon: Icon, label, href }) => (
                   <a
                     key={label}
-                    href="#"
+                    href={href}
+                    target={href !== "#" ? "_blank" : undefined}
+                    rel={href !== "#" ? "noopener noreferrer" : undefined}
                     aria-label={label}
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-brand-lime hover:text-brand-lime"
                   >
