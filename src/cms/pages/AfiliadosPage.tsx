@@ -170,94 +170,14 @@ export default function AfiliadosPage() {
 
         {!loading && !loadError && items.length > 0 && (
           <>
-            {/* Tabla — tablet y desktop */}
-            <div className="hidden overflow-x-auto rounded-2xl border border-brand-gray-900/10 bg-white shadow-sm md:block">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="border-b border-brand-gray-900/10 bg-brand-gray-50">
-                    <th className="w-14 px-5 py-3.5" />
-                    <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Nombre
-                    </th>
-                    <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      DNI
-                    </th>
-                    <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Código
-                    </th>
-                    <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Fecha afiliación
-                    </th>
-                    <th className="whitespace-nowrap px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Rol
-                    </th>
-                    <th className="px-5 py-3.5 text-right text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
-                      Acciones
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pageItems.map((v) => (
-                    <tr
-                      key={v.id}
-                      className="border-b border-brand-gray-900/10 last:border-b-0 even:bg-brand-gray-50/40 hover:bg-brand-gray-50"
-                    >
-                      <td className="px-5 py-3.5">
-                        <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-brand-green/10 text-xs font-bold text-brand-green-dark">
-                          {v.foto ? (
-                            <img src={v.foto} alt="" className="h-full w-full object-cover" />
-                          ) : (
-                            iniciales(v.nombre_completo)
-                          )}
-                        </div>
-                      </td>
-                      <td className="max-w-[16rem] truncate px-5 py-3.5 font-semibold text-brand-gray-900">
-                        {v.nombre_completo}
-                      </td>
-                      <td className="whitespace-nowrap px-5 py-3.5 text-brand-gray-900/70">{v.dni}</td>
-                      <td className="whitespace-nowrap px-5 py-3.5 text-brand-gray-900/70">{v.codigo}</td>
-                      <td className="whitespace-nowrap px-5 py-3.5 text-brand-gray-900/70">
-                        {formatFechaCorta(v.fecha_afiliacion)}
-                      </td>
-                      <td className="px-5 py-3.5">
-                        <select
-                          value={v.rol_afiliado}
-                          onChange={(e) => handleRolChange(v, e.target.value)}
-                          disabled={rolUpdatingId === v.id}
-                          className={claseSelectRol}
-                        >
-                          {ROLES_AFILIADO.map((r) => (
-                            <option key={r.value} value={r.value}>
-                              {r.label}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td className="px-5 py-3.5">
-                        <div className="flex justify-end gap-2">
-                          <button
-                            type="button"
-                            onClick={() => setPendingDelete(v)}
-                            disabled={deletingId === v.id}
-                            aria-label="Eliminar"
-                            className="flex h-8 w-8 items-center justify-center rounded-full text-brand-gray-900/50 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
-                          >
-                            <Trash2 size={15} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Tarjetas apiladas — mobile */}
-            <div className="flex flex-col gap-3 md:hidden">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {pageItems.map((v) => (
-                <div key={v.id} className="rounded-2xl border border-brand-gray-900/10 bg-white p-4 shadow-sm">
+                <div
+                  key={v.id}
+                  className="flex flex-col rounded-2xl border border-brand-gray-900/10 bg-white p-4 shadow-sm"
+                >
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-green/10 text-xs font-bold text-brand-green-dark">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-green/10 text-sm font-bold text-brand-green-dark">
                       {v.foto ? (
                         <img src={v.foto} alt="" className="h-full w-full object-cover" />
                       ) : (
@@ -270,6 +190,15 @@ export default function AfiliadosPage() {
                       </p>
                       <p className="text-sm text-brand-gray-900/60">DNI {v.dni}</p>
                     </div>
+                    <button
+                      type="button"
+                      onClick={() => setPendingDelete(v)}
+                      disabled={deletingId === v.id}
+                      aria-label="Eliminar"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-brand-gray-900/40 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
+                    >
+                      <Trash2 size={15} />
+                    </button>
                   </div>
 
                   <div className="mt-3 flex flex-col gap-1 text-sm text-brand-gray-900/60">
@@ -299,17 +228,6 @@ export default function AfiliadosPage() {
                         </option>
                       ))}
                     </select>
-                  </div>
-
-                  <div className="mt-4 flex items-center gap-2 border-t border-brand-gray-900/10 pt-3">
-                    <button
-                      type="button"
-                      onClick={() => setPendingDelete(v)}
-                      disabled={deletingId === v.id}
-                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-brand-gray-900/60 transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-60"
-                    >
-                      <Trash2 size={14} /> Eliminar
-                    </button>
                   </div>
                 </div>
               ))}

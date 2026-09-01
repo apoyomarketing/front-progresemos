@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BrowserMultiFormatReader, type IScannerControls } from "@zxing/browser";
 import { BarcodeFormat, DecodeHintType } from "@zxing/library";
-import { ArrowLeft, Check, AlertCircle, Info, Keyboard, Camera, Users } from "lucide-react";
+import { ArrowLeft, Check, AlertCircle, Info, Keyboard, Camera, Users, X } from "lucide-react";
 import { useAuth } from "../../api/AuthProvider";
 import { ApiError } from "../../api/client";
 import { obtenerActividad, type ApiActividad } from "../../api/actividades";
@@ -22,13 +22,27 @@ interface AsistenteRow {
   hora: string;
 }
 
+function FeedbackIcon({ tono }: { tono: Feedback["tono"] }) {
+  if (tono === "ok") return <Check size={18} />;
+  if (tono === "duplicado") return <Info size={18} />;
+  return <AlertCircle size={18} />;
+}
+
 function formatHora(iso: string) {
   const fecha = new Date(iso);
   if (Number.isNaN(fecha.getTime())) return "";
   return fecha.toLocaleTimeString("es-PE", { hour: "2-digit", minute: "2-digit" });
 }
 
-function CameraScanner({ onDecode }: { onDecode: (valor: string) => void }) {
+function CameraScanner({
+  onDecode,
+  feedback,
+  onDismissFeedback,
+}: {
+  onDecode: (valor: string) => void;
+  feedback: Feedback | null;
+  onDismissFeedback: () => void;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const onDecodeRef = useRef(onDecode);
   const [error, setError] = useState("");
@@ -72,9 +86,39 @@ function CameraScanner({ onDecode }: { onDecode: (valor: string) => void }) {
 
   return (
     <div className="w-full">
-      <div className="overflow-hidden rounded-2xl border-2 border-brand-green bg-black">
+      <div className="relative overflow-hidden rounded-2xl border-2 border-brand-green bg-black">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video ref={videoRef} className="aspect-square w-full object-cover" muted playsInline />
+
+        {feedback && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/70 p-6">
+            <div
+              className={`relative flex w-full max-w-[85%] flex-col items-center gap-2 rounded-2xl px-5 py-6 text-center shadow-xl ${
+                feedback.tono === "ok"
+                  ? "bg-brand-green text-white"
+                  : feedback.tono === "duplicado"
+                    ? "bg-brand-yellow text-brand-gray-900"
+                    : "bg-red-600 text-white"
+              }`}
+            >
+              <button
+                type="button"
+                onClick={onDismissFeedback}
+                aria-label="Cerrar"
+                className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full text-current/70 hover:bg-black/10"
+              >
+                <X size={15} />
+              </button>
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/25">
+                <FeedbackIcon tono={feedback.tono} />
+              </span>
+              <p className="font-display text-base font-bold leading-snug">
+                {feedback.tono === "ok" ? "Registrado" : feedback.tono === "duplicado" ? "Ya estaba registrado" : "No encontrado"}
+              </p>
+              <p className="text-sm leading-snug opacity-90">{feedback.mensaje}</p>
+            </div>
+          </div>
+        )}
       </div>
       <p className="mt-2 text-center text-xs text-brand-gray-900/40">
         Apunta la cámara al código de barras del carnet.
@@ -300,11 +344,15 @@ export default function LlamarAsistenciaPage() {
                 </p>
               </>
             ) : (
-              <CameraScanner onDecode={handleDecoded} />
+              <CameraScanner
+                onDecode={handleDecoded}
+                feedback={feedback}
+                onDismissFeedback={() => setFeedback(null)}
+              />
             )}
           </div>
 
-          {feedback && (
+          {modo === "teclado" && feedback && (
             <div
               className={`mt-6 flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm ${
                 feedback.tono === "ok"
@@ -315,13 +363,7 @@ export default function LlamarAsistenciaPage() {
               }`}
             >
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/60">
-                {feedback.tono === "ok" ? (
-                  <Check size={14} />
-                ) : feedback.tono === "duplicado" ? (
-                  <Info size={14} />
-                ) : (
-                  <AlertCircle size={14} />
-                )}
+                <FeedbackIcon tono={feedback.tono} />
               </span>
               <p className="min-w-0 flex-1 truncate font-medium">{feedback.mensaje}</p>
             </div>
