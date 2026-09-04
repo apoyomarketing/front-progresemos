@@ -52,6 +52,16 @@ export function obtenerVoluntarioPorDni(dni: string): Promise<Preinscripcion> {
   return apiFetch<Preinscripcion>(`voluntarios/${dni}/`);
 }
 
+/** Reemplaza la foto de un voluntario ya registrado (identificado por DNI, no por código). Público. */
+export function actualizarFotoVoluntario(dni: string, archivo: File): Promise<Preinscripcion> {
+  const formData = new FormData();
+  formData.append("foto", archivo);
+  return apiFetch<Preinscripcion>(`voluntarios/${dni}/actualizar-foto/`, {
+    method: "POST",
+    body: formData,
+  });
+}
+
 // Vista de administración (Admin/Editor/Coordinador): incluye "id" (el PK interno
 // que piden los endpoints de asistencia como voluntario_id) y "rol_afiliado".
 export interface ApiVoluntario extends Preinscripcion {

@@ -1,0 +1,799 @@
+{
+  "candidato": "Lucio Eliseo Istaña Ramos",
+  "cargo": "Candidato a la Alcaldía Provincial de Puno",
+  "partido": "PROGRESEMOS",
+  "lema": "Primero el pueblo, con desarrollo productivo",
+  "periodo": "2027 - 2030",
+  "lugarFecha": "Puno, junio del 2026",
+  "presentacion": "PROGRESEMOS presenta sus propuestas para la gestión municipal 2027-2030 con la convicción de que el desarrollo de la provincia de Puno se construye escuchando, dialogando y trabajando junto a su gente. El plan recoge las principales necesidades y aspiraciones de la población, se articula con los distintos niveles de gobierno y se orienta al cumplimiento de los Objetivos de Desarrollo Sostenible (ODS) al 2030. El compromiso central es impulsar el desarrollo económico, ambiental e institucional de la provincia, cerrando brechas de infraestructura y acceso a servicios, con una gestión abierta y participativa (presupuesto participativo, comités de gestión y rendición de cuentas permanente). Fue elaborado de forma técnica y participativa siguiendo los lineamientos del CEPLAN y en concordancia con el Jurado Nacional de Elecciones.",
+  "datosGenerales": {
+    "poblacionProyectada2026": 211768,
+    "extensionKm2": 6493,
+    "altitudMsnm": 3848,
+    "distritos": 15,
+    "centrosPoblados": 4404,
+    "ejecucionInversionesPromedio20222025": "La Municipalidad Provincial de Puno promedió ~70.8% de ejecución de inversiones entre 2022 y 2025 (60.4% en 2022, 59.4% en 2023, 82.7% en 2024, 80.6% en 2025), por debajo del estándar deseable de más de 90%. Varios distritos ejecutan menos del 70%. Las funciones con mayor presupuesto de inversión son Transporte, Educación, Planeamiento y Gestión de Contingencias, Saneamiento y Vivienda y Desarrollo Urbano."
+  },
+  "visionPeru2050": "Al 2050, somos un país democrático, respetuoso del Estado de derecho y de la institucionalidad, integrado al mundo y proyectado hacia un futuro que garantiza la defensa de la persona humana y de su dignidad en todo el territorio nacional (CEPLAN).",
+  "visionPlanPuno2030": "Al 2030, ser una provincia líder en turismo y desarrollo productivo, con una economía competitiva, sostenible e inclusiva que mejore la calidad de vida de su población.",
+  "aspiracionesPuno": [
+    "Con una elevada calidad de vida para todos sus habitantes.",
+    "Atractiva para vivir, invertir, trabajar y emprender.",
+    "Líder en turismo sostenible y puesta en valor de su patrimonio cultural y natural.",
+    "Competitiva en los sectores productivos agrícola, ganadero, acuícola, artesanal, comercial y turístico.",
+    "Con infraestructura moderna y servicios públicos de calidad.",
+    "Ambientalmente responsable y comprometida con la recuperación de la Bahía Interior del Lago Titicaca.",
+    "Segura, ordenada y con una gestión pública transparente y eficiente."
+  ],
+  "principios": [
+    {
+      "nombre": "Ética",
+      "descripcion": "Promueve normas y conductas que fortalecen los valores humanos, el respeto irrestricto de los derechos fundamentales y la dignidad de las personas, reconociendo a la familia como célula fundamental de la sociedad."
+    },
+    {
+      "nombre": "Democracia",
+      "descripcion": "Defiende la soberanía popular, el derecho a elegir y ser elegido, la fiscalización ciudadana de la gestión pública, el Estado de derecho, la institucionalidad democrática y la separación de poderes."
+    },
+    {
+      "nombre": "Libertad",
+      "descripcion": "Reconoce y respeta la libertad de la persona para actuar según sus valores, convicciones y voluntad, dentro del marco constitucional y legal vigente."
+    },
+    {
+      "nombre": "Independencia y autonomía",
+      "descripcion": "Ejerce su actividad política con independencia frente a cualquier extremismo o totalitarismo, defendiendo los intereses nacionales y la institucionalidad democrática."
+    },
+    {
+      "nombre": "Transparencia",
+      "descripcion": "Promueve una gestión pública transparente y responsable, con rendición de cuentas, acceso a la información pública y lucha contra la corrupción."
+    },
+    {
+      "nombre": "Respeto a la dignidad de la persona humana",
+      "descripcion": "Reconoce a la persona como fin supremo de la sociedad y del Estado, promoviendo la igualdad de oportunidades sin distinción alguna."
+    },
+    {
+      "nombre": "Desarrollo sostenible",
+      "descripcion": "Promueve un modelo que armoniza crecimiento económico, inclusión social y conservación ambiental, con uso responsable de los recursos naturales."
+    },
+    {
+      "nombre": "Descentralización y desarrollo territorial",
+      "descripcion": "Impulsa una descentralización efectiva que fortalezca a los gobiernos regionales y locales y reduzca las brechas entre zonas urbanas y rurales."
+    },
+    {
+      "nombre": "Protección del medio ambiente y la biodiversidad",
+      "descripcion": "Reconoce la importancia de conservar los ecosistemas y enfrentar el cambio climático mediante acciones concretas."
+    },
+    {
+      "nombre": "Bienestar y protección animal",
+      "descripcion": "Promueve el respeto, la protección y el bienestar de los animales como parte de una sociedad responsable."
+    }
+  ],
+  "objetivos": [
+    "Promover el desarrollo humano integral mediante acceso a servicios públicos de calidad: educación, salud, cultura, deporte y recreación.",
+    "Impulsar el desarrollo económico sostenible, fortaleciendo productividad, competitividad e innovación de los sectores agrícola, pecuario, acuícola, artesanal, turístico, comercial e industrial.",
+    "Generar empleo digno y oportunidades para los jóvenes mediante capacitación, emprendimiento e inserción laboral.",
+    "Promover la seguridad alimentaria, la agricultura familiar y la articulación de productores a mercados competitivos.",
+    "Impulsar la protección y recuperación de recursos naturales, la gestión sostenible del agua y la conservación de la biodiversidad.",
+    "Promover ciudades sostenibles, ordenadas, resilientes y ambientalmente responsables.",
+    "Fortalecer la seguridad ciudadana mediante acciones preventivas, participación vecinal y articulación institucional.",
+    "Modernizar la gestión pública mediante transformación digital, simplificación administrativa y gestión por resultados.",
+    "Fortalecer la participación ciudadana, la gobernabilidad democrática y la transparencia en todos los niveles de gobierno.",
+    "Promover el bienestar animal mediante protección, control poblacional responsable y sensibilización ciudadana."
+  ],
+  "valores": [
+    {
+      "nombre": "Honestidad",
+      "descripcion": "Actuar con rectitud, transparencia y coherencia entre el discurso y la acción pública."
+    },
+    {
+      "nombre": "Integridad",
+      "descripcion": "Ejercer la función pública con ética, responsabilidad y compromiso con el interés general."
+    },
+    {
+      "nombre": "Responsabilidad",
+      "descripcion": "Cumplir eficientemente las obligaciones asumidas, promoviendo resultados concretos en beneficio de la población."
+    },
+    {
+      "nombre": "Solidaridad",
+      "descripcion": "Fomentar la ayuda mutua, la cooperación y el apoyo a las poblaciones más vulnerables."
+    },
+    {
+      "nombre": "Respeto",
+      "descripcion": "Reconocer y valorar la dignidad humana y la diversidad cultural, social y ambiental del país."
+    },
+    {
+      "nombre": "Justicia",
+      "descripcion": "Promover la igualdad de oportunidades y el acceso equitativo a los beneficios del desarrollo."
+    },
+    {
+      "nombre": "Vocación de servicio",
+      "descripcion": "Orientar la gestión pública al bienestar de la ciudadanía, priorizando sus necesidades e intereses."
+    },
+    {
+      "nombre": "Compromiso social",
+      "descripcion": "Trabajar permanentemente por el desarrollo de las comunidades y la mejora de la calidad de vida."
+    },
+    {
+      "nombre": "Innovación",
+      "descripcion": "Promover soluciones creativas y sostenibles para los desafíos del desarrollo local."
+    },
+    {
+      "nombre": "Protección de la naturaleza",
+      "descripcion": "Actuar con responsabilidad ambiental y promover la conservación de los recursos naturales."
+    },
+    {
+      "nombre": "Participación",
+      "descripcion": "Fortalecer la intervención activa de la ciudadanía en la toma de decisiones y el control social."
+    }
+  ],
+  "dimensiones": [
+    {
+      "nombre": "Social",
+      "estrategias": [
+        {
+          "problema": "Aumento de la inseguridad ciudadana y la violencia familiar en la provincia de Puno.",
+          "estrategia": "Fortalecer el sistema de seguridad ciudadana mediante mejores atenciones del serenazgo, tecnología de vigilancia y articulación interinstitucional.",
+          "actividades": [
+            "Implementar un Centro de Monitoreo y Videovigilancia.",
+            "Incrementar cámaras de videovigilancia y sistemas de alarma comunitaria.",
+            "Fortalecer y equipar el servicio de serenazgo municipal.",
+            "Implementar casetas de vigilancia y ampliar las juntas vecinales.",
+            "Desarrollar campañas de prevención y atención de la violencia familiar.",
+            "Fortalecer la coordinación con la Policía Nacional y otras instituciones.",
+            "Implementar plataformas digitales para reportar incidencias y emergencias."
+          ],
+          "indicadores": [
+            "Tasa de denuncias por delitos contra el patrimonio por cada 10 mil habitantes.",
+            "Número de cámaras de videovigilancia instaladas y operativas.",
+            "Número de casetas de vigilancia implementadas.",
+            "Número de juntas vecinales fortalecidas y activas.",
+            "Número de campañas de prevención de violencia familiar ejecutadas.",
+            "Tiempo promedio de respuesta ante emergencias."
+          ]
+        },
+        {
+          "problema": "Ausencia de espacios y servicios recreativos, deportivos y de prácticas culturales.",
+          "estrategia": "Fortalecer el acceso a espacios recreativos, deportivos y culturales mediante la recuperación y mejoramiento de infraestructura.",
+          "actividades": [
+            "Recuperar y mejorar espacios públicos destinados a actividades deportivas y recreativas.",
+            "Promover escuelas municipales deportivas, artísticas y culturales para niños y jóvenes.",
+            "Organizar festivales culturales, concursos artísticos y actividades de integración comunitaria.",
+            "Desarrollar programas de recreación y actividad física para adultos mayores y poblaciones vulnerables."
+          ],
+          "indicadores": [
+            "Número de espacios recreativos y deportivos recuperados o implementados.",
+            "Número de participantes en actividades culturales y deportivas.",
+            "Número de proyectos culturales gestionados y ejecutados.",
+            "Porcentaje de población beneficiada con actividades recreativas, deportivas y culturales."
+          ]
+        },
+        {
+          "problema": "Débil promoción del turismo cultural y del patrimonio cultural, histórico y folklórico.",
+          "estrategia": "Fortalecer el posicionamiento turístico de Puno mediante la puesta en valor, promoción y difusión sostenible de su patrimonio.",
+          "actividades": [
+            "Implementar programas de promoción turística a nivel regional, nacional e internacional.",
+            "Promover circuitos turísticos integrados entre distritos, centros poblados y comunidades.",
+            "Gestionar proyectos de infraestructura turística y señalización."
+          ],
+          "indicadores": [
+            "Número de eventos culturales y turísticos realizados anualmente.",
+            "Número de campañas de promoción turística ejecutadas.",
+            "Porcentaje de incremento de la afluencia turística provincial.",
+            "Número de proyectos de infraestructura turística gestionados o ejecutados."
+          ]
+        },
+        {
+          "problema": "Defectuosa atención e inclusión social de jóvenes, mujeres, adultos mayores y personas con discapacidad.",
+          "estrategia": "Fortalecer la inclusión social de poblaciones vulnerables mediante programas de asistencia, capacitación y participación ciudadana.",
+          "actividades": [
+            "Implementar programas de capacitación técnica, emprendimiento y empleabilidad para jóvenes y mujeres.",
+            "Fortalecer los Centros Integrales de Atención al Adulto Mayor (CIAM) y las OMAPED.",
+            "Implementar campañas de prevención de la violencia contra la mujer y de igualdad de oportunidades."
+          ],
+          "indicadores": [
+            "Número de beneficiarios atendidos anualmente por programas sociales municipales.",
+            "Número de jóvenes y mujeres capacitados en emprendimiento y empleabilidad.",
+            "Número de campañas de inclusión social e igualdad de oportunidades ejecutadas."
+          ]
+        },
+        {
+          "problema": "Deficiente acceso a servicios básicos de saneamiento en zonas urbanas y rurales.",
+          "estrategia": "Impulsar el cierre de brechas de saneamiento básico mediante gestión, formulación y ejecución de proyectos coordinados con otros niveles de gobierno.",
+          "actividades": [
+            "Gestionar proyectos de ampliación y mejoramiento de sistemas de agua potable y alcantarillado.",
+            "Priorizar inversiones en saneamiento básico para centros poblados y comunidades rurales.",
+            "Fortalecer la operación y mantenimiento de los sistemas de agua y saneamiento.",
+            "Promover programas de educación sanitaria y uso responsable del agua.",
+            "Gestionar financiamiento para proyectos de infraestructura de saneamiento.",
+            "Promover la formalización de las organizaciones comunales administradoras de servicios (JASS)."
+          ],
+          "indicadores": [
+            "Porcentaje de población con acceso a agua potable.",
+            "Porcentaje de viviendas con acceso a alcantarillado.",
+            "Número de proyectos de agua y saneamiento gestionados y ejecutados.",
+            "Número de centros poblados beneficiados con infraestructura sanitaria."
+          ]
+        },
+        {
+          "problema": "Inadecuados servicios educativos y limitado acceso a tecnologías de información y conectividad digital.",
+          "estrategia": "Impulsar el mejoramiento de servicios educativos y acceso a tecnologías digitales mediante inversión, equipamiento y conectividad.",
+          "actividades": [
+            "Gestionar proyectos de mejoramiento y mantenimiento de infraestructura educativa.",
+            "Implementar equipamiento tecnológico en instituciones educativas priorizadas.",
+            "Promover el acceso a internet y conectividad digital en instituciones urbanas y rurales.",
+            "Fortalecer programas de alfabetización digital para estudiantes y docentes."
+          ],
+          "indicadores": [
+            "Número de instituciones educativas mejoradas y equipadas.",
+            "Número de instituciones educativas con acceso a internet y conectividad digital.",
+            "Número de docentes capacitados en herramientas digitales."
+          ]
+        },
+        {
+          "problema": "Limitado acceso a servicios de salud de calidad y equipamiento insuficiente en establecimientos de salud.",
+          "estrategia": "Fortalecer el acceso a servicios de salud de calidad mediante gestión de infraestructura, equipamiento y acciones preventivas.",
+          "actividades": [
+            "Gestionar el mejoramiento y equipamiento de establecimientos de salud de la provincia.",
+            "Fortalecer acciones de prevención y control de anemia, desnutrición y enfermedades respiratorias.",
+            "Implementar programas de promoción de estilos de vida saludables.",
+            "Desarrollar programas de salud dirigidos a niños, adultos mayores y poblaciones vulnerables."
+          ],
+          "indicadores": [
+            "Número de establecimientos de salud gestionados para mejoramiento y equipamiento.",
+            "Número de personas beneficiadas con campañas de salud preventiva.",
+            "Número de programas de salud implementados para poblaciones vulnerables."
+          ]
+        },
+        {
+          "problema": "Alta proliferación de animales domésticos en abandono y limitada cultura de tenencia responsable de mascotas.",
+          "estrategia": "Promover el bienestar animal y la tenencia responsable mediante esterilización, vacunación, identificación y educación ciudadana.",
+          "actividades": [
+            "Implementar campañas masivas de esterilización de perros y gatos.",
+            "Realizar campañas permanentes de vacunación y desparasitación animal.",
+            "Implementar el Registro Provincial de Mascotas.",
+            "Desarrollar campañas de educación sobre tenencia responsable y bienestar animal.",
+            "Promover jornadas de adopción responsable de animales rescatados."
+          ],
+          "indicadores": [
+            "Número de animales esterilizados anualmente.",
+            "Número de animales vacunados y desparasitados.",
+            "Número de mascotas registradas en el Registro Provincial.",
+            "Número de jornadas de adopción realizadas."
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Económica",
+      "estrategias": [
+        {
+          "problema": "Baja competitividad, productividad y articulación comercial de los sectores agrícola, ganadero, acuícola y de transformación.",
+          "estrategia": "Fortalecer la competitividad y el desarrollo productivo provincial mediante cadenas productivas, asociatividad, innovación, tecnificación y acceso a mercados.",
+          "actividades": [
+            "Implementar el Programa Provincial 'Altiplano Competitivo' para producción agropecuaria, acuícola y de transformación.",
+            "Promover la asociatividad y el fortalecimiento de organizaciones de productores.",
+            "Brindar asistencia técnica y capacitación en producción, gestión empresarial y comercialización.",
+            "Impulsar la tecnificación productiva mediante riego tecnificado y buenas prácticas.",
+            "Fortalecer la articulación comercial y el acceso a mercados regionales, nacionales e internacionales.",
+            "Impulsar ferias productivas, ruedas de negocio y espacios de promoción comercial."
+          ],
+          "indicadores": [
+            "Porcentaje de productores incorporados a cadenas productivas.",
+            "Número de asociaciones productivas fortalecidas y capacitadas.",
+            "Hectáreas incorporadas a sistemas de riego tecnificado.",
+            "Número de ferias y ruedas de negocio realizadas."
+          ]
+        },
+        {
+          "problema": "Deficiente infraestructura vial y drenaje pluvial en barrios y centros poblados: vías sin pavimentar, deterioradas y con mala accesibilidad.",
+          "estrategia": "Mejorar la conectividad y movilidad urbana mediante pavimentación, mejoramiento y mantenimiento de vías, veredas y drenaje pluvial.",
+          "actividades": [
+            "Gestionar y ejecutar proyectos de pavimentación de vías urbanas y centros poblados.",
+            "Construir y mejorar veredas para garantizar accesibilidad peatonal.",
+            "Implementar y ampliar sistemas de drenaje pluvial en zonas críticas.",
+            "Realizar mantenimiento periódico de calles, avenidas y vías de acceso.",
+            "Priorizar intervenciones en barrios con mayores niveles de deterioro vial."
+          ],
+          "indicadores": [
+            "Kilómetros de vías pavimentadas y mejoradas.",
+            "Kilómetros de veredas construidas o rehabilitadas.",
+            "Número de barrios beneficiados con infraestructura vial.",
+            "Metros lineales de drenaje pluvial construidos o mejorados."
+          ]
+        },
+        {
+          "problema": "Congestión vehicular, deficiente ordenamiento del tránsito y limitada seguridad vial.",
+          "estrategia": "Implementar un sistema integral de movilidad urbana sostenible que mejore la circulación vehicular y peatonal.",
+          "actividades": [
+            "Implementar el Plan Integral de Movilidad Urbana de la provincia de Puno.",
+            "Mejorar y modernizar la señalización vial horizontal y vertical.",
+            "Incrementar la semaforización inteligente en intersecciones críticas.",
+            "Construir y mejorar espacios para la movilidad peatonal y accesibilidad universal.",
+            "Desarrollar campañas de educación y seguridad vial."
+          ],
+          "indicadores": [
+            "Número de vías intervenidas para mejorar la movilidad urbana.",
+            "Porcentaje de reducción del tiempo promedio de desplazamiento urbano.",
+            "Número de intersecciones con semaforización implementada o modernizada."
+          ]
+        },
+        {
+          "problema": "Deterioro de la imagen urbana y de las fachadas de viviendas en barrios de la ciudad de Puno.",
+          "estrategia": "Implementar el Programa 'Puno Ciudad Turística' para mejorar la imagen urbana mediante fachadas, espacios públicos y patrimonio.",
+          "actividades": [
+            "Promover el pintado y mejoramiento de fachadas.",
+            "Recuperar y embellecer espacios públicos estratégicos de la ciudad.",
+            "Promover concursos vecinales de ornato, limpieza y mejoramiento urbano.",
+            "Implementar murales artísticos y expresiones culturales de identidad puneña.",
+            "Gestionar intervenciones de recuperación de inmuebles con valor histórico y cultural."
+          ],
+          "indicadores": [
+            "Número de viviendas intervenidas mediante el programa.",
+            "Metros cuadrados de fachadas recuperadas y pintadas.",
+            "Número de murales y expresiones artísticas implementadas."
+          ]
+        },
+        {
+          "problema": "Escasa articulación de circuitos turísticos y baja permanencia de visitantes.",
+          "estrategia": "Fortalecer la competitividad turística mediante corredores turísticos integrados y promoción sostenible de los principales atractivos.",
+          "actividades": [
+            "Implementar corredores turísticos integrados que articulen atractivos culturales, naturales y rurales.",
+            "Mejorar la señalización e información turística en los principales destinos.",
+            "Promover festivales y eventos culturales que incentiven mayor permanencia de turistas.",
+            "Impulsar alianzas estratégicas con operadores turísticos."
+          ],
+          "indicadores": [
+            "Número de pernoctaciones registradas en la provincia.",
+            "Número de atractivos turísticos incorporados a circuitos turísticos.",
+            "Promedio de permanencia de turistas en la provincia."
+          ]
+        },
+        {
+          "problema": "Bajo acceso a innovación y tecnología productiva de productores y pequeñas unidades económicas.",
+          "estrategia": "Promover la transformación digital y tecnológica de los sectores productivos mediante capacitación y asistencia técnica.",
+          "actividades": [
+            "Capacitar a productores y emprendedores en herramientas digitales y gestión empresarial.",
+            "Impulsar la digitalización de procesos comerciales y acceso a mercados virtuales.",
+            "Fortalecer centros de innovación, capacitación y asistencia técnica.",
+            "Gestionar alianzas con universidades, institutos y entidades especializadas en innovación."
+          ],
+          "indicadores": [
+            "Número de productores capacitados en innovación y tecnología.",
+            "Número de capacitaciones y asistencias técnicas realizadas.",
+            "Número de proyectos de innovación implementados."
+          ]
+        },
+        {
+          "problema": "Baja promoción y comercialización de artesanías y textiles de los artesanos de la provincia.",
+          "estrategia": "Promover el fortalecimiento de capacidades de los artesanos mediante ferias, pasarelas, articulación a mercados y plataformas digitales.",
+          "actividades": [
+            "Organizar ferias provinciales permanentes para la promoción de artesanías y textiles.",
+            "Promover la participación de artesanos en ferias regionales, nacionales e internacionales.",
+            "Desarrollar plataformas digitales para la promoción y comercialización de productos artesanales.",
+            "Brindar capacitación en diseño, innovación, comercialización y marketing.",
+            "Impulsar la creación de marcas colectivas y certificaciones de origen."
+          ],
+          "indicadores": [
+            "Número de ferias artesanales realizadas.",
+            "Número de artesanos beneficiados.",
+            "Número de asociaciones de artesanos fortalecidas."
+          ]
+        },
+        {
+          "problema": "Deficiente infraestructura, equipamiento y gestión de los principales mercados y centros de abastos.",
+          "estrategia": "Promover la mejora integral de mercados y centros de abastos: infraestructura, equipamiento, seguridad, salubridad e inocuidad alimentaria.",
+          "actividades": [
+            "Mejorar la infraestructura, servicios higiénicos, accesos y áreas de comercialización.",
+            "Implementar sistemas de seguridad, videovigilancia y gestión de riesgos.",
+            "Fortalecer las condiciones de salubridad e inocuidad alimentaria.",
+            "Implementar programas de capacitación para comerciantes en gestión empresarial.",
+            "Promover la formalización y organización de asociaciones de comerciantes."
+          ],
+          "indicadores": [
+            "Porcentaje de comerciantes en condiciones adecuadas de infraestructura y equipamiento.",
+            "Número de comerciantes capacitados y beneficiados.",
+            "Porcentaje de comerciantes formalizados."
+          ]
+        },
+        {
+          "problema": "Incremento del comercio ambulatorio en la provincia de Puno, limitando el ordenamiento público.",
+          "estrategia": "Promover la formalización y fortalecimiento de las MYPES y emprendimientos locales mediante asistencia técnica y simplificación administrativa.",
+          "actividades": [
+            "Implementar el Programa Provincial de Formalización Empresarial y Emprendimiento.",
+            "Realizar campañas de orientación sobre licencias, permisos y beneficios de la formalización.",
+            "Capacitar a emprendedores en gestión empresarial, tributación y acceso a mercados.",
+            "Fortalecer la Ventanilla Única de Atención al Emprendedor."
+          ],
+          "indicadores": [
+            "Número de asistencias técnicas brindadas.",
+            "Número de licencias y autorizaciones otorgadas.",
+            "Porcentaje de reducción de la informalidad comercial."
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ambiental",
+      "estrategias": [
+        {
+          "problema": "Contaminación y deterioro ambiental de la Bahía Interior del Lago Titicaca por aguas residuales y residuos sólidos.",
+          "estrategia": "Promover la recuperación integral de la Bahía Interior mediante gestión ambiental, control de fuentes contaminantes y recuperación de ecosistemas.",
+          "actividades": [
+            "Gestionar proyectos de recuperación ambiental de la Bahía Interior.",
+            "Implementar programas de limpieza y recuperación de áreas degradadas.",
+            "Fortalecer el monitoreo de la calidad del agua y control de fuentes contaminantes.",
+            "Ejecutar campañas de educación ambiental y manejo adecuado de residuos sólidos."
+          ],
+          "indicadores": [
+            "Número de proyectos de recuperación ambiental implementados.",
+            "Número de monitoreos de calidad de agua realizados.",
+            "Hectáreas recuperadas en zonas afectadas."
+          ]
+        },
+        {
+          "problema": "Contaminación del medio ambiente por inadecuado tratamiento de aguas residuales.",
+          "estrategia": "Promover proyectos de infraestructura y gestión de los sistemas de tratamiento de aguas residuales.",
+          "actividades": [
+            "Gestionar la formulación y ejecución de proyectos de tratamiento de aguas residuales.",
+            "Promover acciones de monitoreo y control de vertimientos contaminantes.",
+            "Implementar campañas de sensibilización sobre el cuidado de los recursos hídricos."
+          ],
+          "indicadores": [
+            "Número de proyectos de saneamiento gestionados.",
+            "Porcentaje de aguas residuales tratadas adecuadamente."
+          ]
+        },
+        {
+          "problema": "Deficiente gestión de residuos sólidos en la Bahía Interior del Lago Titicaca.",
+          "estrategia": "Implementar un sistema integral de gestión y valorización de residuos sólidos: segregación en la fuente, reciclaje y reaprovechamiento.",
+          "actividades": [
+            "Implementar programas de segregación y reciclaje en hogares, instituciones y comercios.",
+            "Fortalecer asociaciones de recicladores formalizados.",
+            "Ejecutar campañas de limpieza y recuperación ambiental de la Bahía Interior.",
+            "Implementar programas de valorización y economía circular."
+          ],
+          "indicadores": [
+            "Toneladas de residuos sólidos aprovechados.",
+            "Porcentaje de residuos reciclados y valorizados.",
+            "Número de recicladores formalizados."
+          ]
+        },
+        {
+          "problema": "Inadecuado manejo y disposición de residuos sólidos municipales en barrios urbanos, centros poblados y zonas turísticas.",
+          "estrategia": "Fortalecer el sistema provincial de gestión ambiental: limpieza pública, recolección selectiva, valorización y disposición final adecuada.",
+          "actividades": [
+            "Ampliar la cobertura del servicio de limpieza pública.",
+            "Mejorar el equipamiento para recolección y transporte de residuos sólidos.",
+            "Implementar infraestructura para valorización y tratamiento de residuos."
+          ],
+          "indicadores": [
+            "Porcentaje de residuos sólidos valorizados.",
+            "Porcentaje de residuos dispuestos adecuadamente."
+          ]
+        },
+        {
+          "problema": "Déficit de áreas verdes urbanas y deterioro ambiental de espacios públicos.",
+          "estrategia": "Incrementar y recuperar las áreas verdes urbanas mediante forestación, arborización y mejoramiento paisajístico.",
+          "actividades": [
+            "Implementar programas de forestación y arborización urbana en parques, avenidas y espacios públicos.",
+            "Recuperar y mejorar parques, jardines y áreas recreativas deterioradas.",
+            "Implementar sistemas de riego tecnificado para la conservación de áreas verdes."
+          ],
+          "indicadores": [
+            "Metros cuadrados de áreas verdes recuperadas e implementadas.",
+            "Número de árboles plantados y sobrevivientes."
+          ]
+        },
+        {
+          "problema": "Alta vulnerabilidad de la población frente a peligros de origen natural y antrópico.",
+          "estrategia": "Fortalecer la gestión del riesgo de desastres disminuyendo la exposición y fragilidad y aumentando la resiliencia y adaptación al cambio climático.",
+          "actividades": [
+            "Actualizar e implementar el Plan Provincial de Gestión del Riesgo de Desastres.",
+            "Ejecutar proyectos de reducción de riesgos y protección de infraestructura crítica.",
+            "Realizar simulacros y capacitaciones permanentes en gestión del riesgo.",
+            "Fortalecer las capacidades de las plataformas de defensa civil."
+          ],
+          "indicadores": [
+            "Número de personas capacitadas en gestión del riesgo de desastres.",
+            "Número de simulacros realizados anualmente."
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Institucional",
+      "estrategias": [
+        {
+          "problema": "Deficiente atención al ciudadano y limitada capacidad institucional para brindar servicios públicos eficientes.",
+          "estrategia": "Fortalecer la modernización institucional mediante desarrollo de capacidades, mejora de procesos, digitalización y participación ciudadana.",
+          "actividades": [
+            "Implementar el Programa de Gestión del Talento Humano y Desarrollo de Competencias.",
+            "Capacitar al personal municipal en atención al ciudadano y gestión pública.",
+            "Digitalizar trámites y servicios municipales para reducir tiempos de atención.",
+            "Fortalecer los espacios de participación ciudadana y presupuesto participativo."
+          ],
+          "indicadores": [
+            "Porcentaje de servidores capacitados en atención al ciudadano y gestión pública.",
+            "Número de trámites y servicios digitalizados.",
+            "Tiempo promedio de atención al ciudadano."
+          ]
+        },
+        {
+          "problema": "Percepción de corrupción y débil acceso a la información pública en la gestión municipal.",
+          "estrategia": "Fortalecer la transparencia, la integridad institucional y la participación ciudadana mediante gobierno abierto y rendición permanente de cuentas.",
+          "actividades": [
+            "Implementar una política municipal de gobierno abierto y transparencia.",
+            "Fortalecer el Portal de Transparencia Estándar y la publicación oportuna de información.",
+            "Realizar audiencias públicas descentralizadas de rendición de cuentas.",
+            "Implementar canales virtuales de acceso a la información pública y atención de denuncias."
+          ],
+          "indicadores": [
+            "Porcentaje de información institucional publicada oportunamente.",
+            "Número de audiencias públicas realizadas."
+          ]
+        },
+        {
+          "problema": "Deficiente ejecución de inversiones públicas, generando retrasos en la atención de necesidades prioritarias.",
+          "estrategia": "Fortalecer la gestión de inversiones públicas mediante planificación, formulación, ejecución, seguimiento y control eficiente de proyectos.",
+          "actividades": [
+            "Implementar un sistema de seguimiento y monitoreo permanente de proyectos de inversión.",
+            "Priorizar proyectos orientados al cierre de brechas en infraestructura y servicios básicos.",
+            "Gestionar financiamiento y cofinanciamiento para proyectos estratégicos provinciales."
+          ],
+          "indicadores": [
+            "Porcentaje de ejecución presupuestal anual de inversiones públicas.",
+            "Porcentaje de proyectos culminados dentro de los plazos establecidos."
+          ]
+        },
+        {
+          "problema": "Deficiente planificación urbana y ordenamiento territorial, generando crecimiento urbano desordenado.",
+          "estrategia": "Promover el desarrollo urbano ordenado y sostenible mediante planificación territorial y actualización de instrumentos de gestión urbana.",
+          "actividades": [
+            "Actualizar e implementar los instrumentos de planificación urbana y territorial de la provincia.",
+            "Fortalecer los procesos de zonificación y ordenamiento territorial.",
+            "Promover el crecimiento urbano planificado y la ocupación adecuada del suelo."
+          ],
+          "indicadores": [
+            "Porcentaje de instrumentos de planificación urbana actualizados e implementados.",
+            "Porcentaje de urbanizaciones que cumplen criterios de desarrollo urbano."
+          ]
+        }
+      ]
+    }
+  ],
+  "metas": [
+    {
+      "dimension": "Social",
+      "problema": "Incremento de la inseguridad ciudadana y violencia familiar.",
+      "objetivoEstrategico": "Reducir los índices de inseguridad ciudadana en la provincia.",
+      "indicador": "Tasa de denuncias por comisión de delitos por 10 mil habitantes y número de atenciones.",
+      "meta": "Reducir en 30% los delitos e implementar un sistema integrado de videovigilancia."
+    },
+    {
+      "dimension": "Social",
+      "problema": "Ausencia de espacios y servicios recreativos, deportivos y de prácticas culturales.",
+      "objetivoEstrategico": "Promover la adecuación, remodelación y construcción de espacios recreativos, deportivos y culturales.",
+      "indicador": "Número de programas y proyectos gestionados y ejecutados orientados al deporte y la práctica cultural.",
+      "meta": "Ejecución del Plan integral cultural y folklore a nivel provincial."
+    },
+    {
+      "dimension": "Social",
+      "problema": "Débil promoción del turismo cultural y patrimonio puneño.",
+      "objetivoEstrategico": "Revalorar y promover el patrimonio cultural, turístico y folklórico de Puno.",
+      "indicador": "Número de eventos culturales y flujo turístico anual.",
+      "meta": "Incrementar en 20% la afluencia turística."
+    },
+    {
+      "dimension": "Social",
+      "problema": "Deficiente atención a jóvenes, mujeres, adultos mayores y personas con discapacidad.",
+      "objetivoEstrategico": "Implementar programas de inclusión social y fortalecimiento de capacidades.",
+      "indicador": "Número de beneficiarios atendidos anualmente.",
+      "meta": "Incrementar en 50% la cobertura de programas sociales municipales."
+    },
+    {
+      "dimension": "Social",
+      "problema": "Deficiente acceso a servicios básicos de agua potable, alcantarillado y/o saneamiento.",
+      "objetivoEstrategico": "Gestionar y ejecutar proyectos integrales de ampliación y mejoramiento de saneamiento.",
+      "indicador": "Porcentaje de población y viviendas con acceso al servicio de saneamiento.",
+      "meta": "Cerrar brechas en saneamiento básico."
+    },
+    {
+      "dimension": "Social",
+      "problema": "Inadecuados servicios educativos y limitado acceso a tecnologías y conectividad digital.",
+      "objetivoEstrategico": "Mejorar la infraestructura educativa con equipamiento tecnológico y conectividad digital.",
+      "indicador": "Número de instituciones educativas mejoradas y equipadas con tecnología y conectividad.",
+      "meta": "Cierre de brechas de las condiciones educativas mediante infraestructura y conectividad digital."
+    },
+    {
+      "dimension": "Social",
+      "problema": "Limitado acceso a servicios de salud de calidad y equipamiento insuficiente.",
+      "objetivoEstrategico": "Fortalecer el acceso a servicios de salud de calidad mediante gestión de infraestructura y equipamiento.",
+      "indicador": "Número de establecimientos de salud gestionados para su mejoramiento y equipamiento.",
+      "meta": "Gestionar el mejoramiento y equipamiento de establecimientos de salud de la provincia."
+    },
+    {
+      "dimension": "Social",
+      "problema": "Alta proliferación de animales domésticos en abandono y limitada tenencia responsable.",
+      "objetivoEstrategico": "Implementar un Programa de Bienestar Animal mediante esterilización, vacunación y adopción responsable.",
+      "indicador": "Número de animales registrados, esterilizados y campañas veterinarias realizadas.",
+      "meta": "Esterilizar 5,000 perros y gatos; implementar el Registro Provincial de Mascotas."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Baja competitividad, productividad y articulación comercial de los sectores agrícola, ganadero y acuícola.",
+      "objetivoEstrategico": "Promover la competitividad y el desarrollo productivo provincial mediante cadenas productivas y valor agregado.",
+      "indicador": "Porcentaje de productores incorporados a cadenas productivas; hectáreas con riego tecnificado.",
+      "meta": "Reducir en 50% los productores en condición de subsistencia; implementar el Programa 'Altiplano Competitivo'."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Deficiente infraestructura vial y drenaje pluvial en barrios y centros poblados.",
+      "objetivoEstrategico": "Mejorar la conectividad y movilidad urbana mediante pistas, veredas y drenaje pluvial.",
+      "indicador": "Kilómetros de vías pavimentadas y mejoradas; número de barrios beneficiados.",
+      "meta": "Pavimentar y mejorar 50 km de vías urbanas y construir 80 km de veredas en barrios priorizados."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Congestión vehicular, deficiente ordenamiento del tránsito y limitada seguridad vial.",
+      "objetivoEstrategico": "Implementar un sistema integral de movilidad urbana sostenible.",
+      "indicador": "Número de vías intervenidas y reducción del tiempo promedio de desplazamiento.",
+      "meta": "Reducir en 25% los tiempos de desplazamiento urbano e implementar un plan integral de movilidad urbana."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Deterioro de la imagen urbana y de las fachadas de viviendas en barrios de Puno.",
+      "objetivoEstrategico": "Promover el Programa 'Puno Ciudad Turística' de mejoramiento de fachadas y espacios públicos.",
+      "indicador": "Número de viviendas intervenidas y metros cuadrados de fachadas recuperadas.",
+      "meta": "Pintado y mejoramiento de 10,000 fachadas de viviendas y recuperación de corredores turísticos y culturales."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Escasa articulación de circuitos turísticos y baja permanencia de visitantes.",
+      "objetivoEstrategico": "Implementar corredores turísticos y fortalecer la promoción turística provincial.",
+      "indicador": "Número de visitantes y pernoctaciones.",
+      "meta": "Incrementar en 50% la permanencia promedio de turistas."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Bajo acceso a innovación y tecnología productiva.",
+      "objetivoEstrategico": "Promover la transformación digital y tecnológica para productores y emprendedores.",
+      "indicador": "Número de productores capacitados.",
+      "meta": "Capacitar a 5,000 productores y emprendedores provinciales."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Baja promoción y comercialización de artesanías textiles.",
+      "objetivoEstrategico": "Promover el fortalecimiento de capacidades de los artesanos mediante ferias y mercados.",
+      "indicador": "Número de ferias, pasarelas y eventos realizados; número de artesanos beneficiados.",
+      "meta": "Realizar 10 ferias provinciales, 4 pasarelas de moda andina y beneficiar a más de 2,000 artesanos."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Deficiente infraestructura, equipamiento y gestión de mercados y centros de abastos.",
+      "objetivoEstrategico": "Promover la mejora integral de mercados y centros de abastos.",
+      "indicador": "Porcentaje de comerciantes en condiciones adecuadas de infraestructura, equipamiento y servicios.",
+      "meta": "Lograr que el 70% de comerciantes atiendan en mercados con condiciones adecuadas."
+    },
+    {
+      "dimension": "Económica",
+      "problema": "Incremento del comercio ambulatorio, limitando el ordenamiento público.",
+      "objetivoEstrategico": "Promover la formalización y fortalecer las MYPES locales.",
+      "indicador": "Número de MYPES formalizadas.",
+      "meta": "Formalizar al menos 2,000 emprendimientos durante la gestión."
+    },
+    {
+      "dimension": "Ambiental",
+      "problema": "Contaminación y deterioro ambiental de la Bahía Interior del Lago Titicaca.",
+      "objetivoEstrategico": "Promover la recuperación integral de la Bahía Interior.",
+      "indicador": "Número de proyectos (PTAR) implementados; número de acciones de recuperación ambiental.",
+      "meta": "Gestionar la ejecución de al menos 2 proyectos de recuperación y protección ambiental."
+    },
+    {
+      "dimension": "Ambiental",
+      "problema": "Contaminación del medio ambiente por inadecuado tratamiento de aguas residuales.",
+      "objetivoEstrategico": "Promover proyectos de infraestructura y gestión de sistemas de tratamiento de aguas residuales.",
+      "indicador": "Número de proyectos de saneamiento y tratamiento de aguas residuales gestionados.",
+      "meta": "Gestionar ante el Gobierno Nacional la culminación y ejecución de proyectos de tratamiento de aguas residuales."
+    },
+    {
+      "dimension": "Ambiental",
+      "problema": "Deficiente gestión de residuos sólidos en la Bahía Interior del Lago Titicaca.",
+      "objetivoEstrategico": "Implementar un sistema integral de gestión y valorización de residuos sólidos.",
+      "indicador": "Toneladas de residuos aprovechados.",
+      "meta": "Incrementar al 50% el reciclaje y valorización de residuos sólidos."
+    },
+    {
+      "dimension": "Ambiental",
+      "problema": "Inadecuado manejo y disposición de residuos sólidos municipales.",
+      "objetivoEstrategico": "Promover y fortalecer el sistema de gestión ambiental de residuos sólidos.",
+      "indicador": "Porcentaje de residuos sólidos aprovechados y valorizados.",
+      "meta": "Incrementar al 50% la valorización de residuos sólidos y ampliar la cobertura de limpieza pública."
+    },
+    {
+      "dimension": "Ambiental",
+      "problema": "Déficit de áreas verdes urbanas y deterioro ambiental de espacios públicos.",
+      "objetivoEstrategico": "Incrementar y recuperar áreas verdes urbanas mediante forestación y arborización.",
+      "indicador": "Metros cuadrados de áreas verdes recuperadas e implementadas.",
+      "meta": "Incrementar en 30% las áreas verdes urbanas de la ciudad de Puno."
+    },
+    {
+      "dimension": "Ambiental",
+      "problema": "Alta vulnerabilidad de la población frente a peligros de origen natural y antrópico.",
+      "objetivoEstrategico": "Fortalecer la gestión del riesgo de desastres y la adaptación al cambio climático.",
+      "indicador": "Número de damnificados por emergencias y desastres.",
+      "meta": "Reducir en 40% la población expuesta a riesgos por eventos climáticos, ambientales y desastres."
+    },
+    {
+      "dimension": "Institucional",
+      "problema": "Deficiente atención al ciudadano en servicios de gobernabilidad e institucionalidad.",
+      "objetivoEstrategico": "Fomentar capacidades para la gobernabilidad y la institucionalidad de políticas públicas.",
+      "indicador": "Porcentaje de avance del programa de gestión del talento humano y habilidades blandas.",
+      "meta": "100% de implementación del programa de gestión del talento humano en la Municipalidad de Puno."
+    },
+    {
+      "dimension": "Institucional",
+      "problema": "Escasa participación y vigilancia ciudadana en la gestión municipal.",
+      "objetivoEstrategico": "Fortalecer mecanismos de participación y control ciudadano.",
+      "indicador": "Número de espacios participativos implementados.",
+      "meta": "Realizar 2 audiencias públicas anuales en la provincia y 4 talleres informativos de avances de proyectos."
+    },
+    {
+      "dimension": "Institucional",
+      "problema": "Percepción de corrupción y débil acceso a la información pública.",
+      "objetivoEstrategico": "Fortalecer la transparencia, integridad institucional y lucha contra la corrupción.",
+      "indicador": "Porcentaje de información institucional publicada oportunamente; número de informes de rendición de cuentas.",
+      "meta": "Publicar el 100% de la información obligatoria en el portal de transparencia; 2 audiencias públicas de rendición de cuentas por año."
+    },
+    {
+      "dimension": "Institucional",
+      "problema": "Deficiente ejecución de inversiones públicas.",
+      "objetivoEstrategico": "Fortalecer la gestión de inversiones públicas mediante planificación y seguimiento de proyectos.",
+      "indicador": "Porcentaje de ejecución presupuestal anual de inversiones públicas.",
+      "meta": "Alcanzar una ejecución presupuestal anual superior al 90% de las inversiones públicas programadas."
+    },
+    {
+      "dimension": "Institucional",
+      "problema": "Deficiente planificación urbana y ordenamiento territorial.",
+      "objetivoEstrategico": "Promover el desarrollo urbano ordenado y sostenible mediante planificación territorial.",
+      "indicador": "Porcentaje de urbanizaciones que cumplen con los criterios de desarrollo urbano.",
+      "meta": "Implementar el 100% de los instrumentos de planificación urbana priorizados."
+    }
+  ],
+  "rendicionDeCuentas": [
+    {
+      "nombre": "Audiencias públicas de rendición de cuentas",
+      "descripcion": "De manera semestral en la ciudad de Puno y en los distritos, sobre el avance físico y financiero de proyectos, obras, programas y actividades."
+    },
+    {
+      "nombre": "Publicación permanente de información de gestión",
+      "descripcion": "Difusión periódica de ejecución presupuestal, avance de obras, indicadores de gestión y cumplimiento de metas por plataformas digitales."
+    },
+    {
+      "nombre": "Informe anual de cumplimiento del Plan de Gobierno",
+      "descripcion": "Publicación anual del grado de avance de objetivos estratégicos, indicadores y metas del periodo de gestión municipal."
+    },
+    {
+      "nombre": "Fortalecimiento del presupuesto participativo",
+      "descripcion": "Participación activa de organizaciones sociales, juntas vecinales, comunidades campesinas, gremios y ciudadanía en la priorización de inversiones."
+    },
+    {
+      "nombre": "Espacios de diálogo ciudadano",
+      "descripcion": "Reuniones descentralizadas, cabildos abiertos y mesas de trabajo en distritos, centros poblados y comunidades."
+    },
+    {
+      "nombre": "Observatorio ciudadano de obras e inversiones",
+      "descripcion": "Participación de la sociedad civil en mecanismos de vigilancia ciudadana sobre obras públicas y servicios municipales."
+    },
+    {
+      "nombre": "Plataforma digital de seguimiento de compromisos",
+      "descripcion": "Acceso público para monitorear el avance de compromisos, proyectos y metas del Plan de Gobierno con indicadores verificables."
+    },
+    {
+      "nombre": "Participación de la juventud y la sociedad civil",
+      "descripcion": "Mecanismos de participación de jóvenes, mujeres, adultos mayores y organizaciones productivas en la evaluación y seguimiento de la gestión."
+    },
+    {
+      "nombre": "Evaluación ciudadana de la gestión municipal",
+      "descripcion": "Mecanismos de consulta y evaluación ciudadana sobre la calidad de los servicios municipales."
+    }
+  ]
+}

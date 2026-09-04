@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { LayoutDashboard, LogOut, Menu, UserRound, X } from "lucide-react";
 import logo from "../assets/progresemos-logo.png";
@@ -9,7 +9,7 @@ import { useDocumentHead } from "../hooks/useDocumentHead";
 
 function Brand() {
   return (
-    <div className="flex items-center gap-2.5">
+    <Link to="/" className="flex items-center gap-2.5">
       <img src={logo} alt="Logotipo de PROGRESEMOS" className="h-9 w-9 rounded-md object-cover" />
       <span className="leading-none">
         <span className="block font-display text-lg font-bold tracking-tight text-brand-gray-900">
@@ -19,7 +19,7 @@ function Brand() {
           CMS
         </span>
       </span>
-    </div>
+    </Link>
   );
 }
 
@@ -152,14 +152,19 @@ export default function Admin() {
             </span>
           </div>
 
-          <div className="ml-auto flex items-center gap-2.5">
-            <span className="hidden text-sm font-medium text-brand-gray-900/70 sm:inline">
+          <button
+            type="button"
+            onClick={logout}
+            title="Cerrar sesión"
+            className="group ml-auto flex items-center gap-2.5"
+          >
+            <span className="hidden text-sm font-medium text-brand-gray-900/70 group-hover:text-brand-green-dark sm:inline">
               {usuario.nombre}
             </span>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-green text-white">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-green text-white transition-colors group-hover:bg-brand-green-dark">
               <UserRound size={18} />
             </span>
-          </div>
+          </button>
         </header>
 
         <div className="container-editorial py-8">
