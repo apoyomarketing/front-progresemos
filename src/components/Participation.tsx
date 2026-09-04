@@ -35,7 +35,7 @@ export default function Participation() {
             <Button onClick={() => setJoinOpen(true)} variant="light">
               Quiero participar
             </Button>
-            <Button to="/afiliacion" variant="ghost">
+            <Button to="/plan-de-gobierno" variant="ghost">
               Conoce cómo afiliarte
             </Button>
           </div>

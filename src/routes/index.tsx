@@ -10,6 +10,8 @@ import ScrollToTop from "./ScrollToTop";
 // Todo lo demás se carga solo cuando el usuario navega a esa ruta.
 const AllProposals = lazy(() => import("../AllProposals"));
 const AllNews = lazy(() => import("../AllNews"));
+const AllCandidates = lazy(() => import("../AllCandidates"));
+const PlanGobierno = lazy(() => import("../PlanGobierno"));
 const Affiliation = lazy(() => import("../Affiliation"));
 const GamesPage = lazy(() => import("../GamesPage"));
 const GalleryPage = lazy(() => import("../GalleryPage"));
@@ -33,22 +35,43 @@ export interface AdminRoute {
   element: ReactNode;
 }
 
+const ADMIN_EDITOR_COORDINADOR = ["Administrador", "Editor", "Coordinador"];
+const ADMIN_COORDINADOR = ["Administrador", "Coordinador"];
+
 export const adminRoutes: AdminRoute[] = [
-  { path: "propuestas", label: "Propuestas", icon: FileText, roles: [], element: <PropuestasPage /> },
-  { path: "noticias", label: "Noticias", icon: Newspaper, roles: [], element: <NoticiasPage /> },
-  { path: "comunicados", label: "Comunicados", icon: Megaphone, roles: [], element: <ComunicadosPage /> },
+  {
+    path: "propuestas",
+    label: "Propuestas",
+    icon: FileText,
+    roles: ADMIN_EDITOR_COORDINADOR,
+    element: <PropuestasPage />,
+  },
+  {
+    path: "noticias",
+    label: "Noticias",
+    icon: Newspaper,
+    roles: ADMIN_EDITOR_COORDINADOR,
+    element: <NoticiasPage />,
+  },
+  {
+    path: "comunicados",
+    label: "Comunicados",
+    icon: Megaphone,
+    roles: ADMIN_EDITOR_COORDINADOR,
+    element: <ComunicadosPage />,
+  },
   {
     path: "afiliados",
     label: "Afiliados",
     icon: IdCard,
-    roles: ["Administrador", "Editor", "Coordinador"],
+    roles: ADMIN_COORDINADOR,
     element: <AfiliadosPage />,
   },
   {
     path: "actividades",
     label: "Actividades",
     icon: CalendarCheck,
-    roles: ["Administrador", "Editor", "Coordinador"],
+    roles: ADMIN_COORDINADOR,
     element: <ActividadesPage />,
   },
   { path: "usuarios", label: "Usuarios", icon: Users, roles: ["Administrador"], element: <UsuariosPage /> },
@@ -63,6 +86,8 @@ export default function AppRoutes() {
           <Route path="/" element={<App />} />
           <Route path="/propuestas" element={<AllProposals />} />
           <Route path="/noticias" element={<AllNews />} />
+          <Route path="/candidatos" element={<AllCandidates />} />
+          <Route path="/plan-de-gobierno" element={<PlanGobierno />} />
           <Route path="/afiliacion" element={<Affiliation />} />
           <Route path="/juegos" element={<GamesPage />} />
           <Route path="/galeria" element={<GalleryPage />} />

@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Check, Upload, Download } from "lucide-react";
+import { X, Check, Upload, Download, Camera } from "lucide-react";
 import { toPng } from "html-to-image";
 import logo from "../assets/progresemos-logo.png";
 import { ApiError } from "../api/client";
@@ -9,6 +9,7 @@ import {
   registrarVoluntario,
   validarDni,
   subirFotoVoluntario,
+  actualizarFotoVoluntario,
   obtenerVoluntarioPorDni,
   type PersonaReniec,
   type Preinscripcion,
@@ -37,8 +38,20 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
   const [foto, setFoto] = useState<File | null>(null);
   const [fotoPreviewUrl, setFotoPreviewUrl] = useState("");
   const [subiendoFoto, setSubiendoFoto] = useState(false);
+  const [actualizandoFoto, setActualizandoFoto] = useState(false);
+  // El backend reutiliza la misma ruta de archivo al reemplazar la foto, así que
+  // el navegador puede seguir mostrando la imagen anterior desde su caché en
+  // memoria aunque el <img src> no haya cambiado de texto. Este contador se sube
+  // en cada subida exitosa y se agrega como query param para forzar a que el
+  // navegador la trate como un recurso nuevo y la vuelva a pedir.
+  const [fotoVersion, setFotoVersion] = useState(0);
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
+  // "Revisar mi carnet": paso 2 se reutiliza como buscador por DNI en vez del
+  // formulario completo. Si no encuentra nada, cae al formulario normal (con
+  // el DNI ya cargado) para que complete su afiliación.
+  const [modoRevisar, setModoRevisar] = useState(false);
+  const [carnetNoEncontrado, setCarnetNoEncontrado] = useState(false);
 
   const dniRef = useRef<HTMLInputElement>(null);
   const carnetRef = useRef<HTMLDivElement>(null);
@@ -88,11 +101,43 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
       setRegistro(null);
       setFoto(null);
       setFotoPreviewUrl("");
+      setActualizandoFoto(false);
+      setFotoVersion(0);
+      setModoRevisar(false);
+      setCarnetNoEncontrado(false);
       setError("");
     }, 300);
   }
 
   const puedeContinuar = esDni(dni) && esCelular(celular) && aceptaWhatsapp;
+
+  function abrirRevisarCarnet() {
+    setError("");
+    setCarnetNoEncontrado(false);
+    setModoRevisar(true);
+    setPaso(2);
+  }
+
+  async function buscarCarnet() {
+    setError("");
+    setCargando(true);
+    try {
+      setRegistro(await obtenerVoluntarioPorDni(dni));
+      setModoRevisar(false);
+      setPaso(5);
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 404) {
+        // No tiene carnet todavía: pasa al formulario normal, con el DNI ya
+        // cargado, para que complete su afiliación.
+        setModoRevisar(false);
+        setCarnetNoEncontrado(true);
+        return;
+      }
+      setError(err instanceof Error ? err.message : "No pudimos buscar tu carnet.");
+    } finally {
+      setCargando(false);
+    }
+  }
 
   async function verificar() {
     setError("");
@@ -147,8 +192,11 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
     setError("");
     setSubiendoFoto(true);
     try {
-      const data = await subirFotoVoluntario(registro.codigo, foto);
+      const data = actualizandoFoto
+        ? await actualizarFotoVoluntario(registro.dni, foto)
+        : await subirFotoVoluntario(registro.codigo, foto);
       setRegistro(data);
+      setFotoVersion((v) => v + 1);
       setPaso(5);
     } catch (err) {
       setError(err instanceof Error ? err.message : "No pudimos subir tu foto.");
@@ -160,6 +208,15 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
   function omitirFoto() {
     setError("");
     setPaso(5);
+  }
+
+  function abrirCambiarFoto() {
+    setError("");
+    setFoto(null);
+    if (fotoPreviewUrl) URL.revokeObjectURL(fotoPreviewUrl);
+    setFotoPreviewUrl("");
+    setActualizandoFoto(true);
+    setPaso(4);
   }
 
   async function descargarCarnet() {
@@ -184,6 +241,10 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
   const claseCheck =
     "flex cursor-pointer items-start gap-2.5 text-xs leading-relaxed text-brand-gray-900/70";
 
+  const fotoUrlSinCache = registro?.foto
+    ? `${registro.foto}${registro.foto.includes("?") ? "&" : "?"}v=${fotoVersion}`
+    : null;
+
   return createPortal(
     <AnimatePresence>
       {open && (
@@ -203,7 +264,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-sm rounded-2xl bg-white p-7"
+            className="relative max-h-[90vh] w-full max-w-sm overflow-y-auto overscroll-contain rounded-2xl bg-white p-7"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -259,16 +320,89 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
                   <button type="button" onClick={handleClose} className={btnFantasma}>
                     Ahora no
                   </button>
-                  <button type="button" onClick={() => setPaso(2)} className={`flex-1 ${btnPrimario}`}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCarnetNoEncontrado(false);
+                      setPaso(2);
+                    }}
+                    className={`flex-1 ${btnPrimario}`}
+                  >
                     Quiero unirme
+                  </button>
+                </div>
+                <button type="button" onClick={abrirRevisarCarnet} className={`w-full ${btnFantasma}`}>
+                  Revisar mi carnet
+                </button>
+              </div>
+            )}
+
+            {/* ---------- PASO 2 ---------- */}
+            {paso === 2 && modoRevisar && (
+              <div className="flex flex-col gap-4">
+                <p className="text-sm leading-relaxed text-brand-gray-900/70">
+                  Escribe tu DNI para ver tu carnet de afiliado.
+                </p>
+
+                <div>
+                  <label
+                    htmlFor="join-dni"
+                    className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50"
+                  >
+                    DNI
+                  </label>
+                  <input
+                    id="join-dni"
+                    ref={dniRef}
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={8}
+                    value={dni}
+                    onChange={(e) => setDni(soloDigitos(e.target.value, 8))}
+                    placeholder="12345678"
+                    className={claseInput}
+                  />
+                  {dni.length > 0 && !esDni(dni) && (
+                    <p className="mt-1.5 text-xs text-red-600">Debe tener 8 dígitos.</p>
+                  )}
+                </div>
+
+                {error && (
+                  <p className="rounded-lg bg-red-50 px-3 py-2.5 text-sm text-red-600">{error}</p>
+                )}
+
+                <div className="mt-1 flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setError("");
+                      setModoRevisar(false);
+                      setPaso(1);
+                    }}
+                    className={btnFantasma}
+                  >
+                    Atrás
+                  </button>
+                  <button
+                    type="button"
+                    onClick={buscarCarnet}
+                    disabled={!esDni(dni) || cargando}
+                    className={`flex-1 ${btnPrimario}`}
+                  >
+                    {cargando ? "Buscando…" : "Buscar"}
                   </button>
                 </div>
               </div>
             )}
 
-            {/* ---------- PASO 2 ---------- */}
-            {paso === 2 && (
+            {paso === 2 && !modoRevisar && (
               <div className="flex flex-col gap-4">
+                {carnetNoEncontrado && (
+                  <p className="rounded-lg bg-brand-yellow/15 px-3 py-2.5 text-sm text-brand-gray-900/80">
+                    Todavía no tienes un carnet. Completa tus datos para afiliarte.
+                  </p>
+                )}
+
                 <div>
                   <label
                     htmlFor="join-dni"
@@ -334,7 +468,15 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
                 )}
 
                 <div className="mt-1 flex gap-2">
-                  <button type="button" onClick={() => setPaso(1)} className={btnFantasma}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setError("");
+                      setCarnetNoEncontrado(false);
+                      setPaso(1);
+                    }}
+                    className={btnFantasma}
+                  >
                     Atrás
                   </button>
                   <button
@@ -409,7 +551,9 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
             {paso === 4 && (
               <div className="flex flex-col gap-4">
                 <p className="text-sm leading-relaxed text-brand-gray-900/70">
-                  Agrega una foto para tu carnet de afiliado. Es opcional, puedes omitirlo por ahora.
+                  {actualizandoFoto
+                    ? "Selecciona la nueva foto para tu carnet de afiliado."
+                    : "Agrega una foto para tu carnet de afiliado. Es opcional, puedes omitirlo por ahora."}
                 </p>
 
                 <label
@@ -443,7 +587,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
 
                 <div className="mt-1 flex gap-2">
                   <button type="button" onClick={omitirFoto} className={btnFantasma}>
-                    Omitir por ahora
+                    {actualizandoFoto ? "Cancelar" : "Omitir por ahora"}
                   </button>
                   <button
                     type="button"
@@ -476,7 +620,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
                     nombreCompleto={registro.nombre_completo}
                     dni={registro.dni}
                     codigo={registro.codigo}
-                    fotoUrl={registro.foto}
+                    fotoUrl={fotoUrlSinCache}
                     fechaAfiliacion={registro.fecha_afiliacion}
                   />
                 </div>
@@ -494,6 +638,14 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
                 >
                   <Download size={16} />
                   Descargar PNG
+                </button>
+                <button
+                  type="button"
+                  onClick={abrirCambiarFoto}
+                  className={`mt-2 flex w-full items-center justify-center gap-2 ${btnFantasma}`}
+                >
+                  <Camera size={16} />
+                  Cambiar foto de perfil
                 </button>
                 <button type="button" onClick={handleClose} className={`mt-2 w-full ${btnFantasma}`}>
                   Cerrar
