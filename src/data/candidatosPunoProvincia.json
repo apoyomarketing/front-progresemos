@@ -1,0 +1,564 @@
+{
+  "provincia": "Puno",
+  "region": "Puno",
+  "partido": "Progresemos",
+  "fuente": "Declaración jurada de hoja de vida - JNE (Voto Informado)",
+  "candidatos": [
+    {
+      "nombre": "Lucio Eliseo Istaña Ramos",
+      "cargo": "Alcalde Provincial",
+      "numeroLista": null,
+      "dni": "10818003",
+      "sexo": "Hombre",
+      "fechaNacimiento": "1976-12-26",
+      "edad": 49,
+      "lugarNacimiento": "Acora, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Bachiller (2010), Universidad Nacional del Altiplano - egresado",
+        "posgrado": "No registra"
+      },
+      "experienciaLaboral": [
+        "Gerente Municipal - Municipalidad Distrital de San Antonio (2025-2025)",
+        "Asesor Externo - Municipalidad Provincial de Chucuito - Juli (2023-2024)",
+        "Gerente Municipal - Municipalidad Distrital de Pomata (2024-2024)",
+        "Alcalde - Municipalidad Distrital de Acora (2019-2022)",
+        "Director de Planificación y Presupuesto - Prorridre, Gobierno Regional de Puno (2016-2018)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [
+          "Alcalde Distrital - Movimiento de Integración Por el Desarrollo Regional \"Mi Casita\" (2019-2022)"
+        ],
+        "renuncias": [
+          "Partido Político Perú Primero (renunció en 2024)"
+        ]
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 0,
+        "rentaBrutaEjercicioIndividual": 28200,
+        "otrosIngresos": 0,
+        "total": 28200
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Casa", "ubicacion": "Jr. Aricota 571 - Puno", "valor": 50000 },
+          { "tipo": "Casa", "ubicacion": "Prolongación Aricota C-6", "valor": 10000 },
+          { "tipo": "Terreno", "ubicacion": "Sector Ttojena, C.P. Ichu", "valor": 122.14 },
+          { "tipo": "Terreno", "ubicacion": "Santi Yanapa Pampa, C.P. Ichu", "valor": 528.15 }
+        ],
+        "muebles": [
+          { "tipo": "Camioneta Pick Up", "placa": "V9R740", "valor": 70000 }
+        ]
+      },
+      "resumenTrayectoria": "Candidato a Alcalde Provincial de Puno. Bachiller por la Universidad Nacional del Altiplano (2010). Tiene amplia trayectoria en gestión municipal: fue Alcalde Distrital de Acora (2019-2022) y se ha desempeñado como Gerente Municipal en las municipalidades de San Antonio y Pomata, además de asesor externo en la Municipalidad Provincial de Chucuito-Juli. También trabajó como Director de Planificación y Presupuesto en el Gobierno Regional de Puno. Postuló anteriormente por el movimiento regional 'Mi Casita' y renunció al Partido Perú Primero en 2024 antes de sumarse a Progresemos."
+    },
+    {
+      "nombre": "Julio Cesar Choque Vargas",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 1,
+      "dni": "01332923",
+      "sexo": "Hombre",
+      "fechaNacimiento": "1976-02-11",
+      "edad": 50,
+      "lugarNacimiento": "Puno, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Contador Público, Bachiller (2003), Universidad Nacional del Altiplano - egresado",
+        "posgrado": "Doctorado en Desarrollo Económico y Políticas Públicas - Universidad Autónoma de Madrid (2018, egresado); Maestría en Contabilidad y Administración - Universidad Nacional del Altiplano (2017, egresado)"
+      },
+      "experienciaLaboral": [
+        "Director por parte de la Sociedad Civil - Empresa Municipal de Saneamiento Básico Puno S.A. (2021-2026)",
+        "Docente Universitario - Universidad Nacional del Altiplano (2012-2026)",
+        "Contador General - Universidad Nacional del Altiplano (2010-2016)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": [
+          "Partido Cívico Obras (renunció en 2025)"
+        ]
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 134888,
+        "rentaBrutaEjercicioIndividual": 30800,
+        "otrosIngresos": 0,
+        "total": 165688
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Registro de predios", "ubicacion": "Jr. Chincha N° 211 esq. Jr. Aricota N° 510, Puno", "valor": 5000 },
+          { "tipo": "Terreno", "ubicacion": "Barrio Nueva Esperanza S/N", "valor": 500 },
+          { "tipo": "Terreno", "ubicacion": "Urb. Agricultura Mz. A Lt. 8", "valor": 100 },
+          { "tipo": "Terreno", "ubicacion": "Urb. San Juan Bosco Mz. Q", "valor": 3000 },
+          { "tipo": "Terreno", "ubicacion": "Jr. Damasco Nro. 270", "valor": 700 }
+        ],
+        "muebles": []
+      },
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 1 en la lista). Contador Público por la Universidad Nacional del Altiplano, con maestría en Contabilidad y Administración y doctorado en Desarrollo Económico y Políticas Públicas por la Universidad Autónoma de Madrid. Trayectoria centrada en gestión pública y academia: docente universitario en la UNA-Puno desde 2012, ex Contador General de la misma universidad, y actualmente Director por la Sociedad Civil en la Empresa Municipal de Saneamiento Básico de Puno. Renunció al Partido Cívico Obras en 2025."
+    },
+    {
+      "nombre": "Nelly Edith Mamani Quispe",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 2,
+      "dni": "01232491",
+      "sexo": "Mujer",
+      "fechaNacimiento": "1965-01-29",
+      "edad": 61,
+      "lugarNacimiento": "Arequipa, Arequipa, Arequipa",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Licenciada en Educación Física, Bachiller (1991), Universidad Nacional del Altiplano - egresada",
+        "posgrado": "No registra"
+      },
+      "experienciaLaboral": [
+        "Docente Universitaria - Universidad Nacional del Altiplano (2016-2026)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 96000,
+        "rentaBrutaEjercicioIndividual": 0,
+        "otrosIngresos": 0,
+        "total": 96000
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Terreno", "ubicacion": "Jr. Federico More Nro. 142-2", "valor": 8000 },
+          { "tipo": "Terreno", "ubicacion": "Sector Collacachi - Puno (Lt 04-Mz 6 y Lt 04-Mz 8), Parcela Nro. 87-A", "valor": 1000 }
+        ],
+        "muebles": []
+      },
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 2 en la lista). Licenciada en Educación Física, Bachiller por la Universidad Nacional del Altiplano (1991). Sin trayectoria político-partidaria previa registrada; su carrera se ha desarrollado en el ámbito académico como docente universitaria en la UNA-Puno desde 2016."
+    },
+    {
+      "nombre": "Wilfredo Mamani Tisnado",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 3,
+      "dni": "80611926",
+      "sexo": "Hombre",
+      "fechaNacimiento": "1978-07-05",
+      "edad": 48,
+      "lugarNacimiento": "Atuncolla, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Abogado, Bachiller (2007), Universidad Andina Néstor Cáceres Velásquez - egresado",
+        "posgrado": "No registra"
+      },
+      "experienciaLaboral": [
+        "Asesor Legal - Kamid Ingeniería y Construcción (2026-2026)",
+        "Asesor Legal - Grupo VyL Constructores SAC (2020-2024)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosPartidarios": [
+          "Militante - Partido Político Acción Popular (2024-2024)",
+          "Militante - Movimiento Regional Frente Amplio Para el Desarrollo del Pueblo (2021-2023)"
+        ],
+        "cargosEleccionPopular": [
+          "Alcalde Distrital - Reforma Regional Andina Integración, Participación Económica y Social Puno (2011-2014)"
+        ],
+        "renuncias": [
+          "Frente Amplio Para el Desarrollo del Pueblo (renunció en 2023)",
+          "Acción Popular (renunció en 2024)"
+        ]
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 42000,
+        "rentaBrutaEjercicioIndividual": 0,
+        "otrosIngresos": 0,
+        "total": 42000
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Terreno", "ubicacion": "Centro Poblado Turístico Sillustani", "valor": 100 },
+          { "tipo": "Terreno", "ubicacion": "Urb. Chacarilla Alta", "valor": 150 }
+        ],
+        "muebles": []
+      },
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 3 en la lista). Abogado, Bachiller por la Universidad Andina Néstor Cáceres Velásquez (2007). Cuenta con trayectoria político-partidaria previa: fue Alcalde Distrital por 'Reforma Regional Andina' (2011-2014), militante del Frente Amplio Para el Desarrollo del Pueblo (2021-2023) y de Acción Popular (2024), renunciando a ambas organizaciones antes de postular por Progresemos. Su experiencia laboral reciente es como asesor legal en empresas de construcción."
+    },
+    {
+      "nombre": "Dulia Coya Ccañihua",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 4,
+      "dni": "40055228",
+      "sexo": "Mujer",
+      "fechaNacimiento": "1978-06-02",
+      "edad": 48,
+      "lugarNacimiento": "Puno, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Licenciada en Administración y Marketing, Bachiller (2012), Universidad Andina Néstor Cáceres Velásquez - egresada; Educación Inicial, Universidad Nacional del Altiplano - no concluida",
+        "posgrado": "No registra"
+      },
+      "experienciaLaboral": [
+        "Dirección Académica - I.E.P. San Ignacio de Recalde, Juliaca (2026-2026)",
+        "Monitora Regional - Programa Nacional Plataformas de Acción Para la Inclusión Social (PAIS) (2024-2024)",
+        "Coordinadora Regional - Ministerio de Cultura del Perú (2021-2023)",
+        "Coordinadora - Colegio San Ignacio de Loyola - Puno (2012-2020)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 0,
+        "rentaBrutaEjercicioIndividual": 24000,
+        "otrosIngresos": 18000,
+        "total": 42000
+      },
+      "bienes": {
+        "inmuebles": [],
+        "muebles": [],
+        "accionesYParticipaciones": [
+          { "empresa": "Corporación Educatv SAC", "tipo": "Participaciones", "unidades": 10, "valor": 10000 }
+        ]
+      },
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 4 en la lista). Licenciada en Administración y Marketing por la Universidad Andina Néstor Cáceres Velásquez (2012); no concluyó estudios de Educación Inicial en la UNA-Puno. Trayectoria laboral vinculada a educación y gestión pública: coordinadora en el Colegio San Ignacio de Loyola de Puno (2012-2020), Coordinadora Regional del Ministerio de Cultura (2021-2023), monitora regional del programa PAIS (2024) y actualmente en la dirección académica de un colegio privado en Juliaca. Sin trayectoria político-partidaria previa registrada."
+    },
+    {
+      "nombre": "Wily Leopoldo Velasquez Velasquez",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 5,
+      "dni": "40503050",
+      "sexo": "Hombre",
+      "fechaNacimiento": "1978-01-01",
+      "edad": 48,
+      "lugarNacimiento": "Puno, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Licenciado en Administración, Bachiller (2002), Universidad Nacional del Altiplano - egresado; Bachiller en Administración (2000), Universidad Nacional del Altiplano - egresado",
+        "posgrado": "Doctorado en Administración - Universidad Nacional del Altiplano (2024, egresado); Maestría en Contabilidad y Administración - Universidad Nacional del Altiplano (2015, egresado)"
+      },
+      "experienciaLaboral": [
+        "Docente Universitario - Universidad Nacional de Juliaca (2024-2026)",
+        "Docente Universitario - Universidad Nacional Autónoma Altoandina de Tarma (2024-2024)",
+        "Gerente General - Alpha & VF Servicios Múltiples S.A. (2021-2024)",
+        "Docente Universitario - Universidad Nacional Tecnológica de Lima Sur (2020-2020)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 76356,
+        "rentaBrutaEjercicioIndividual": 0,
+        "otrosIngresos": 0,
+        "total": 76356
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Vivienda", "ubicacion": "Av. Simón Bolívar Nro. 1688", "valor": 0.10 },
+          { "tipo": "Terreno", "ubicacion": "Urb. El Porvenir - Jallihuaya", "valor": 0.10 }
+        ],
+        "muebles": [],
+        "accionesYParticipaciones": [
+          { "empresa": "Alpha & VF Servicios Múltiples S.A.C.", "tipo": "Acciones", "unidades": 1455, "valor": 14550 }
+        ]
+      },
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 5 en la lista). Licenciado en Administración por la Universidad Nacional del Altiplano, con maestría en Contabilidad y Administración (2015) y doctorado en Administración (2024) por la misma universidad. Trayectoria centrada en la docencia universitaria (UNA-Juliaca, UNAAT-Tarma, Universidad Nacional Tecnológica de Lima Sur) y en la gestión empresarial como Gerente General de Alpha & VF Servicios Múltiples, empresa en la que también es accionista. Sin trayectoria político-partidaria previa registrada."
+    },
+    {
+      "nombre": "Nelly Aydeé Zapana Apaza",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 6,
+      "dni": "01318686",
+      "sexo": "Mujer",
+      "fechaNacimiento": "1973-03-08",
+      "edad": 53,
+      "lugarNacimiento": "Puno, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Licenciada en Enfermería, Bachiller (1997), Universidad Nacional del Altiplano - egresada; Bachiller en Enfermería (1996), Universidad Nacional del Altiplano - egresada",
+        "posgrado": "Salud Pública - Epidemiología, Universidad Nacional del Altiplano - egresada; Gestión en Salud, Universidad Católica Santa María (Arequipa) - egresada"
+      },
+      "experienciaLaboral": [
+        "Licenciada en Enfermería - Red Asistencial Puno, Hospital III Puno - EsSalud (2002-2026)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 10230.80,
+        "rentaBrutaEjercicioIndividual": 0,
+        "otrosIngresos": 0,
+        "total": 10230.80
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Registro de predios", "ubicacion": "Fundo Candelaria o Moyatacar, Puno", "valor": 0 },
+          { "tipo": "Casa", "ubicacion": "Urb. Chanu Chanu 1ra Etapa R-8", "valor": 0.10 },
+          { "tipo": "Casa", "ubicacion": "Jr. Candelaria 794", "valor": 0.10 },
+          { "tipo": "Casa", "ubicacion": "Urb. Buena Vista Mz A Lte 20-21 Casa 4", "valor": 0.10 }
+        ],
+        "muebles": [
+          { "tipo": "Rav4", "placa": "V0Y-174", "valor": 93690 }
+        ]
+      },
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 6 en la lista). Licenciada en Enfermería por la Universidad Nacional del Altiplano (1997), con estudios de posgrado en Salud Pública - Epidemiología (UNA-Puno) y Gestión en Salud (Universidad Católica Santa María, Arequipa). Carrera profesional larga y estable en el sector salud público: enfermera en el Hospital III Puno de EsSalud desde 2002. Sin trayectoria político-partidaria previa registrada."
+    },
+    {
+      "nombre": "Joby Johan Parhuayo Jimenez",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 7,
+      "dni": "40130912",
+      "sexo": "Hombre",
+      "fechaNacimiento": "1977-09-08",
+      "edad": 48,
+      "lugarNacimiento": "Puno, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Título de Ingeniero Topógrafo Agrimensor, Bachiller (2022), Universidad Nacional del Altiplano - egresado",
+        "posgrado": "Gerencia Pública, Universidad Nacional Jorge Basadre Grohmann - egresado"
+      },
+      "experienciaLaboral": [
+        "Ingeniero en SSOMA - Municipalidad Distrital de Capachica (2025-2026)",
+        "Asistente en Ingeniería - Municipalidad Provincial de Puno (2024-2025)",
+        "Técnico en Seguridad - Municipalidad Provincial de Puno (2024-2024)",
+        "Asistente en Ingeniería - Municipalidad Provincial de Puno (2023-2023)",
+        "Asistencia Técnica en Ingeniería - Proyecto Especial Binacional Lago Titicaca - PEBLT (2020-2020)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": [
+          "Partido Político Perú Primero (renunció en 2024)",
+          "Movimiento Nueva Izquierda (renunció en 2007)"
+        ]
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 0,
+        "rentaBrutaEjercicioIndividual": 5000,
+        "otrosIngresos": 0,
+        "total": 5000
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Terreno", "ubicacion": "Jr. Paula Vigil Nro. 145", "valor": 0.10 }
+        ],
+        "muebles": []
+      },
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 7 en la lista). Ingeniero Topógrafo Agrimensor, Bachiller por la Universidad Nacional del Altiplano (2022), con estudios de posgrado en Gerencia Pública por la Universidad Nacional Jorge Basadre Grohmann. Trayectoria laboral centrada en ingeniería y seguridad en obras dentro del sector municipal, principalmente en la Municipalidad Provincial de Puno y la Municipalidad Distrital de Capachica, además del Proyecto Especial Binacional Lago Titicaca. Renunció al Movimiento Nueva Izquierda en 2007 y al Partido Perú Primero en 2024 antes de postular por Progresemos."
+    },
+    {
+      "nombre": "Ruth Carolina Llanqui Mamani",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 8,
+      "dni": "41677486",
+      "sexo": "Mujer",
+      "fechaNacimiento": "1983-01-22",
+      "edad": 43,
+      "lugarNacimiento": "Santa Rosa, El Collao, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Título de Ingeniero Agrícola, Bachiller (2015), Universidad Nacional del Altiplano - egresada",
+        "posgrado": "Ingeniería Ambiental, Universidad Nacional del Altiplano - no concluida"
+      },
+      "experienciaLaboral": [
+        "Ingeniero Agrícola - Prorridre, Gobierno Regional de Puno (2025-2025)",
+        "Especialista Técnico - Proyecto Especial Binacional Lago Titicaca (2023-2023)",
+        "Especialista Jefe de Grupo - Proyecto de Catastro Titulación y Registro de Tierra (2023-2023)",
+        "Digitalizador - Proyecto Especial Binacional Lago Titicaca (2017-2017)",
+        "Especialista Técnico - Programa Regional de Riego y Drenaje (2014-2017)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 18000,
+        "rentaBrutaEjercicioIndividual": 5000,
+        "otrosIngresos": 0,
+        "total": 23000
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Registro de predios", "ubicacion": "Mz C Lote 19, Socabaya, Arequipa", "valor": 157.49 },
+          { "tipo": "Registro de predios", "ubicacion": "Mz C Lote 20, Socabaya, Arequipa", "valor": 157.48 },
+          { "tipo": "Terreno", "ubicacion": "Jr. Copacabana Nro. 142-148", "valor": 120 },
+          { "tipo": "Terreno", "ubicacion": "Calle Argentina Mz C-19-20", "valor": 320 },
+          { "tipo": "Terreno", "ubicacion": "Zizcachani Pampa, C.P. Jayllihuaya", "valor": 150 }
+        ],
+        "muebles": [],
+        "accionesYParticipaciones": [
+          { "empresa": "Chambilla Ingenieros SAC", "tipo": "Acciones", "unidades": 4500, "valor": 10000 }
+        ]
+      },
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 8 en la lista). Ingeniera Agrícola, Bachiller por la Universidad Nacional del Altiplano (2015); no concluyó estudios de posgrado en Ingeniería Ambiental. Trayectoria técnica en proyectos del Gobierno Regional de Puno: Prorridre, Proyecto Especial Binacional Lago Titicaca y el Proyecto de Catastro, Titulación y Registro de Tierras. Sin trayectoria político-partidaria previa registrada."
+    },
+    {
+      "nombre": "Efrain Suasaca Quispe",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 9,
+      "dni": "01296078",
+      "sexo": "Hombre",
+      "fechaNacimiento": "1977-12-12",
+      "edad": 48,
+      "lugarNacimiento": "Coata, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "Industria Alimentaria, CETPRO Horacio Zevallos Gámez - concluido",
+        "noUniversitaria": "No registra",
+        "universitaria": "Ingeniero Agrónomo, Bachiller (2006), Universidad Nacional del Altiplano - egresado; Bachiller en Ciencias Agrarias (2001), Universidad Nacional del Altiplano - egresado",
+        "posgrado": "No registra"
+      },
+      "experienciaLaboral": [
+        "Sub Gerente de Desarrollo Económico - Municipalidad Distrital de Coata (2023-2024)",
+        "Asistente - AGROIDEAS (2022-2023)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": [
+          "Partido Democrático Somos Perú (renunció en 2009)"
+        ]
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": {
+        "remuneracionBruta": 0,
+        "rentaBrutaEjercicioIndividual": 30000,
+        "otrosIngresos": 0,
+        "total": 30000
+      },
+      "bienes": {
+        "inmuebles": [
+          { "tipo": "Sección especial de predios rurales", "ubicacion": "Área 0.2796 Ha, distrito Pusi, prov. Huancané, Puno", "valor": 25 },
+          { "tipo": "Sección especial de predios rurales", "ubicacion": "Área 0.2824 Ha, Coata, Puno", "valor": 25 },
+          { "tipo": "Sección especial de predios rurales", "ubicacion": "Área 0.2378 Ha, sector distrito Pusi, prov. Huancané, Puno", "valor": 25 },
+          { "tipo": "Sección especial de predios rurales", "ubicacion": "Área 0.9461 Ha, sector Komer Mocco, Puno", "valor": 25 },
+          { "tipo": "Sección especial de predios rurales", "ubicacion": "Área 0.9410 Ha, sector Mistigachi Pampa, Acora, Puno", "valor": 25 },
+          { "tipo": "Sección especial de predios rurales", "nota": "5 predios adicionales no detallados en la ficha resumida" }
+        ],
+        "muebles": [
+          { "tipo": "Mitsubishi Chariot", "placa": "NU7634", "valor": 25000 },
+          { "tipo": "Moto Torito", "placa": "08741A", "valor": 10000 },
+          { "tipo": "Motocarga", "placa": "30503Z", "valor": 10000 }
+        ],
+        "accionesYParticipaciones": [
+          { "empresa": "E.T. Múltiples Tours Halcones S.A.", "tipo": "Acciones", "unidades": 5, "valor": 100 }
+        ]
+      },
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 9 en la lista). Ingeniero Agrónomo, Bachiller por la Universidad Nacional del Altiplano (2006), con formación técnica en Industria Alimentaria (CETPRO Horacio Zevallos Gámez). Experiencia en gestión municipal como Sub Gerente de Desarrollo Económico en la Municipalidad Distrital de Coata (2023-2024) y como asistente en AGROIDEAS. Renunció al Partido Democrático Somos Perú en 2009."
+    },
+    {
+      "nombre": "Yeny Noemi Chura Choque",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 10,
+      "dni": "74527299",
+      "sexo": "Mujer",
+      "fechaNacimiento": "2000-05-24",
+      "edad": 26,
+      "lugarNacimiento": "Ilave, El Collao, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "No registra",
+        "posgrado": "No registra"
+      },
+      "experienciaLaboral": [],
+      "trayectoriaPartidaria": {
+        "cargosPartidarios": [
+          "Militante - Movimiento Regional o Departamental Frente de la Integración Regional y Movimientos Étnicos (2024-2024)"
+        ],
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": null,
+      "bienes": {
+        "inmuebles": [],
+        "muebles": []
+      },
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 10 en la lista). No registra estudios universitarios ni experiencia laboral en su declaración jurada. Fue militante del Movimiento Regional Frente de la Integración Regional y Movimientos Étnicos en 2024. No registra bienes ni ingresos declarados."
+    },
+    {
+      "nombre": "Alexander Vladimir Velez Flores",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 11,
+      "dni": "72870995",
+      "sexo": "Hombre",
+      "fechaNacimiento": "1999-07-08",
+      "edad": 27,
+      "lugarNacimiento": "Puno, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "Bachiller en Ingeniería de Minas (2025), Universidad Nacional del Altiplano - egresado",
+        "posgrado": "Geotecnia y Geomecánica, Universidad Nacional del Altiplano - no concluido"
+      },
+      "experienciaLaboral": [
+        "Auxiliar en Minería - Dirección Regional de Energía y Minas, Gobierno Regional de Puno (2026-2026)"
+      ],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": null,
+      "bienes": {
+        "inmuebles": [],
+        "muebles": [
+          { "tipo": "Volkswagen Sedán", "placa": "AHZ261", "valor": 4000 }
+        ]
+      },
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 11 en la lista). Bachiller en Ingeniería de Minas por la Universidad Nacional del Altiplano (2025), con estudios de posgrado no concluidos en Geotecnia y Geomecánica. Recién inicia su trayectoria laboral como auxiliar en minería en la Dirección Regional de Energía y Minas del Gobierno Regional de Puno. Sin trayectoria político-partidaria previa registrada."
+    },
+    {
+      "nombre": "Yenny Ylaquita Panca",
+      "cargo": "Regidor Provincial",
+      "numeroLista": 12,
+      "dni": "75579323",
+      "sexo": "Mujer",
+      "fechaNacimiento": "2002-11-06",
+      "edad": 23,
+      "lugarNacimiento": "Capachica, Puno, Puno",
+      "educacion": {
+        "basica": "Primaria y secundaria concluidas",
+        "tecnica": "No registra",
+        "noUniversitaria": "No registra",
+        "universitaria": "No registra",
+        "posgrado": "No registra"
+      },
+      "experienciaLaboral": [],
+      "trayectoriaPartidaria": {
+        "cargosEleccionPopular": [],
+        "renuncias": []
+      },
+      "sentenciasFirmes": "No registra",
+      "ingresosAnuales2025": null,
+      "bienes": {
+        "inmuebles": [],
+        "muebles": []
+      },
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 12 en la lista). No registra estudios universitarios, experiencia laboral, trayectoria partidaria ni bienes o ingresos en su declaración jurada de hoja de vida."
+    }
+  ]
+}
