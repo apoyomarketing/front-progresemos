@@ -17,7 +17,7 @@
         "basica": "Primaria y secundaria concluidas",
         "tecnica": "No registra",
         "noUniversitaria": "No registra",
-        "universitaria": "Bachiller (2010), Universidad Nacional del Altiplano - egresado",
+        "universitaria": "Ingeniero Economista (2010), Universidad Nacional del Altiplano - titulado",
         "posgrado": "No registra"
       },
       "experienciaLaboral": [
@@ -53,7 +53,7 @@
           { "tipo": "Camioneta Pick Up", "placa": "V9R740", "valor": 70000 }
         ]
       },
-      "resumenTrayectoria": "Candidato a Alcalde Provincial de Puno. Bachiller por la Universidad Nacional del Altiplano (2010). Tiene amplia trayectoria en gestión municipal: fue Alcalde Distrital de Acora (2019-2022) y se ha desempeñado como Gerente Municipal en las municipalidades de San Antonio y Pomata, además de asesor externo en la Municipalidad Provincial de Chucuito-Juli. También trabajó como Director de Planificación y Presupuesto en el Gobierno Regional de Puno. Postuló anteriormente por el movimiento regional 'Mi Casita' y renunció al Partido Perú Primero en 2024 antes de sumarse a Progresemos."
+      "resumenTrayectoria": "Candidato a Alcalde Provincial de Puno. Ingeniero Economista titulado por la Universidad Nacional del Altiplano (2010). Tiene amplia trayectoria en gestión municipal: fue Alcalde Distrital de Acora (2019-2022) y se ha desempeñado como Gerente Municipal en las municipalidades de San Antonio y Pomata, además de asesor externo en la Municipalidad Provincial de Chucuito-Juli. También trabajó como Director de Planificación y Presupuesto en el Gobierno Regional de Puno. Postuló anteriormente por el movimiento regional 'Mi Casita' y renunció al Partido Perú Primero en 2024 antes de sumarse a Progresemos."
     },
     {
       "nombre": "Julio Cesar Choque Vargas",
@@ -73,8 +73,9 @@
       },
       "experienciaLaboral": [
         "Director por parte de la Sociedad Civil - Empresa Municipal de Saneamiento Básico Puno S.A. (2021-2026)",
-        "Docente Universitario - Universidad Nacional del Altiplano (2012-2026)",
-        "Contador General - Universidad Nacional del Altiplano (2010-2016)"
+        "Catedrático Universitario - Universidad Nacional del Altiplano (2012-2026)",
+        "Contador General - Universidad Nacional del Altiplano (2010-2016)",
+        "Exdecano - Colegio de Contadores Públicos de Puno"
       ],
       "trayectoriaPartidaria": {
         "cargosEleccionPopular": [],
@@ -99,7 +100,7 @@
         ],
         "muebles": []
       },
-      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 1 en la lista). Contador Público por la Universidad Nacional del Altiplano, con maestría en Contabilidad y Administración y doctorado en Desarrollo Económico y Políticas Públicas por la Universidad Autónoma de Madrid. Trayectoria centrada en gestión pública y academia: docente universitario en la UNA-Puno desde 2012, ex Contador General de la misma universidad, y actualmente Director por la Sociedad Civil en la Empresa Municipal de Saneamiento Básico de Puno. Renunció al Partido Cívico Obras en 2025."
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 1 en la lista). Contador Público por la Universidad Nacional del Altiplano, con maestría en Contabilidad y Administración y doctorado en Desarrollo Económico y Políticas Públicas por la Universidad Autónoma de Madrid. Trayectoria centrada en gestión pública y academia: catedrático universitario en la UNA-Puno desde 2012, ex Contador General de la misma universidad, exdecano del Colegio de Contadores Públicos de Puno, y actualmente Director por la Sociedad Civil en la Empresa Municipal de Saneamiento Básico de Puno. Renunció al Partido Cívico Obras en 2025."
     },
     {
       "nombre": "Nelly Edith Mamani Quispe",
@@ -138,7 +139,7 @@
         ],
         "muebles": []
       },
-      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 2 en la lista). Licenciada en Educación Física, Bachiller por la Universidad Nacional del Altiplano (1991). Sin trayectoria político-partidaria previa registrada; su carrera se ha desarrollado en el ámbito académico como docente universitaria en la UNA-Puno desde 2016."
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 2 en la lista). Licenciada en Educación Física, Bachiller por la Universidad Nacional del Altiplano (1991). Su carrera se ha desarrollado en el ámbito académico como docente universitaria en la UNA-Puno desde 2016."
     },
     {
       "nombre": "Wilfredo Mamani Tisnado",
@@ -229,7 +230,7 @@
           { "empresa": "Corporación Educatv SAC", "tipo": "Participaciones", "unidades": 10, "valor": 10000 }
         ]
       },
-      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 4 en la lista). Licenciada en Administración y Marketing por la Universidad Andina Néstor Cáceres Velásquez (2012); no concluyó estudios de Educación Inicial en la UNA-Puno. Trayectoria laboral vinculada a educación y gestión pública: coordinadora en el Colegio San Ignacio de Loyola de Puno (2012-2020), Coordinadora Regional del Ministerio de Cultura (2021-2023), monitora regional del programa PAIS (2024) y actualmente en la dirección académica de un colegio privado en Juliaca. Sin trayectoria político-partidaria previa registrada."
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 4 en la lista). Licenciada en Administración y Marketing por la Universidad Andina Néstor Cáceres Velásquez (2012). Trayectoria laboral vinculada a educación y gestión pública: coordinadora en el Colegio San Ignacio de Loyola de Puno (2012-2020), Coordinadora Regional del Ministerio de Cultura (2021-2023), monitora regional del programa PAIS (2024) y actualmente en la dirección académica de un colegio privado en Juliaca."
     },
     {
       "nombre": "Wily Leopoldo Velasquez Velasquez",
@@ -274,7 +275,7 @@
           { "empresa": "Alpha & VF Servicios Múltiples S.A.C.", "tipo": "Acciones", "unidades": 1455, "valor": 14550 }
         ]
       },
-      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 5 en la lista). Licenciado en Administración por la Universidad Nacional del Altiplano, con maestría en Contabilidad y Administración (2015) y doctorado en Administración (2024) por la misma universidad. Trayectoria centrada en la docencia universitaria (UNA-Juliaca, UNAAT-Tarma, Universidad Nacional Tecnológica de Lima Sur) y en la gestión empresarial como Gerente General de Alpha & VF Servicios Múltiples, empresa en la que también es accionista. Sin trayectoria político-partidaria previa registrada."
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 5 en la lista). Licenciado en Administración por la Universidad Nacional del Altiplano, con maestría en Contabilidad y Administración (2015) y doctorado en Administración (2024) por la misma universidad. Trayectoria centrada en la docencia universitaria (UNA-Juliaca, UNAAT-Tarma, Universidad Nacional Tecnológica de Lima Sur) y en la gestión empresarial como Gerente General de Alpha & VF Servicios Múltiples, empresa en la que también es accionista."
     },
     {
       "nombre": "Nelly Aydeé Zapana Apaza",
@@ -317,7 +318,7 @@
           { "tipo": "Rav4", "placa": "V0Y-174", "valor": 93690 }
         ]
       },
-      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 6 en la lista). Licenciada en Enfermería por la Universidad Nacional del Altiplano (1997), con estudios de posgrado en Salud Pública - Epidemiología (UNA-Puno) y Gestión en Salud (Universidad Católica Santa María, Arequipa). Carrera profesional larga y estable en el sector salud público: enfermera en el Hospital III Puno de EsSalud desde 2002. Sin trayectoria político-partidaria previa registrada."
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 6 en la lista). Licenciada en Enfermería por la Universidad Nacional del Altiplano (1997), con estudios de posgrado en Salud Pública - Epidemiología (UNA-Puno) y Gestión en Salud (Universidad Católica Santa María, Arequipa). Carrera profesional larga y estable en el sector salud público: enfermera en el Hospital III Puno de EsSalud desde 2002."
     },
     {
       "nombre": "Joby Johan Parhuayo Jimenez",
@@ -411,7 +412,7 @@
           { "empresa": "Chambilla Ingenieros SAC", "tipo": "Acciones", "unidades": 4500, "valor": 10000 }
         ]
       },
-      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 8 en la lista). Ingeniera Agrícola, Bachiller por la Universidad Nacional del Altiplano (2015); no concluyó estudios de posgrado en Ingeniería Ambiental. Trayectoria técnica en proyectos del Gobierno Regional de Puno: Prorridre, Proyecto Especial Binacional Lago Titicaca y el Proyecto de Catastro, Titulación y Registro de Tierras. Sin trayectoria político-partidaria previa registrada."
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 8 en la lista). Ingeniera Agrícola, Bachiller por la Universidad Nacional del Altiplano (2015), con estudios de posgrado en Ingeniería Ambiental. Trayectoria técnica en proyectos del Gobierno Regional de Puno: Prorridre, Proyecto Especial Binacional Lago Titicaca y el Proyecto de Catastro, Titulación y Registro de Tierras."
     },
     {
       "nombre": "Efrain Suasaca Quispe",
@@ -496,7 +497,7 @@
         "inmuebles": [],
         "muebles": []
       },
-      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 10 en la lista). No registra estudios universitarios ni experiencia laboral en su declaración jurada. Fue militante del Movimiento Regional Frente de la Integración Regional y Movimientos Étnicos en 2024. No registra bienes ni ingresos declarados."
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 10 en la lista). Fue militante del Movimiento Regional Frente de la Integración Regional y Movimientos Étnicos en 2024."
     },
     {
       "nombre": "Alexander Vladimir Velez Flores",
@@ -529,7 +530,7 @@
           { "tipo": "Volkswagen Sedán", "placa": "AHZ261", "valor": 4000 }
         ]
       },
-      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 11 en la lista). Bachiller en Ingeniería de Minas por la Universidad Nacional del Altiplano (2025), con estudios de posgrado no concluidos en Geotecnia y Geomecánica. Recién inicia su trayectoria laboral como auxiliar en minería en la Dirección Regional de Energía y Minas del Gobierno Regional de Puno. Sin trayectoria político-partidaria previa registrada."
+      "resumenTrayectoria": "Candidato a Regidor Provincial de Puno (N° 11 en la lista). Bachiller en Ingeniería de Minas por la Universidad Nacional del Altiplano (2025), con estudios de posgrado en Geotecnia y Geomecánica. Se desempeña como auxiliar en minería en la Dirección Regional de Energía y Minas del Gobierno Regional de Puno."
     },
     {
       "nombre": "Yenny Ylaquita Panca",
@@ -558,7 +559,7 @@
         "inmuebles": [],
         "muebles": []
       },
-      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 12 en la lista). No registra estudios universitarios, experiencia laboral, trayectoria partidaria ni bienes o ingresos en su declaración jurada de hoja de vida."
+      "resumenTrayectoria": "Candidata a Regidora Provincial de Puno (N° 12 en la lista)."
     }
   ]
 }
