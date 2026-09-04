@@ -244,6 +244,10 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
   const fotoUrlSinCache = registro?.foto
     ? `${registro.foto}${registro.foto.includes("?") ? "&" : "?"}v=${fotoVersion}`
     : null;
+  // Preferimos la vista previa local (el archivo que el usuario acaba de elegir)
+  // sobre la URL del backend: así el carnet se actualiza al instante sin esperar
+  // a que el servidor confirme que la foto ya está disponible en esa ruta.
+  const fotoCarnet = fotoPreviewUrl || fotoUrlSinCache;
 
   return createPortal(
     <AnimatePresence>
@@ -620,7 +624,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
                     nombreCompleto={registro.nombre_completo}
                     dni={registro.dni}
                     codigo={registro.codigo}
-                    fotoUrl={fotoUrlSinCache}
+                    fotoUrl={fotoCarnet}
                     fechaAfiliacion={registro.fecha_afiliacion}
                   />
                 </div>
