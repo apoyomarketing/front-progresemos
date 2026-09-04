@@ -53,7 +53,7 @@ export default function Leadership() {
                 transition={{ duration: 0.5, delay: (i % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="w-[44%] shrink-0 snap-start sm:w-[30%] lg:w-[22%]"
               >
-                <Link to="/candidatos" target="_blank" rel="noopener noreferrer" className="group block">
+                <Link to="/candidatos" className="group block">
                   <div className="overflow-hidden rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.08)] ring-1 ring-white/15 transition-shadow duration-500 group-hover:shadow-[0_24px_48px_-20px_rgba(0,0,0,0.45)]">
                     <img
                       src={candidato.photo}
@@ -96,8 +96,6 @@ export default function Leadership() {
         <div className="mt-8 flex justify-center">
           <Link
             to="/candidatos"
-            target="_blank"
-            rel="noopener noreferrer"
             className="text-sm font-semibold text-white underline-offset-4 hover:underline"
           >
             Ver todos los candidatos y su hoja de vida →
