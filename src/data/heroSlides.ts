@@ -1,4 +1,4 @@
-import slide1 from "../assets/hero-slides/slide-1-agro.jpg";
+import slide1 from "../assets/hero-slides/slide-1-agro.png";
 import slide2 from "../assets/hero-slides/slide-2-julio.png";
 import slide3 from "../assets/hero-slides/slide-3-pasacalle-istana.png";
 import slide4 from "../assets/hero-slides/slide-4-campana.jpg";
