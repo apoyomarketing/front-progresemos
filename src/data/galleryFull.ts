@@ -6,7 +6,7 @@ import multitudCapachica from "../assets/campana-multitud-capachica.jpg";
 import nosotros from "../assets/nosotros.png";
 import lucioIstana from "../assets/lucio-istana.png";
 import julioChoque from "../assets/julio-choque.png";
-import slideAgro from "../assets/hero-slides/slide-1-agro.jpg";
+import slideAgro from "../assets/hero-slides/slide-1-agro.png";
 import slideJulio from "../assets/hero-slides/slide-2-julio.png";
 import slidePasacalle from "../assets/hero-slides/slide-3-pasacalle-istana.png";
 import slideCampana from "../assets/hero-slides/slide-4-campana.jpg";

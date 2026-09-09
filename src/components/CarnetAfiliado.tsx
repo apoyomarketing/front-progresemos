@@ -1,7 +1,8 @@
 import { forwardRef, useEffect, useRef } from "react";
 import JsBarcode from "jsbarcode";
-import lagoTiticaca from "../assets/carnet/lago-titicaca.png";
-import logoDog from "../assets/carnet/logo-transparente.png";
+import portada from "../assets/carnet/portada fotochek.png";
+import firmaLucio from "../assets/carnet/FIRMA LUCIO ISTAÑA.png";
+
 
 interface CarnetAfiliadoProps {
   nombreCompleto: string;
@@ -52,17 +53,13 @@ const CarnetAfiliado = forwardRef<HTMLDivElement, CarnetAfiliadoProps>(function 
           PROGRESEMOS
         </span>
         <span className="block text-[8px] font-semibold tracking-[0.2em] text-brand-yellow">
-          PARTIDO POLÍTICO
+          PUNO SEGURO, MODERNO Y PRODUCTIVO
         </span>
       </div>
 
       <div className="relative h-32 w-full">
-        <img src={lagoTiticaca} alt="" className="h-full w-full object-cover" />
+        <img src={portada} alt="" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0" />
-
-        <div className="absolute right-2 top-2 rounded-lg bg-white/90 p-1.5 shadow">
-          <img src={logoDog} alt="" className="h-12 w-12 object-contain" />
-        </div>
 
         <div className="absolute -bottom-10 left-4 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border-4 border-white bg-brand-gray-50 shadow-md">
           {fotoUrl ? (
@@ -81,14 +78,23 @@ const CarnetAfiliado = forwardRef<HTMLDivElement, CarnetAfiliadoProps>(function 
       </div>
 
       <div className="flex flex-col items-center px-5 pb-4 pt-12">
-        <p className="text-center font-display text-base font-extrabold uppercase leading-tight text-brand-gray-900">
-          {nombreCompleto}
-        </p>
-        <span className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-brand-green-dark">
-          AFILIADO
-        </span>
+        <div className="flex w-full items-center gap-3">
+          <img
+            src={firmaLucio}
+            alt=""
+            className="h-14 max-w-[140px] shrink-0 object-contain opacity-85"
+          />
+          <div className="flex-1 text-right">
+            <p className="font-display text-sm font-extrabold uppercase leading-tight text-brand-gray-900">
+              {nombreCompleto}
+            </p>
+            <span className="mt-1 inline-block text-[10px] font-bold uppercase tracking-[0.14em] text-brand-green-dark">
+              AFILIADO
+            </span>
+          </div>
+        </div>
 
-        <div className="mt-4 w-full border-t border-dashed border-brand-gray-900/15" />
+        <div className="mt-2 w-full border-t border-dashed border-brand-gray-900/15" />
 
         <div className="mt-3 flex w-full flex-col items-center">
           <svg ref={barcodeRef} className="w-full max-w-[220px]" />
