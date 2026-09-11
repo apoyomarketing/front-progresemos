@@ -8,10 +8,12 @@ export default function NewsCard({
   item,
   index,
   featured = false,
+  onClick,
 }: {
   item: ApiNoticia;
   index: number;
   featured?: boolean;
+  onClick?: () => void;
 }) {
   const hasMedia = Boolean(item.multimedia);
   const isVideo = hasMedia && isVideoSrc(item.multimedia);
@@ -24,6 +26,7 @@ export default function NewsCard({
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="group cursor-pointer"
+        onClick={onClick}
       >
         <div className="overflow-hidden rounded-2xl bg-brand-green/10">
           {hasMedia ? (
@@ -74,6 +77,7 @@ export default function NewsCard({
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       className="group cursor-pointer border-t border-brand-gray-900/10 pt-6 first:border-t-0 first:pt-0"
+      onClick={onClick}
     >
       <div className="flex gap-4">
         <div className="w-28 shrink-0 overflow-hidden rounded-xl bg-brand-green/10 sm:w-32">

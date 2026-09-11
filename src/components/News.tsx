@@ -1,5 +1,7 @@
+import { useState } from "react";
 import SectionHeader from "./SectionHeader";
 import NewsCard from "./NewsCard";
+import NewsModal from "./NewsModal";
 import Button from "./Button";
 import { noticiasApi } from "../api/content";
 import type { ApiNoticia } from "../api/content";
@@ -40,6 +42,8 @@ function NewsSkeleton() {
 }
 
 export default function News() {
+  const [selectedNews, setSelectedNews] = useState<ApiNoticia | null>(null);
+
   const { items, loading, failed } = usePublicCollection(noticiasApi.list);
   const sorted = sortByFechaDesc(items);
   const [featured, ...rest] = sorted;
@@ -57,11 +61,11 @@ export default function News() {
         ) : (
           <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <NewsCard item={featured} index={0} featured />
+              <NewsCard item={featured} index={0} featured onClick={() => setSelectedNews(featured)} />
             </div>
             <div className="flex flex-col gap-6 lg:col-span-5">
               {secondary.map((item, i) => (
-                <NewsCard item={item} index={i} key={item.id} />
+                <NewsCard item={item} index={i} key={item.id} onClick={() => setSelectedNews(item)} />
               ))}
             </div>
           </div>
@@ -73,6 +77,12 @@ export default function News() {
           </Button>
         </div>
       </div>
+
+      <NewsModal
+        open={!!selectedNews}
+        item={selectedNews}
+        onClose={() => setSelectedNews(null)}
+      />
     </section>
   );
 }
