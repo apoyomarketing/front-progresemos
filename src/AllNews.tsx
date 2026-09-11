@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NewsCard from "./components/NewsCard";
+import NewsModal from "./components/NewsModal";
 import { noticiasApi } from "./api/content";
 import type { ApiNoticia } from "./api/content";
 import { usePublicCollection } from "./hooks/usePublicCollection";
@@ -23,6 +25,8 @@ export default function AllNews() {
     description:
       "Revisa todas las noticias y comunicados de PROGRESEMOS sobre la campaña en la Provincia de Puno.",
   });
+
+  const [selectedNews, setSelectedNews] = useState<ApiNoticia | null>(null);
 
   const { items, loading, failed } = usePublicCollection(noticiasApi.list);
   const sorted = sortByFechaDesc(items);
@@ -59,11 +63,11 @@ export default function AllNews() {
           {!loading && !failed && featured && (
             <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-12">
               <div className="lg:col-span-7">
-                <NewsCard item={featured} index={0} featured />
+                <NewsCard item={featured} index={0} featured onClick={() => setSelectedNews(featured)} />
               </div>
               <div className="flex flex-col gap-6 lg:col-span-5">
                 {rest.map((item, i) => (
-                  <NewsCard item={item} index={i} key={item.id} />
+                  <NewsCard item={item} index={i} key={item.id} onClick={() => setSelectedNews(item)} />
                 ))}
               </div>
             </div>
@@ -72,6 +76,12 @@ export default function AllNews() {
       </main>
 
       <Footer />
+
+      <NewsModal
+        open={!!selectedNews}
+        item={selectedNews}
+        onClose={() => setSelectedNews(null)}
+      />
     </div>
   );
 }
