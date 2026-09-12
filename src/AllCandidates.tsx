@@ -94,7 +94,7 @@ function CandidatoPerfil({ candidato, index }: { candidato: CandidatoCompleto; i
             <img
               src={photo}
               alt={`Foto de ${nombre}`}
-              className="aspect-square w-full max-w-xs rounded-2xl object-cover lg:max-w-none"
+              className="aspect-square w-full max-w-xs rounded-2xl object-cover object-top lg:max-w-none"
             />
           ) : (
             <div className="flex aspect-square w-full max-w-xs flex-col items-center justify-center gap-2 rounded-2xl bg-brand-gray-50 lg:max-w-none">

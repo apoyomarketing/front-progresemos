@@ -1,5 +1,7 @@
-import { useEffect, useState, type FormEvent } from "react";
-import { Search, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState, useRef, type FormEvent } from "react";
+import { Search, Trash2, ChevronLeft, ChevronRight, DownloadCloud } from "lucide-react";
+import { toPng } from "html-to-image";
+import CarnetAfiliado from "../../components/CarnetAfiliado";
 import { useAuth } from "../../api/AuthProvider";
 import { ApiError } from "../../api/client";
 import {
@@ -46,7 +48,12 @@ export default function AfiliadosPage() {
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [rolesDb, setRolesDb] = useState<ApiRolAfiliado[]>([]);
 
-  function buscar(filtros: { dni?: string; nombre?: string }) {
+  const [rol, setRol] = useState("");
+  const [carnetTarget, setCarnetTarget] = useState<ApiVoluntario | null>(null);
+  const [descargandoId, setDescargandoId] = useState<number | null>(null);
+  const carnetRef = useRef<HTMLDivElement>(null);
+
+  function buscar(filtros: { dni?: string; nombre?: string; rol?: string }) {
     setLoading(true);
     setLoadError("");
     withAuth((access) => buscarVoluntarios(access, filtros))
@@ -68,13 +75,39 @@ export default function AfiliadosPage() {
 
   function handleSearch(e: FormEvent) {
     e.preventDefault();
-    buscar({ dni: dni.trim() || undefined, nombre: nombre.trim() || undefined });
+    buscar({ dni: dni.trim() || undefined, nombre: nombre.trim() || undefined, rol: rol || undefined });
   }
 
   function limpiarBusqueda() {
     setDni("");
     setNombre("");
+    setRol("");
     buscar({});
+  }
+
+  useEffect(() => {
+    if (carnetTarget && carnetRef.current) {
+      const timer = setTimeout(() => {
+        toPng(carnetRef.current!, { cacheBust: true, pixelRatio: 2 })
+          .then((dataUrl) => {
+            const enlace = document.createElement("a");
+            enlace.href = dataUrl;
+            enlace.download = `carnet-progresemos-${carnetTarget.codigo}.png`;
+            enlace.click();
+          })
+          .catch(() => setActionError("No pudimos generar el carnet."))
+          .finally(() => {
+            setCarnetTarget(null);
+            setDescargandoId(null);
+          });
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [carnetTarget]);
+
+  function handleDescargar(v: ApiVoluntario) {
+    setDescargandoId(v.id);
+    setCarnetTarget(v);
   }
 
   async function handleRolChange(v: ApiVoluntario, nuevoRol: string) {
@@ -143,13 +176,30 @@ export default function AfiliadosPage() {
             className="w-full rounded-lg border border-brand-gray-900/15 bg-white px-3 py-2 text-sm outline-none transition-colors focus:border-brand-green"
           />
         </div>
+        <div className="min-w-[160px] flex-1">
+          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-brand-gray-900/50">
+            Rol
+          </label>
+          <select
+            value={rol}
+            onChange={(e) => setRol(e.target.value)}
+            className="w-full rounded-lg border border-brand-gray-900/15 bg-white px-3 py-2 text-sm outline-none transition-colors focus:border-brand-green"
+          >
+            <option value="">Todos</option>
+            {rolesDb.map((r) => (
+              <option key={r.id} value={r.rol_name}>
+                {r.rol_name.charAt(0).toUpperCase() + r.rol_name.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
         <button
           type="submit"
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-green-dark"
         >
           <Search size={15} /> Buscar
         </button>
-        {(dni || nombre) && (
+        {(dni || nombre || rol) && (
           <button
             type="button"
             onClick={limpiarBusqueda}
@@ -215,22 +265,35 @@ export default function AfiliadosPage() {
                     </p>
                   </div>
 
-                  <div className="mt-3">
-                    <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-brand-gray-900/40">
-                      Rol
-                    </label>
-                    <select
-                      value={v.rol_afiliado}
-                      onChange={(e) => handleRolChange(v, e.target.value)}
-                      disabled={rolUpdatingId === v.id}
-                      className={`w-full ${claseSelectRol}`}
-                    >
-                      {rolesDb.map((r) => (
-                        <option key={r.id} value={r.rol_name}>
-                          {r.rol_name.charAt(0).toUpperCase() + r.rol_name.slice(1)}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="mt-3 flex gap-2">
+                    <div className="flex-1">
+                      <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-brand-gray-900/40">
+                        Rol
+                      </label>
+                      <select
+                        value={v.rol_afiliado}
+                        onChange={(e) => handleRolChange(v, e.target.value)}
+                        disabled={rolUpdatingId === v.id}
+                        className={`w-full ${claseSelectRol}`}
+                      >
+                        {rolesDb.map((r) => (
+                          <option key={r.id} value={r.rol_name}>
+                            {r.rol_name.charAt(0).toUpperCase() + r.rol_name.slice(1)}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="flex items-end">
+                      <button
+                        type="button"
+                        onClick={() => handleDescargar(v)}
+                        disabled={descargandoId === v.id}
+                        title="Descargar Carnet"
+                        className="flex h-[34px] w-[34px] items-center justify-center rounded-lg border border-brand-gray-900/15 bg-white text-brand-gray-900/70 transition-colors hover:border-brand-green hover:text-brand-green disabled:opacity-50"
+                      >
+                        <DownloadCloud size={18} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -276,6 +339,22 @@ export default function AfiliadosPage() {
         onConfirm={handleConfirmDelete}
         onCancel={() => setPendingDelete(null)}
       />
+
+      {carnetTarget && (
+        <div className="fixed -left-[9999px] top-0">
+          <div className="w-[320px]">
+            <CarnetAfiliado
+              ref={carnetRef}
+              nombreCompleto={carnetTarget.nombre_completo}
+              dni={carnetTarget.dni}
+              codigo={carnetTarget.codigo}
+              fotoUrl={carnetTarget.foto}
+              fechaAfiliacion={carnetTarget.fecha_afiliacion}
+              rol={carnetTarget.rol_afiliado}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
