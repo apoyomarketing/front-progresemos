@@ -58,7 +58,7 @@ export default function Leadership() {
                     <img
                       src={candidato.photo}
                       alt={`Candidato de PROGRESEMOS: ${candidato.nombre}`}
-                      className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="aspect-square w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>
                   <div className="mt-3 text-center">

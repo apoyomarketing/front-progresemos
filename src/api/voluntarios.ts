@@ -88,11 +88,12 @@ export const ROLES_AFILIADO = [
 /** Panel CMS: busca afiliados por DNI y/o nombre (ambos parciales y opcionales). */
 export function buscarVoluntarios(
   access: string,
-  filtros: { dni?: string; nombre?: string },
+  filtros: { dni?: string; nombre?: string; rol?: string },
 ): Promise<ApiVoluntario[]> {
   const query = new URLSearchParams();
   if (filtros.dni) query.set("dni", filtros.dni);
   if (filtros.nombre) query.set("nombre", filtros.nombre);
+  if (filtros.rol) query.set("rol", filtros.rol);
   const qs = query.toString();
   return apiFetch<ApiVoluntario[]>(`voluntarios/buscar/${qs ? `?${qs}` : ""}`, { token: access });
 }
