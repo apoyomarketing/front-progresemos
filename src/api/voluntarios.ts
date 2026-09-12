@@ -15,6 +15,16 @@ export interface Preinscripcion {
   estado: string;
   foto: string | null;
   fecha_afiliacion: string;
+  rol_afiliado?: string;
+}
+
+export interface ApiRolAfiliado {
+  id: number;
+  rol_name: string;
+}
+
+export function listarRolesAfiliado(access: string): Promise<ApiRolAfiliado[]> {
+  return apiFetch<ApiRolAfiliado[]>("afiliado-rol/", { token: access });
 }
 
 /** Paso 2 del modal: verifica el DNI contra RENIEC vía Decolecta. */
@@ -87,9 +97,9 @@ export function buscarVoluntarios(
   return apiFetch<ApiVoluntario[]>(`voluntarios/buscar/${qs ? `?${qs}` : ""}`, { token: access });
 }
 
-/** Panel CMS: reasigna el rol de afiliado (afiliado/simpatizante/organizador). */
+/** Panel CMS / Público: reasigna el rol de afiliado (afiliado/simpatizante/organizador/personero). */
 export function actualizarRolVoluntario(
-  access: string,
+  access: string | undefined,
   codigo: string,
   rolAfiliado: string,
 ): Promise<ApiVoluntario> {

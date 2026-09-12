@@ -10,6 +10,7 @@ interface CarnetAfiliadoProps {
   codigo: string;
   fotoUrl: string | null;
   fechaAfiliacion: string;
+  rol?: string;
 }
 
 function iniciales(nombreCompleto: string) {
@@ -25,7 +26,7 @@ function formatearFecha(fechaIso: string) {
 }
 
 const CarnetAfiliado = forwardRef<HTMLDivElement, CarnetAfiliadoProps>(function CarnetAfiliado(
-  { nombreCompleto, dni, codigo, fotoUrl, fechaAfiliacion },
+  { nombreCompleto, dni, codigo, fotoUrl, fechaAfiliacion, rol },
   ref,
 ) {
   const barcodeRef = useRef<SVGSVGElement>(null);
@@ -89,7 +90,7 @@ const CarnetAfiliado = forwardRef<HTMLDivElement, CarnetAfiliadoProps>(function 
               {nombreCompleto}
             </p>
             <span className="mt-1 inline-block text-[10px] font-bold uppercase tracking-[0.14em] text-brand-green-dark">
-              AFILIADO
+              {rol || "AFILIADO"}
             </span>
           </div>
         </div>

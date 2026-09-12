@@ -6,7 +6,8 @@ import {
   buscarVoluntarios,
   actualizarRolVoluntario,
   eliminarVoluntario,
-  ROLES_AFILIADO,
+  listarRolesAfiliado,
+  type ApiRolAfiliado,
   type ApiVoluntario,
 } from "../../api/voluntarios";
 import ConfirmDialog from "../ConfirmDialog";
@@ -43,6 +44,7 @@ export default function AfiliadosPage() {
   const [actionError, setActionError] = useState("");
   const [pendingDelete, setPendingDelete] = useState<ApiVoluntario | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
+  const [rolesDb, setRolesDb] = useState<ApiRolAfiliado[]>([]);
 
   function buscar(filtros: { dni?: string; nombre?: string }) {
     setLoading(true);
@@ -60,6 +62,7 @@ export default function AfiliadosPage() {
 
   useEffect(() => {
     buscar({});
+    withAuth(listarRolesAfiliado).then(setRolesDb).catch(console.error);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -222,9 +225,9 @@ export default function AfiliadosPage() {
                       disabled={rolUpdatingId === v.id}
                       className={`w-full ${claseSelectRol}`}
                     >
-                      {ROLES_AFILIADO.map((r) => (
-                        <option key={r.value} value={r.value}>
-                          {r.label}
+                      {rolesDb.map((r) => (
+                        <option key={r.id} value={r.rol_name}>
+                          {r.rol_name.charAt(0).toUpperCase() + r.rol_name.slice(1)}
                         </option>
                       ))}
                     </select>
