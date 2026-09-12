@@ -11,6 +11,7 @@ import {
   subirFotoVoluntario,
   actualizarFotoVoluntario,
   obtenerVoluntarioPorDni,
+  actualizarRolVoluntario,
   type PersonaReniec,
   type Preinscripcion,
 } from "../api/voluntarios";
@@ -21,7 +22,7 @@ interface JoinModalProps {
   onClose: () => void;
 }
 
-const PASOS = ["Inicio", "Datos", "Confirmar", "Foto", "Carnet"];
+const PASOS = ["Inicio", "Datos", "Confirmar", "Foto", "Personero", "Carnet"];
 
 const soloDigitos = (valor: string, max: number) => valor.replace(/\D/g, "").slice(0, max);
 const esDni = (valor: string) => /^\d{8}$/.test(valor);
@@ -46,6 +47,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
   // navegador la trate como un recurso nuevo y la vuelva a pedir.
   const [fotoVersion, setFotoVersion] = useState(0);
   const [cargando, setCargando] = useState(false);
+  const [actualizandoRol, setActualizandoRol] = useState(false);
   const [error, setError] = useState("");
   // "Revisar mi carnet": paso 2 se reutiliza como buscador por DNI en vez del
   // formulario completo. Si no encuentra nada, cae al formulario normal (con
@@ -124,7 +126,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
     try {
       setRegistro(await obtenerVoluntarioPorDni(dni));
       setModoRevisar(false);
-      setPaso(5);
+      setPaso(6);
     } catch (err) {
       if (err instanceof ApiError && err.status === 404) {
         // No tiene carnet todavía: pasa al formulario normal, con el DNI ya
@@ -152,7 +154,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
         // guardado en la base para que pueda volver a descargarlo.
         try {
           setRegistro(await obtenerVoluntarioPorDni(dni));
-          setPaso(5);
+          setPaso(6);
           return;
         } catch (getErr) {
           setError(getErr instanceof Error ? getErr.message : "No pudimos recuperar tu carnet.");
@@ -197,7 +199,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
         : await subirFotoVoluntario(registro.codigo, foto);
       setRegistro(data);
       setFotoVersion((v) => v + 1);
-      setPaso(5);
+      setPaso(actualizandoFoto ? 6 : 5);
     } catch (err) {
       setError(err instanceof Error ? err.message : "No pudimos subir tu foto.");
     } finally {
@@ -207,7 +209,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
 
   function omitirFoto() {
     setError("");
-    setPaso(5);
+    setPaso(actualizandoFoto ? 6 : 5);
   }
 
   function abrirCambiarFoto() {
@@ -217,6 +219,26 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
     setFotoPreviewUrl("");
     setActualizandoFoto(true);
     setPaso(4);
+  }
+
+  async function handlePersonero(acepta: boolean) {
+    if (!registro) return;
+    if (!acepta) {
+      setPaso(6);
+      return;
+    }
+    
+    setError("");
+    setActualizandoRol(true);
+    try {
+      const data = await actualizarRolVoluntario(undefined, registro.codigo, "personero");
+      setRegistro(data);
+      setPaso(6);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "No pudimos actualizar tu rol.");
+    } finally {
+      setActualizandoRol(false);
+    }
   }
 
   async function descargarCarnet() {
@@ -605,8 +627,43 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
               </div>
             )}
 
-            {/* ---------- PASO 5: CARNET ---------- */}
+            {/* ---------- PASO 5: PERSONERO ---------- */}
             {paso === 5 && registro && (
+              <div className="flex flex-col gap-4 text-center">
+                <p className="font-display text-lg font-bold text-brand-gray-900">
+                  ¿Te gustaría participar como personero en las próximas elecciones?
+                </p>
+                <p className="text-sm leading-relaxed text-brand-gray-900/70">
+                  Los personeros defienden los votos de PROGRESEMOS en las mesas de sufragio el día de las elecciones.
+                </p>
+
+                {error && (
+                  <p className="rounded-lg bg-red-50 px-3 py-2.5 text-sm text-red-600 text-left">{error}</p>
+                )}
+
+                <div className="mt-4 flex flex-col gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handlePersonero(true)}
+                    disabled={actualizandoRol}
+                    className={`w-full ${btnPrimario}`}
+                  >
+                    {actualizandoRol ? "Actualizando…" : "Sí, quiero ser personero"}
+                  </button>
+                  <button 
+                    type="button" 
+                    onClick={() => handlePersonero(false)} 
+                    disabled={actualizandoRol}
+                    className={`w-full ${btnFantasma}`}
+                  >
+                    No, gracias
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ---------- PASO 6: CARNET ---------- */}
+            {paso === 6 && registro && (
               <div className="flex flex-col items-center text-center">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-green/10 text-brand-green">
                   <Check size={22} strokeWidth={2.5} />
@@ -626,6 +683,7 @@ export default function JoinModal({ open, onClose }: JoinModalProps) {
                     codigo={registro.codigo}
                     fotoUrl={fotoCarnet}
                     fechaAfiliacion={registro.fecha_afiliacion}
+                    rol={registro.rol_afiliado}
                   />
                 </div>
 
