@@ -1,6 +1,6 @@
 import { lazy, Suspense, type ReactNode } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { FileText, Newspaper, Megaphone, Users, IdCard, CalendarCheck, type LucideIcon } from "lucide-react";
+import { FileText, Newspaper, Megaphone, Users, IdCard, CalendarCheck, CheckSquare, type LucideIcon } from "lucide-react";
 import App from "../App";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
@@ -24,6 +24,11 @@ const UsuariosPage = lazy(() => import("../cms/pages/UsuariosPage"));
 const AfiliadosPage = lazy(() => import("../cms/pages/AfiliadosPage"));
 const ActividadesPage = lazy(() => import("../cms/pages/ActividadesPage"));
 const LlamarAsistenciaPage = lazy(() => import("../cms/pages/LlamarAsistenciaPage"));
+const EscrutinioLayout = lazy(() => import("../cms/pages/escrutinio/EscrutinioLayout"));
+const RegistroVotosPage = lazy(() => import("../cms/pages/escrutinio/RegistroVotosPage"));
+const ResultadosPage = lazy(() => import("../cms/pages/escrutinio/ResultadosPage"));
+const MatrizExcelPage = lazy(() => import("../cms/pages/escrutinio/MatrizExcelPage"));
+
 
 export interface AdminRoute {
   path: string;
@@ -74,6 +79,13 @@ export const adminRoutes: AdminRoute[] = [
     roles: ADMIN_COORDINADOR,
     element: <ActividadesPage />,
   },
+  {
+    path: "escrutinio",
+    label: "Escrutinio",
+    icon: CheckSquare,
+    roles: ADMIN_EDITOR_COORDINADOR,
+    element: <EscrutinioLayout />,
+  },
   { path: "usuarios", label: "Usuarios", icon: Users, roles: ["Administrador"], element: <UsuariosPage /> },
 ];
 
@@ -100,7 +112,17 @@ export default function AppRoutes() {
             <Route path="/admin" element={<Admin />}>
               <Route index element={<Navigate to="propuestas" replace />} />
               {adminRoutes.map((route) => (
-                <Route key={route.path} path={route.path} element={route.element} />
+                <Route key={route.path} path={route.path} element={route.element}>
+                  {route.path === "escrutinio" && (
+                    <>
+                      <Route index element={<Navigate to="registro" replace />} />
+                      <Route path="registro" element={<RegistroVotosPage />} />
+                      <Route path="resultados" element={<ResultadosPage />} />
+                      <Route path="matriz" element={<MatrizExcelPage />} />
+
+                    </>
+                  )}
+                </Route>
               ))}
               <Route path="actividades/:actividadId/asistencia" element={<LlamarAsistenciaPage />} />
             </Route>
