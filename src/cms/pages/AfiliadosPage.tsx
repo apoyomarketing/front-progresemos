@@ -153,6 +153,7 @@ export default function AfiliadosPage() {
     const dataToExport = items.map(v => ({
       "DNI": v.dni,
       "Nombre Completo": v.nombre_completo,
+      "Celular": v.celular || "-",
       "Código": v.codigo,
       "Rol": v.rol_afiliado,
       "Fecha Afiliación": formatFechaCorta(v.fecha_afiliacion)
