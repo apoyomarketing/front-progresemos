@@ -15,6 +15,7 @@ export interface Preinscripcion {
   estado: string;
   foto: string | null;
   fecha_afiliacion: string;
+  celular?: string;
   rol_afiliado?: string;
 }
 
