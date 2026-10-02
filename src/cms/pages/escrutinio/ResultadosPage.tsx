@@ -52,12 +52,6 @@ export default function ResultadosPage() {
   // Locales filtrados por distrito seleccionado
   const localesFiltrados = locales.filter((l) => l.distrito === selectedDistrito);
 
-  // Local actualmente seleccionado (para saber cuántas mesas tiene)
-  const localSeleccionado = locales.find((l) => String(l.id_local) === selectedLocal);
-  const mesasDisponibles = localSeleccionado
-    ? Array.from({ length: localSeleccionado.cant_mesas }, (_, i) => i + 1)
-    : [];
-
   useEffect(() => {
     fetchResultados();
   }, [viewMode, tipo, provincia, selectedDistrito, selectedLocal, selectedMesa]);
