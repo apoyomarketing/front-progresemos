@@ -16,7 +16,7 @@ export default function ResultadosPage() {
   // Modos de vista: provincial | distrito | local | mesa
   const [viewMode, setViewMode] = useState<"provincial" | "distrito" | "local" | "mesa">("provincial");
   const [tipo, setTipo] = useState<string>("PROVINCIAL");
-  const [provincia, setProvincia] = useState("PUNO");
+  const provincia = "PUNO";
 
   // Filtros dependientes
   const [locales, setLocales] = useState<LocalVotacion[]>([]);
@@ -36,11 +36,12 @@ export default function ResultadosPage() {
   } | null>(null);
 
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
     listarLocales()
       .then(setLocales)
-      .catch(() => alert("Error al cargar locales"));
+      .catch(() => setErrorMsg("Error al cargar locales de votación desde el servidor."));
   }, []);
 
   // Obtener lista única de distritos disponibles
@@ -50,6 +51,12 @@ export default function ResultadosPage() {
 
   // Locales filtrados por distrito seleccionado
   const localesFiltrados = locales.filter((l) => l.distrito === selectedDistrito);
+
+  // Local actualmente seleccionado (para saber cuántas mesas tiene)
+  const localSeleccionado = locales.find((l) => String(l.id_local) === selectedLocal);
+  const mesasDisponibles = localSeleccionado
+    ? Array.from({ length: localSeleccionado.cant_mesas }, (_, i) => i + 1)
+    : [];
 
   useEffect(() => {
     fetchResultados();
@@ -140,8 +147,14 @@ export default function ResultadosPage() {
           </div>
         </div>
 
+        {errorMsg && (
+          <div className="rounded-xl bg-red-50 p-3 text-sm text-red-600 border border-red-200">
+            {errorMsg}
+          </div>
+        )}
+
         {/* Fila de Controles Dinámicos */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {/* Tipo Elección */}
           <div>
             <label className="mb-1 block text-xs font-semibold text-brand-gray-700">Tipo de Elección</label>
@@ -154,18 +167,6 @@ export default function ResultadosPage() {
               <option value="PROVINCIAL">PROVINCIAL</option>
               <option value="DISTRITAL">DISTRITAL</option>
             </select>
-          </div>
-
-          {/* Provincia */}
-          <div>
-            <label className="mb-1 block text-xs font-semibold text-brand-gray-700">Provincia</label>
-            <input
-              type="text"
-              value={provincia}
-              onChange={(e) => setProvincia(e.target.value.toUpperCase())}
-              className="w-full rounded-xl border-brand-gray-300 p-2.5 text-sm focus:border-brand-green focus:ring-brand-green bg-brand-gray-50"
-              placeholder="Ej. PUNO"
-            />
           </div>
 
           {/* Selector de Distrito (si aplica) */}

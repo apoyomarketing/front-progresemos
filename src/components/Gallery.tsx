@@ -45,7 +45,7 @@ export default function Gallery() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <Button to="/galeria" variant="secondary">
+          <Button to="/galeria" target="_blank" variant="secondary">
             Mostrar más
           </Button>
         </div>

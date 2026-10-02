@@ -33,13 +33,21 @@ export default function GalleryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: (i % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group overflow-hidden rounded-2xl"
+                className="group overflow-hidden rounded-2xl bg-brand-gray-100"
               >
-                <img
-                  src={photo.image}
-                  alt={photo.alt}
-                  className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {photo.image.match(/\.(mp4|webm)$/i) ? (
+                  <video
+                    src={photo.image}
+                    controls
+                    className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={photo.image}
+                    alt={photo.alt}
+                    className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
               </motion.div>
             ))}
           </div>
