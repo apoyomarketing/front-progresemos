@@ -38,6 +38,10 @@ export default function RegistroVotosPage() {
   const [votosProvincial, setVotosProvincial] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
   const [votosDistrital, setVotosDistrital] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
 
+  // Genera una fila por cada partido con voto en blanco para que el usuario solo llene el número
+  const buildRowsFromPartidos = (parts: typeof partidosList): VotoRow[] =>
+    parts.map((p) => ({ id_partido: String(p.id_partido), cant_voto: "" }));
+
   // Estado del Modal de Confirmación
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,6 +73,13 @@ export default function RegistroVotosPage() {
         ]);
         setAllLocales(locs);
         setPartidosList(parts);
+        // Pre-cargar todos los partidos como filas en cada tipo de elección
+        if (parts.length > 0) {
+          const rows = parts.map((p) => ({ id_partido: String(p.id_partido), cant_voto: "" }));
+          setVotosRegional(rows);
+          setVotosProvincial(rows.map((r) => ({ ...r })));
+          setVotosDistrital(rows.map((r) => ({ ...r })));
+        }
       } catch (err) {
         showError("Error al cargar locales de votación.");
       } finally {
@@ -263,9 +274,10 @@ export default function RegistroVotosPage() {
 
       // Limpiar datos de votos y número de mesa para la siguiente digitación
       setNroMesa("");
-      setVotosRegional([{ id_partido: "", cant_voto: "" }]);
-      setVotosProvincial([{ id_partido: "", cant_voto: "" }]);
-      setVotosDistrital([{ id_partido: "", cant_voto: "" }]);
+      const resetRows = buildRowsFromPartidos(partidosList);
+      setVotosRegional(resetRows);
+      setVotosProvincial(resetRows.map((r) => ({ ...r })));
+      setVotosDistrital(resetRows.map((r) => ({ ...r })));
     } catch (error: any) {
       showError(error?.message || "Ocurrió un error al registrar los votos.");
     } finally {
