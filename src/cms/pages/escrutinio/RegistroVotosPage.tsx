@@ -41,6 +41,23 @@ export default function RegistroVotosPage() {
   // Estado del Modal de Confirmación
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+
+  const showError = (msg: string) => {
+    setErrorMsg(msg);
+    setSuccessMsg(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => setErrorMsg(null), 6000);
+  };
+
+  const showSuccess = (msg: string) => {
+    setSuccessMsg(msg);
+    setErrorMsg(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => setSuccessMsg(null), 5000);
+  };
 
   useEffect(() => {
     async function initData() {
@@ -53,7 +70,7 @@ export default function RegistroVotosPage() {
         setAllLocales(locs);
         setPartidosList(parts);
       } catch (err) {
-        alert("Error al cargar locales de votación.");
+        showError("Error al cargar locales de votación.");
       } finally {
         setLoadingLocales(false);
       }
@@ -120,19 +137,29 @@ export default function RegistroVotosPage() {
     e.preventDefault();
 
     if (!selectedDistrito) {
-      alert("Por favor, seleccione primero un distrito.");
+      showError("Por favor, seleccione primero un distrito.");
       return;
     }
     if (!selectedLocal) {
-      alert("Por favor, seleccione un local de votación.");
+      showError("Por favor, seleccione un local de votación.");
       return;
     }
     if (!nroMesa) {
-      alert("Por favor, ingrese el número de mesa.");
+      showError("Por favor, ingrese el número de mesa.");
       return;
     }
     if (validRegional.length === 0 && validProvincial.length === 0 && validDistrital.length === 0) {
-      alert("Ingrese al menos un voto válido en alguna de las elecciones (Regional, Provincial o Distrital).");
+      showError("Ingrese al menos un voto válido en alguna de las elecciones (Regional, Provincial o Distrital).");
+      return;
+    }
+
+    const hasDuplicates = (votos: { id_partido: number }[]) => {
+      const ids = votos.map((v) => v.id_partido);
+      return new Set(ids).size !== ids.length;
+    };
+
+    if (hasDuplicates(validRegional) || hasDuplicates(validProvincial) || hasDuplicates(validDistrital)) {
+      showError("Error: Ha ingresado el mismo partido político más de una vez en un mismo tipo de elección. Por favor, verifique y asigne solo una cantidad de votos por partido.");
       return;
     }
 
@@ -142,7 +169,7 @@ export default function RegistroVotosPage() {
   // Al confirmar en el modal, enviamos las peticiones al backend
   const handleConfirmAndSave = async () => {
     if (!session?.access) {
-      alert("No se encontró sesión activa. Inicie sesión nuevamente.");
+      showError("No se encontró sesión activa. Inicie sesión nuevamente.");
       return;
     }
 
@@ -231,9 +258,8 @@ export default function RegistroVotosPage() {
         console.error("Error guardando en caché local:", err);
       }
 
-      alert("¡Acta de mesa guardada exitosamente!");
+      showSuccess("¡Acta de mesa guardada exitosamente!");
       setShowConfirmModal(false);
-
 
       // Limpiar datos de votos y número de mesa para la siguiente digitación
       setNroMesa("");
@@ -241,7 +267,7 @@ export default function RegistroVotosPage() {
       setVotosProvincial([{ id_partido: "", cant_voto: "" }]);
       setVotosDistrital([{ id_partido: "", cant_voto: "" }]);
     } catch (error: any) {
-      alert(error?.message || "Ocurrió un error al registrar los votos.");
+      showError(error?.message || "Ocurrió un error al registrar los votos.");
     } finally {
       setIsSubmitting(false);
     }
@@ -274,11 +300,16 @@ export default function RegistroVotosPage() {
                 className="w-full rounded-lg border-brand-gray-300 p-2 text-sm focus:border-brand-green focus:ring-brand-green bg-white"
               >
                 <option value="">Seleccione partido...</option>
-                {partidosList.map((p) => (
-                  <option key={p.id_partido} value={p.id_partido}>
-                    {p.nombre_partido} ({p.categoria})
-                  </option>
-                ))}
+                {partidosList.map((p) => {
+                  const isSelectedElsewhere = list.some(
+                    (otherVoto, otherIdx) => otherIdx !== idx && otherVoto.id_partido === String(p.id_partido)
+                  );
+                  return (
+                    <option key={p.id_partido} value={p.id_partido} disabled={isSelectedElsewhere}>
+                      {p.nombre_partido} {isSelectedElsewhere ? "(Ya seleccionado)" : `(${p.categoria})`}
+                    </option>
+                  );
+                })}
               </select>
             ) : (
               <input
@@ -332,6 +363,18 @@ export default function RegistroVotosPage() {
             <Vote size={18} /> Módulo de Escrutinio
           </div>
         </div>
+
+        {errorMsg && (
+          <div className="mb-6 rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-600 border border-red-200 flex items-center gap-2">
+            <AlertCircle size={18} /> {errorMsg}
+          </div>
+        )}
+
+        {successMsg && (
+          <div className="mb-6 rounded-xl bg-emerald-50 p-4 text-sm font-semibold text-emerald-700 border border-emerald-200 flex items-center gap-2">
+            <Check size={18} /> {successMsg}
+          </div>
+        )}
 
         <form onSubmit={handleOpenConfirmation} className="space-y-6">
           {/* Paso 1: Selección de Distrito, Local y Mesa */}
@@ -518,12 +561,15 @@ export default function RegistroVotosPage() {
                     <span>Total Votos: {validRegional.reduce((a, b) => a + b.cant_voto, 0)}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs text-brand-gray-700">
-                    {validRegional.map((v, i) => (
-                      <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
-                        <span>Partido ID #{v.id_partido}</span>
-                        <span className="font-bold">{v.cant_voto} votos</span>
-                      </div>
-                    ))}
+                    {validRegional.map((v, i) => {
+                      const nombre = partidosList.find((p) => p.id_partido === v.id_partido)?.nombre_partido || `ID #${v.id_partido}`;
+                      return (
+                        <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
+                          <span className="truncate pr-2" title={nombre}>{nombre}</span>
+                          <span className="font-bold whitespace-nowrap">{v.cant_voto} votos</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -536,12 +582,15 @@ export default function RegistroVotosPage() {
                     <span>Total Votos: {validProvincial.reduce((a, b) => a + b.cant_voto, 0)}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs text-brand-gray-700">
-                    {validProvincial.map((v, i) => (
-                      <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
-                        <span>Partido ID #{v.id_partido}</span>
-                        <span className="font-bold">{v.cant_voto} votos</span>
-                      </div>
-                    ))}
+                    {validProvincial.map((v, i) => {
+                      const nombre = partidosList.find((p) => p.id_partido === v.id_partido)?.nombre_partido || `ID #${v.id_partido}`;
+                      return (
+                        <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
+                          <span className="truncate pr-2" title={nombre}>{nombre}</span>
+                          <span className="font-bold whitespace-nowrap">{v.cant_voto} votos</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -554,12 +603,15 @@ export default function RegistroVotosPage() {
                     <span>Total Votos: {validDistrital.reduce((a, b) => a + b.cant_voto, 0)}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs text-brand-gray-700">
-                    {validDistrital.map((v, i) => (
-                      <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
-                        <span>Partido ID #{v.id_partido}</span>
-                        <span className="font-bold">{v.cant_voto} votos</span>
-                      </div>
-                    ))}
+                    {validDistrital.map((v, i) => {
+                      const nombre = partidosList.find((p) => p.id_partido === v.id_partido)?.nombre_partido || `ID #${v.id_partido}`;
+                      return (
+                        <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
+                          <span className="truncate pr-2" title={nombre}>{nombre}</span>
+                          <span className="font-bold whitespace-nowrap">{v.cant_voto} votos</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}

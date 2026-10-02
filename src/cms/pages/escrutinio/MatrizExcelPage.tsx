@@ -6,12 +6,13 @@ import { Download, Search, Filter, FileSpreadsheet, Layers, RefreshCw, Inbox } f
 export default function MatrizExcelPage() {
   const [locales, setLocales] = useState<LocalVotacion[]>([]);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   // Hoja / Pestaña Activa: REGIONAL | PROVINCIAL | DISTRITAL
   const [activeSheet, setActiveSheet] = useState<"REGIONAL" | "PROVINCIAL" | "DISTRITAL">("REGIONAL");
 
   // Filtros
-  const [filterProvincia, setFilterProvincia] = useState("PUNO");
+  const filterProvincia = "PUNO";
   const [filterDistrito, setFilterDistrito] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -53,7 +54,7 @@ export default function MatrizExcelPage() {
       setTotalesPorPartido(res.totales_partidos || {});
       setGranTotalVotos(res.gran_total_votos || 0);
     } catch (err) {
-      console.error("Error al obtener la matriz del backend:", err);
+      console.error("Error al obtener la matriz:", err);
     } finally {
       setLoading(false);
     }
@@ -78,12 +79,12 @@ export default function MatrizExcelPage() {
   // Función para exportar los datos reales recibidos del backend a Excel (.csv)
   const handleExportCSV = () => {
     if (filteredRows.length === 0) {
-      alert("No hay actas registradas en la matriz para exportar.");
+      setErrorMsg("No hay actas registradas en la matriz para exportar.");
+      setTimeout(() => setErrorMsg(null), 4000);
       return;
     }
 
     const headers = [
-      "Provincia",
       "Distrito",
       "Nombre Local",
       "Dirección Local",
@@ -96,7 +97,6 @@ export default function MatrizExcelPage() {
 
     filteredRows.forEach((r) => {
       const rowVals = [
-        `"${r.provincia}"`,
         `"${r.distrito}"`,
         `"${r.nombre_local.replace(/"/g, '""')}"`,
         `"${r.direccion_local.replace(/"/g, '""')}"`,
@@ -141,9 +141,6 @@ export default function MatrizExcelPage() {
             <h3 className="text-xl font-bold text-brand-gray-900 flex items-center gap-2">
               <FileSpreadsheet className="text-emerald-600" size={24} /> Matriz General de Escrutinio por Mesa
             </h3>
-            <p className="text-sm text-brand-gray-500 mt-1">
-              Consolidado oficial servido directamente desde el backend (`GET /api/escrutinio/matriz/`).
-            </p>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -162,21 +159,13 @@ export default function MatrizExcelPage() {
           </div>
         </div>
 
-        {/* Filtros de Búsqueda */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label className="mb-1 block text-xs font-medium text-brand-gray-700 flex items-center gap-1">
-              <Filter size={14} className="text-brand-gray-400" /> Provincia
-            </label>
-            <input
-              type="text"
-              value={filterProvincia}
-              onChange={(e) => setFilterProvincia(e.target.value.toUpperCase())}
-              className="w-full rounded-xl border-brand-gray-300 bg-brand-gray-50 p-2.5 text-sm focus:border-brand-green focus:bg-white"
-              placeholder="PUNO"
-            />
+        {errorMsg && (
+          <div className="rounded-xl bg-red-50 p-3 text-sm text-red-600 border border-red-200">
+            {errorMsg}
           </div>
+        )}
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="mb-1 block text-xs font-medium text-brand-gray-700 flex items-center gap-1">
               <Filter size={14} className="text-brand-gray-400" /> Distrito
@@ -218,33 +207,30 @@ export default function MatrizExcelPage() {
 
         <button
           onClick={() => setActiveSheet("REGIONAL")}
-          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${
-            activeSheet === "REGIONAL"
-              ? "bg-emerald-600 text-white shadow-md"
-              : "bg-white/80 text-brand-gray-700 hover:bg-white"
-          }`}
+          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${activeSheet === "REGIONAL"
+            ? "bg-emerald-600 text-white shadow-md"
+            : "bg-white/80 text-brand-gray-700 hover:bg-white"
+            }`}
         >
           📄 Hoja 1: Votos Regionales
         </button>
 
         <button
           onClick={() => setActiveSheet("PROVINCIAL")}
-          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${
-            activeSheet === "PROVINCIAL"
-              ? "bg-emerald-600 text-white shadow-md"
-              : "bg-white/80 text-brand-gray-700 hover:bg-white"
-          }`}
+          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${activeSheet === "PROVINCIAL"
+            ? "bg-emerald-600 text-white shadow-md"
+            : "bg-white/80 text-brand-gray-700 hover:bg-white"
+            }`}
         >
           📄 Hoja 2: Votos Provinciales
         </button>
 
         <button
           onClick={() => setActiveSheet("DISTRITAL")}
-          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${
-            activeSheet === "DISTRITAL"
-              ? "bg-emerald-600 text-white shadow-md"
-              : "bg-white/80 text-brand-gray-700 hover:bg-white"
-          }`}
+          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${activeSheet === "DISTRITAL"
+            ? "bg-emerald-600 text-white shadow-md"
+            : "bg-white/80 text-brand-gray-700 hover:bg-white"
+            }`}
         >
           📄 Hoja 3: Votos Distritales
         </button>
@@ -261,7 +247,7 @@ export default function MatrizExcelPage() {
             <div className="rounded-full bg-brand-gray-100 p-4 text-brand-gray-400">
               <Inbox size={32} />
             </div>
-            <h4 className="text-base font-bold text-brand-gray-800">No hay actas registradas en el backend</h4>
+            <h4 className="text-base font-bold text-brand-gray-800">No hay actas registradas</h4>
             <p className="text-xs text-brand-gray-500 max-w-md">
               No se han encontrado registros de la elección <span className="font-bold text-brand-green">{activeSheet}</span>. Al digitalizar actas en el sistema aparecerán aquí automáticamente.
             </p>
@@ -272,7 +258,6 @@ export default function MatrizExcelPage() {
             <thead>
               <tr className="bg-emerald-800 text-white border-b border-emerald-900 uppercase">
                 <th className="px-3 py-3 font-bold border-r border-emerald-700 text-center w-12">#</th>
-                <th className="px-4 py-3 font-bold border-r border-emerald-700 whitespace-nowrap">Provincia</th>
                 <th className="px-4 py-3 font-bold border-r border-emerald-700 whitespace-nowrap">Distrito</th>
                 <th className="px-4 py-3 font-bold border-r border-emerald-700 min-w-[200px]">Nombre Local</th>
                 <th className="px-4 py-3 font-bold border-r border-emerald-700 min-w-[180px]">Dirección Local</th>
@@ -299,15 +284,11 @@ export default function MatrizExcelPage() {
               {filteredRows.map((row, idx) => (
                 <tr
                   key={`${row.id_local}-${row.nro_mesa}-${idx}`}
-                  className={`hover:bg-amber-50/80 transition-colors ${
-                    idx % 2 === 0 ? "bg-white" : "bg-brand-gray-50/60"
-                  }`}
+                  className={`hover:bg-amber-50/80 transition-colors ${idx % 2 === 0 ? "bg-white" : "bg-brand-gray-50/60"
+                    }`}
                 >
                   <td className="px-3 py-2 text-center text-brand-gray-400 font-sans border-r border-brand-gray-200 bg-brand-gray-100/50">
                     {idx + 1}
-                  </td>
-                  <td className="px-4 py-2 font-medium text-brand-gray-900 border-r border-brand-gray-200 whitespace-nowrap">
-                    {row.provincia}
                   </td>
                   <td className="px-4 py-2 text-brand-gray-800 border-r border-brand-gray-200 whitespace-nowrap">
                     {row.distrito}
@@ -328,9 +309,8 @@ export default function MatrizExcelPage() {
                     return (
                       <td
                         key={pIdx}
-                        className={`px-4 py-2 text-right font-medium border-r border-brand-gray-200 ${
-                          cant > 0 ? "text-brand-gray-900 font-bold" : "text-brand-gray-400"
-                        }`}
+                        className={`px-4 py-2 text-right font-medium border-r border-brand-gray-200 ${cant > 0 ? "text-brand-gray-900 font-bold" : "text-brand-gray-400"
+                          }`}
                       >
                         {cant.toLocaleString()}
                       </td>
@@ -348,7 +328,7 @@ export default function MatrizExcelPage() {
             {/* Fila de Totales Generales (Respuesta API) */}
             <tfoot>
               <tr className="bg-emerald-900 text-white font-bold border-t-2 border-emerald-950">
-                <td colSpan={5} className="px-4 py-3 text-right uppercase border-r border-emerald-800">
+                <td colSpan={4} className="px-4 py-3 text-right uppercase border-r border-emerald-800">
                   TOTALES CONSOLIDADOS ({activeSheet}):
                 </td>
                 <td className="px-3 py-3 text-center border-r border-emerald-800 bg-emerald-950">
