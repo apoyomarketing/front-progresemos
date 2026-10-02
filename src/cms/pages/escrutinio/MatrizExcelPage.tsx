@@ -8,8 +8,8 @@ export default function MatrizExcelPage() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Hoja / Pestaña Activa: REGIONAL | PROVINCIAL | DISTRITAL
-  const [activeSheet, setActiveSheet] = useState<"REGIONAL" | "PROVINCIAL" | "DISTRITAL">("REGIONAL");
+  // Hoja / Pestaña Activa: REGIONAL | CONSEJERO | PROVINCIAL | DISTRITAL
+  const [activeSheet, setActiveSheet] = useState<"REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL">("REGIONAL");
 
   // Filtros
   const filterProvincia = "PUNO";
@@ -29,6 +29,11 @@ export default function MatrizExcelPage() {
   useEffect(() => {
     fetchMatriz();
   }, [activeSheet, filterProvincia, filterDistrito]);
+
+  // Resetear filtro de distrito al cambiar de hoja
+  useEffect(() => {
+    setFilterDistrito("");
+  }, [activeSheet]);
 
   const fetchLocales = async () => {
     try {
@@ -216,13 +221,23 @@ export default function MatrizExcelPage() {
         </button>
 
         <button
+          onClick={() => setActiveSheet("CONSEJERO")}
+          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${activeSheet === "CONSEJERO"
+            ? "bg-emerald-600 text-white shadow-md"
+            : "bg-white/80 text-brand-gray-700 hover:bg-white"
+            }`}
+        >
+          📄 Hoja 2: Votos Consejeros
+        </button>
+
+        <button
           onClick={() => setActiveSheet("PROVINCIAL")}
           className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${activeSheet === "PROVINCIAL"
             ? "bg-emerald-600 text-white shadow-md"
             : "bg-white/80 text-brand-gray-700 hover:bg-white"
             }`}
         >
-          📄 Hoja 2: Votos Provinciales
+          📄 Hoja 3: Votos Provinciales
         </button>
 
         <button
@@ -232,7 +247,7 @@ export default function MatrizExcelPage() {
             : "bg-white/80 text-brand-gray-700 hover:bg-white"
             }`}
         >
-          📄 Hoja 3: Votos Distritales
+          📄 Hoja 4: Votos Distritales
         </button>
       </div>
 

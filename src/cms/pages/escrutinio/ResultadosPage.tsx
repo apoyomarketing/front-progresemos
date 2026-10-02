@@ -158,6 +158,7 @@ export default function ResultadosPage() {
               className="w-full rounded-xl border-brand-gray-300 p-2.5 text-sm focus:border-brand-green focus:ring-brand-green bg-brand-gray-50"
             >
               <option value="REGIONAL">REGIONAL</option>
+              <option value="CONSEJERO">CONSEJERO</option>
               <option value="PROVINCIAL">PROVINCIAL</option>
               <option value="DISTRITAL">DISTRITAL</option>
             </select>

@@ -31,10 +31,11 @@ export default function RegistroVotosPage() {
   const [nroMesa, setNroMesa] = useState<string>("");
 
   // Tab de Conteo por Elección
-  const [activeTab, setActiveTab] = useState<"REGIONAL" | "PROVINCIAL" | "DISTRITAL">("REGIONAL");
+  const [activeTab, setActiveTab] = useState<"REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL">("REGIONAL");
 
   // Votos por cada tipo de elección
   const [votosRegional, setVotosRegional] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
+  const [votosConsejero, setVotosConsejero] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
   const [votosProvincial, setVotosProvincial] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
   const [votosDistrital, setVotosDistrital] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
 
@@ -77,6 +78,7 @@ export default function RegistroVotosPage() {
         if (parts.length > 0) {
           const rows = parts.map((p) => ({ id_partido: String(p.id_partido), cant_voto: "" }));
           setVotosRegional(rows);
+          setVotosConsejero(rows.map((r) => ({ ...r })));
           setVotosProvincial(rows.map((r) => ({ ...r })));
           setVotosDistrital(rows.map((r) => ({ ...r })));
         }
@@ -100,21 +102,23 @@ export default function RegistroVotosPage() {
   const localObjeto = allLocales.find((l) => String(l.id_local) === selectedLocal);
 
   // Manejadores para agregar/eliminar/actualizar filas de votos
-  const handleAddRow = (tipo: "REGIONAL" | "PROVINCIAL" | "DISTRITAL") => {
+  const handleAddRow = (tipo: "REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL") => {
     const newRow = { id_partido: "", cant_voto: "" };
     if (tipo === "REGIONAL") setVotosRegional([...votosRegional, newRow]);
+    if (tipo === "CONSEJERO") setVotosConsejero([...votosConsejero, newRow]);
     if (tipo === "PROVINCIAL") setVotosProvincial([...votosProvincial, newRow]);
     if (tipo === "DISTRITAL") setVotosDistrital([...votosDistrital, newRow]);
   };
 
-  const handleRemoveRow = (tipo: "REGIONAL" | "PROVINCIAL" | "DISTRITAL", index: number) => {
+  const handleRemoveRow = (tipo: "REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL", index: number) => {
     if (tipo === "REGIONAL") setVotosRegional(votosRegional.filter((_, i) => i !== index));
+    if (tipo === "CONSEJERO") setVotosConsejero(votosConsejero.filter((_, i) => i !== index));
     if (tipo === "PROVINCIAL") setVotosProvincial(votosProvincial.filter((_, i) => i !== index));
     if (tipo === "DISTRITAL") setVotosDistrital(votosDistrital.filter((_, i) => i !== index));
   };
 
   const handleUpdateRow = (
-    tipo: "REGIONAL" | "PROVINCIAL" | "DISTRITAL",
+    tipo: "REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL",
     index: number,
     field: "id_partido" | "cant_voto",
     value: string
@@ -126,6 +130,7 @@ export default function RegistroVotosPage() {
     };
 
     if (tipo === "REGIONAL") setVotosRegional(updateFn);
+    if (tipo === "CONSEJERO") setVotosConsejero(updateFn);
     if (tipo === "PROVINCIAL") setVotosProvincial(updateFn);
     if (tipo === "DISTRITAL") setVotosDistrital(updateFn);
   };
@@ -140,6 +145,7 @@ export default function RegistroVotosPage() {
       }));
 
   const validRegional = getValidVotos(votosRegional);
+  const validConsejero = getValidVotos(votosConsejero);
   const validProvincial = getValidVotos(votosProvincial);
   const validDistrital = getValidVotos(votosDistrital);
 
@@ -159,8 +165,8 @@ export default function RegistroVotosPage() {
       showError("Por favor, ingrese el número de mesa.");
       return;
     }
-    if (validRegional.length === 0 && validProvincial.length === 0 && validDistrital.length === 0) {
-      showError("Ingrese al menos un voto válido en alguna de las elecciones (Regional, Provincial o Distrital).");
+    if (validRegional.length === 0 && validConsejero.length === 0 && validProvincial.length === 0 && validDistrital.length === 0) {
+      showError("Ingrese al menos un voto válido en alguna de las elecciones (Regional, Consejero, Provincial o Distrital).");
       return;
     }
 
@@ -169,7 +175,7 @@ export default function RegistroVotosPage() {
       return new Set(ids).size !== ids.length;
     };
 
-    if (hasDuplicates(validRegional) || hasDuplicates(validProvincial) || hasDuplicates(validDistrital)) {
+    if (hasDuplicates(validRegional) || hasDuplicates(validConsejero) || hasDuplicates(validProvincial) || hasDuplicates(validDistrital)) {
       showError("Error: Ha ingresado el mismo partido político más de una vez en un mismo tipo de elección. Por favor, verifique y asigne solo una cantidad de votos por partido.");
       return;
     }
@@ -198,6 +204,16 @@ export default function RegistroVotosPage() {
           nro_mesa: mesaNum,
           tipo_eleccion: "REGIONAL",
           votos: validRegional,
+        };
+        promises.push(registrarVotos(payload, token));
+      }
+
+      if (validConsejero.length > 0) {
+        const payload: VotosPayload = {
+          id_local: localId,
+          nro_mesa: mesaNum,
+          tipo_eleccion: "CONSEJERO",
+          votos: validConsejero,
         };
         promises.push(registrarVotos(payload, token));
       }
@@ -241,6 +257,17 @@ export default function RegistroVotosPage() {
             votos: validRegional,
           });
         }
+        if (validConsejero.length > 0) {
+          newEntries.push({
+            id_local: localId,
+            nro_mesa: mesaNum,
+            distrito: selectedDistrito,
+            nombre_local: localObjeto?.nombre_local,
+            direccion_local: localObjeto?.direccion_local,
+            tipo_eleccion: "CONSEJERO",
+            votos: validConsejero,
+          });
+        }
         if (validProvincial.length > 0) {
           newEntries.push({
             id_local: localId,
@@ -276,6 +303,7 @@ export default function RegistroVotosPage() {
       setNroMesa("");
       const resetRows = buildRowsFromPartidos(partidosList);
       setVotosRegional(resetRows);
+      setVotosConsejero(resetRows.map((r) => ({ ...r })));
       setVotosProvincial(resetRows.map((r) => ({ ...r })));
       setVotosDistrital(resetRows.map((r) => ({ ...r })));
     } catch (error: any) {
@@ -285,7 +313,7 @@ export default function RegistroVotosPage() {
     }
   };
 
-  const renderVotosForm = (tipo: "REGIONAL" | "PROVINCIAL" | "DISTRITAL", list: VotoRow[]) => (
+  const renderVotosForm = (tipo: "REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL", list: VotoRow[]) => (
     <div className="space-y-3">
       <div className="mb-4 flex items-center justify-between">
         <span className="text-xs font-semibold text-brand-gray-500 uppercase tracking-wider">
@@ -465,12 +493,14 @@ export default function RegistroVotosPage() {
                 Conteo de Votos por Tipo de Elección
               </h4>
 
-              {/* Pestañas para Regional, Provincial, Distrital */}
-              <div className="flex border-b border-brand-gray-200 mb-6">
-                {(["REGIONAL", "PROVINCIAL", "DISTRITAL"] as const).map((tab) => {
+              {/* Pestañas para Regional, Consejero, Provincial, Distrital */}
+              <div className="flex border-b border-brand-gray-200 mb-6 flex-wrap">
+                {(["REGIONAL", "CONSEJERO", "PROVINCIAL", "DISTRITAL"] as const).map((tab) => {
                   const validCount =
                     tab === "REGIONAL"
                       ? validRegional.length
+                      : tab === "CONSEJERO"
+                      ? validConsejero.length
                       : tab === "PROVINCIAL"
                       ? validProvincial.length
                       : validDistrital.length;
@@ -499,6 +529,7 @@ export default function RegistroVotosPage() {
 
               {/* Formulario según la pestaña activa */}
               {activeTab === "REGIONAL" && renderVotosForm("REGIONAL", votosRegional)}
+              {activeTab === "CONSEJERO" && renderVotosForm("CONSEJERO", votosConsejero)}
               {activeTab === "PROVINCIAL" && renderVotosForm("PROVINCIAL", votosProvincial)}
               {activeTab === "DISTRITAL" && renderVotosForm("DISTRITAL", votosDistrital)}
             </div>
@@ -574,6 +605,27 @@ export default function RegistroVotosPage() {
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs text-brand-gray-700">
                     {validRegional.map((v, i) => {
+                      const nombre = partidosList.find((p) => p.id_partido === v.id_partido)?.nombre_partido || `ID #${v.id_partido}`;
+                      return (
+                        <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
+                          <span className="truncate pr-2" title={nombre}>{nombre}</span>
+                          <span className="font-bold whitespace-nowrap">{v.cant_voto} votos</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Consejero */}
+              {validConsejero.length > 0 && (
+                <div className="border border-brand-gray-200 rounded-xl p-3 bg-white">
+                  <div className="flex justify-between items-center mb-2 font-semibold text-xs text-brand-green uppercase">
+                    <span>Elección Consejero</span>
+                    <span>Total Votos: {validConsejero.reduce((a, b) => a + b.cant_voto, 0)}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs text-brand-gray-700">
+                    {validConsejero.map((v, i) => {
                       const nombre = partidosList.find((p) => p.id_partido === v.id_partido)?.nombre_partido || `ID #${v.id_partido}`;
                       return (
                         <div key={i} className="flex justify-between bg-brand-gray-50 px-3 py-1.5 rounded-md">
