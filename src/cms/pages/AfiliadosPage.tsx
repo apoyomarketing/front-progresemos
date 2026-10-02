@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, type FormEvent } from "react";
 import { Search, Trash2, ChevronLeft, ChevronRight, DownloadCloud } from "lucide-react";
 import { toPng } from "html-to-image";
+import * as XLSX from "xlsx";
 import CarnetAfiliado from "../../components/CarnetAfiliado";
 import { useAuth } from "../../api/AuthProvider";
 import { ApiError } from "../../api/client";
@@ -143,10 +144,37 @@ export default function AfiliadosPage() {
   const totalPages = Math.max(1, Math.ceil(items.length / POR_PAGINA));
   const pageItems = items.slice((page - 1) * POR_PAGINA, page * POR_PAGINA);
 
+  const handleExportExcel = () => {
+    if (items.length === 0) {
+      setActionError("No hay afiliados para exportar.");
+      return;
+    }
+
+    const dataToExport = items.map(v => ({
+      "DNI": v.dni,
+      "Nombre Completo": v.nombre_completo,
+      "Código": v.codigo,
+      "Rol": v.rol_afiliado,
+      "Fecha Afiliación": formatFechaCorta(v.fecha_afiliacion)
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Afiliados");
+    XLSX.writeFile(workbook, `afiliados_${rol || 'todos'}.xlsx`);
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between">
         <h2 className="font-display text-xl font-bold text-brand-gray-900">Afiliados</h2>
+        <button
+          onClick={handleExportExcel}
+          disabled={items.length === 0 || loading}
+          className="flex items-center gap-2 rounded-xl bg-brand-green px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-green-dark disabled:opacity-50"
+        >
+          <DownloadCloud size={16} /> Exportar Excel
+        </button>
       </div>
 
       <form onSubmit={handleSearch} className="mt-5 flex flex-wrap items-end gap-3">
