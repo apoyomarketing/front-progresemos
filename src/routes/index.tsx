@@ -28,6 +28,8 @@ const EscrutinioLayout = lazy(() => import("../cms/pages/escrutinio/EscrutinioLa
 const RegistroVotosPage = lazy(() => import("../cms/pages/escrutinio/RegistroVotosPage"));
 const ResultadosPage = lazy(() => import("../cms/pages/escrutinio/ResultadosPage"));
 const MatrizExcelPage = lazy(() => import("../cms/pages/escrutinio/MatrizExcelPage"));
+const CoberturaPage = lazy(() => import("../cms/pages/escrutinio/CoberturaPage"));
+
 
 
 export interface AdminRoute {
@@ -119,6 +121,7 @@ export default function AppRoutes() {
                       <Route path="registro" element={<RegistroVotosPage />} />
                       <Route path="resultados" element={<ResultadosPage />} />
                       <Route path="matriz" element={<MatrizExcelPage />} />
+                      <Route path="cobertura" element={<CoberturaPage />} />
 
                     </>
                   )}
