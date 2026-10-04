@@ -13,6 +13,43 @@ import type {
 import { useAuth } from "../../../api/AuthProvider";
 import { Plus, Trash2, Save, AlertCircle, X, Check, MapPin, Building2, Vote } from "lucide-react";
 
+// ---------------------------------------------------------------------------
+// Partidos pre-cargados por defecto según tipo de elección.
+// Se usan los IDs exactos de la base de datos para mayor fiabilidad.
+// El dropdown sigue mostrando TODOS los partidos del API.
+//
+// IDs de referencia:
+//  1  SOMOS PERU                        6  ASI - JUNTOS POR EL PERU
+//  2  PARTIDO CIVICO OBRAS              7  PAIS PARA TODOS
+//  3  AHORA NACION                      8  PROGRESEMOS
+//  4  ALIANZA ELECTORAL VENCEREMOS      9  PERU PRIMERO
+//  5  SALVEMOS AL PERU                 10  PUEBLO CONSCIENTE
+//                                      99  VOTOS EN BLANCO
+//                                     100  VOTOS NULOS
+//                                     101  VOTOS IMPUGNADOS
+// ---------------------------------------------------------------------------
+
+/** IDs pre-cargados para REGIONAL y CONSEJERO */
+const PRELOAD_BASE_IDS = [2, 9, 7, 3, 8, 10, 1, 4, 6, 99, 100, 101];
+
+/** IDs adicionales para PROVINCIAL y DISTRITAL */
+const PRELOAD_EXTRA_IDS = [5, 17]; // SALVEMOS AL PERU // PODEMOS PERU
+
+/** Devuelve los partidos que deben pre-cargarse como filas por defecto,
+ *  respetando el orden definido en los arrays de IDs. */
+const getPreloadPartidos = (
+  partidos: Partido[],
+  tipo: "REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL"
+): Partido[] => {
+  const ids =
+    tipo === "PROVINCIAL" || tipo === "DISTRITAL"
+      ? [...PRELOAD_BASE_IDS, ...PRELOAD_EXTRA_IDS]
+      : PRELOAD_BASE_IDS;
+  return ids
+    .map((id) => partidos.find((p) => p.id_partido === id))
+    .filter((p): p is Partido => p !== undefined);
+};
+
 interface VotoRow {
   id_partido: string;
   cant_voto: string;
@@ -46,7 +83,7 @@ export default function RegistroVotosPage() {
   // Estado del Modal de Confirmación
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
@@ -74,13 +111,14 @@ export default function RegistroVotosPage() {
         ]);
         setAllLocales(locs);
         setPartidosList(parts);
-        // Pre-cargar todos los partidos como filas en cada tipo de elección
+        // Pre-cargar filas por defecto según las keywords de cada tipo de elección
         if (parts.length > 0) {
-          const rows = parts.map((p) => ({ id_partido: String(p.id_partido), cant_voto: "" }));
-          setVotosRegional(rows);
-          setVotosConsejero(rows.map((r) => ({ ...r })));
-          setVotosProvincial(rows.map((r) => ({ ...r })));
-          setVotosDistrital(rows.map((r) => ({ ...r })));
+          const makeRows = (tipo: "REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL") =>
+            getPreloadPartidos(parts, tipo).map((p) => ({ id_partido: String(p.id_partido), cant_voto: "" }));
+          setVotosRegional(makeRows("REGIONAL"));
+          setVotosConsejero(makeRows("CONSEJERO"));
+          setVotosProvincial(makeRows("PROVINCIAL"));
+          setVotosDistrital(makeRows("DISTRITAL"));
         }
       } catch (err) {
         showError("Error al cargar locales de votación.");
@@ -301,11 +339,12 @@ export default function RegistroVotosPage() {
 
       // Limpiar datos de votos y número de mesa para la siguiente digitación
       setNroMesa("");
-      const resetRows = buildRowsFromPartidos(partidosList);
-      setVotosRegional(resetRows);
-      setVotosConsejero(resetRows.map((r) => ({ ...r })));
-      setVotosProvincial(resetRows.map((r) => ({ ...r })));
-      setVotosDistrital(resetRows.map((r) => ({ ...r })));
+      const makeResetRows = (tipo: "REGIONAL" | "CONSEJERO" | "PROVINCIAL" | "DISTRITAL") =>
+        getPreloadPartidos(partidosList, tipo).map((p) => ({ id_partido: String(p.id_partido), cant_voto: "" }));
+      setVotosRegional(makeResetRows("REGIONAL"));
+      setVotosConsejero(makeResetRows("CONSEJERO"));
+      setVotosProvincial(makeResetRows("PROVINCIAL"));
+      setVotosDistrital(makeResetRows("DISTRITAL"));
     } catch (error: any) {
       showError(error?.message || "Ocurrió un error al registrar los votos.");
     } finally {
@@ -500,21 +539,20 @@ export default function RegistroVotosPage() {
                     tab === "REGIONAL"
                       ? validRegional.length
                       : tab === "CONSEJERO"
-                      ? validConsejero.length
-                      : tab === "PROVINCIAL"
-                      ? validProvincial.length
-                      : validDistrital.length;
+                        ? validConsejero.length
+                        : tab === "PROVINCIAL"
+                          ? validProvincial.length
+                          : validDistrital.length;
 
                   return (
                     <button
                       key={tab}
                       type="button"
                       onClick={() => setActiveTab(tab)}
-                      className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${
-                        activeTab === tab
-                          ? "border-brand-green text-brand-green"
-                          : "border-transparent text-brand-gray-500 hover:text-brand-gray-800"
-                      }`}
+                      className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === tab
+                        ? "border-brand-green text-brand-green"
+                        : "border-transparent text-brand-gray-500 hover:text-brand-gray-800"
+                        }`}
                     >
                       Elección {tab.charAt(0) + tab.slice(1).toLowerCase()}
                       {validCount > 0 && (
