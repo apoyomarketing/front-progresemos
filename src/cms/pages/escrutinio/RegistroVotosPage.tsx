@@ -76,10 +76,6 @@ export default function RegistroVotosPage() {
   const [votosProvincial, setVotosProvincial] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
   const [votosDistrital, setVotosDistrital] = useState<VotoRow[]>([{ id_partido: "", cant_voto: "" }]);
 
-  // Genera una fila por cada partido con voto en blanco para que el usuario solo llene el número
-  const buildRowsFromPartidos = (parts: typeof partidosList): VotoRow[] =>
-    parts.map((p) => ({ id_partido: String(p.id_partido), cant_voto: "" }));
-
   // Estado del Modal de Confirmación
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
