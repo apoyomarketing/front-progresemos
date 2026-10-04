@@ -132,6 +132,41 @@ export interface DashboardResultadosRespuesta {
   }[];
 }
 
+export interface CoberturaLocal {
+  id_local: number;
+  nombre_local: string;
+  distrito: string;
+  provincia: string;
+  mesas_esperadas: number;
+  mesas_registradas: number;
+  mesas_faltantes: number;
+  pct_cobertura: number;
+}
+
+export interface CoberturaRespuesta {
+  filtros?: { distrito: string | null; id_local: number | null };
+  resumen: {
+    total_locales: number;
+    total_mesas_esperadas: number;
+    total_mesas_registradas: number;
+    total_mesas_faltantes: number;
+    pct_cobertura_global: number;
+  };
+  locales: CoberturaLocal[];
+}
+
+export async function obtenerCoberturaMesas(params?: {
+  distrito?: string;
+  id_local?: number;
+}): Promise<CoberturaRespuesta> {
+  const query = new URLSearchParams();
+  if (params?.distrito) query.append("distrito", params.distrito);
+  if (params?.id_local) query.append("id_local", params.id_local.toString());
+
+  const qStr = query.toString();
+  return apiFetch<CoberturaRespuesta>(`escrutinio/cobertura/${qStr ? `?${qStr}` : ""}`);
+}
+
 export async function obtenerDashboardResultados(params?: {
   tipo?: string;
   modo?: string;

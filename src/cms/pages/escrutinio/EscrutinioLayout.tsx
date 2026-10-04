@@ -1,11 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { BarChart3, Edit3, FileSpreadsheet } from "lucide-react";
+import { BarChart3, BarChart2, Edit3, FileSpreadsheet } from "lucide-react";
 
 export default function EscrutinioLayout() {
   const tabs = [
     { path: "registro", label: "Registro de Actas", icon: Edit3 },
     { path: "resultados", label: "Resultados", icon: BarChart3 },
     { path: "matriz", label: "Matriz Excel", icon: FileSpreadsheet },
+    { path: "cobertura", label: "Cobertura de Mesas", icon: BarChart2 },
   ];
 
 
