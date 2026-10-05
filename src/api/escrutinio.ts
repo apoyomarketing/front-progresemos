@@ -79,6 +79,24 @@ export async function registrarVotos(payload: VotosPayload, token: string): Prom
   });
 }
 
+export interface EstadoMesaRespuesta {
+  tipos_registrados: string[];
+}
+
+export async function consultarEstadoMesa(
+  id_local: number,
+  nro_mesa: number | string,
+  token: string
+): Promise<EstadoMesaRespuesta> {
+  const query = new URLSearchParams({
+    id_local: String(id_local),
+    nro_mesa: String(nro_mesa),
+  });
+  return apiFetch<EstadoMesaRespuesta>(`escrutinio/votos/estado/?${query.toString()}`, {
+    token,
+  });
+}
+
 export async function obtenerResultadosProvinciales(params?: { provincia?: string; tipo?: string }): Promise<ResultadoProvincial[]> {
   const query = new URLSearchParams();
   if (params?.provincia) query.append("provincia", params.provincia);
